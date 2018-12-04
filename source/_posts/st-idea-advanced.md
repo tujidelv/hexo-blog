@@ -45,106 +45,114 @@ tags:
     IDEA默认快捷键的配置文件所在地：${IDEA_home}\lib\resources.jar\keymaps\*
     ```
 - 常用快捷键(Eclipse 版)
-    - ***Ctrl***
 
-        |快捷键|介绍|
-        |:---------|:---------|
-        |<kbd>Ctrl</kbd> + <kbd>F</kdb>|在当前文件进行文本替换 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Z/Y</kdb>|撤销/反撤销 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>X/C/V/A/S</kdb>|剪切/复制/粘贴/全选/保存 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>D</kdb>|删除光标所在行或选中行 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>/</kdb>|单行注释 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>O</kdb>|查看当前类的结构 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>H/R</kdb>|查找/替换(全局) `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>E</kdb>|显示最近打开的文件记录列表 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>W</kdb>|关闭当前打开的代码栏 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>L</kdb>|在当前文件跳转到指定行处 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Up/Down</kdb>|等效于鼠标滚轮向前/后效果 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Left/Right</kdb>|光标跳转到当前单词/中文名的左/右侧开头位置 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>T</kdb>|在某个调用的方法名上使用会跳到具体的实现处，可以跳过接口 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>F12</kdb>|调转到所选中的词的下一个引用位置|
-        |<kbd>Ctrl</kbd> + <kbd>F1</kdb>|在光标所在的错误代码处显示错误信息|
-        |<kbd>Ctrl</kbd> + <kbd>J</kdb>|插入自定义动态代码模板|
-        |<kbd>Ctrl</kbd> + <kbd>U</kdb>|前往当前光标所在的方法的父类的方法/接口定义|
-    - ***Alt***
+### ***Ctrl***
 
-        |快捷键|介绍|
-        |:---------|:---------|
-        |<kbd>Alt</kbd> + <kbd>Insert</kdb>|新建文件 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>Enter</kdb>|万能解错/生成返回值变量 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>/</kdb>|提示补全 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>Up/Down</kdb>|向上/下移动行/方法 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>Left/Right</kdb>|退回/前进到上一个/下一个操作的页面 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>R/D</kdb>|在执行/调试 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>1,2,...,9</kdb>|显示对应数值的他选项卡,其中1是Project用得最多 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>F12</kdb>|在项目下打开命令行 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>F1</kdb>|显示当前文件选择目标弹出层,弹出层中有很多目标可以进行选择 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>`</kdb>|显示版本控制常用操作菜单弹出层 `（必备）` |
-    - ***Shift***
+|快捷键|介绍|
+|:---------|:---------|
+|<kbd>Ctrl</kbd> + <kbd>F</kdb>|在当前文件进行文本替换 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Z/Y</kdb>|撤销/反撤销 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>X/C/V/A/S</kdb>|剪切/复制/粘贴/全选/保存 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>D</kdb>|删除光标所在行或选中行 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>/</kdb>|单行注释 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>O</kdb>|查看当前类的结构 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>H/R</kdb>|查找/替换(全局) `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>E</kdb>|显示最近打开的文件记录列表 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>W</kdb>|关闭当前打开的代码栏 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>L</kdb>|在当前文件跳转到指定行处 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Up/Down</kdb>|等效于鼠标滚轮向前/后效果 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Left/Right</kdb>|光标跳转到当前单词/中文名的左/右侧开头位置 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>T</kdb>|在某个调用的方法名上使用会跳到具体的实现处，可以跳过接口 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>F12</kdb>|调转到所选中的词的下一个引用位置|
+|<kbd>Ctrl</kbd> + <kbd>F1</kdb>|在光标所在的错误代码处显示错误信息|
+|<kbd>Ctrl</kbd> + <kbd>J</kdb>|插入自定义动态代码模板|
+|<kbd>Ctrl</kbd> + <kbd>U</kdb>|前往当前光标所在的方法的父类的方法/接口定义|
 
-        |快捷键|介绍|
-        |:---------|:---------|
-        |<kbd>Shift</kbd> + <kbd>Enter</kdb>|向下开始新的一行 `（必备）` |
-        |<kbd>Shift</kbd> + <kbd>Tab</kdb>|取消缩进 `（必备）` |
-        |<kbd>Shift</kbd> + <kbd>F11</kdb>|弹出书签显示层 `（必备）` |
-    - ***Ctrl + Alt***
+### ***Alt***
 
-        |快捷键|介绍|
-        |:---------|:---------|
-        |<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd>|打开idea系统设置 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Down</kbd>|向下复制一行 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd>|添加到收藏 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Left/Right</kbd>|切换当前已打开的窗口中的子视图,如debug窗口中有output,debugger等子视图|
-        |<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>H</kbd>|查看方法的多层重写结构|
-        |<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>/</kbd>|方法参数提示显示|
-    - ***Ctrl + Shift***
+|快捷键|介绍|
+|:---------|:---------|
+|<kbd>Alt</kbd> + <kbd>Insert</kdb>|新建文件 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>Enter</kdb>|万能解错/生成返回值变量 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>/</kdb>|提示补全 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>Up/Down</kdb>|向上/下移动行/方法 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>Left/Right</kdb>|退回/前进到上一个/下一个操作的页面 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>R/D</kdb>|在执行/调试 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>1,2,...,9</kdb>|显示对应数值的他选项卡,其中1是Project用得最多 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>F12</kdb>|在项目下打开命令行 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>F1</kdb>|显示当前文件选择目标弹出层,弹出层中有很多目标可以进行选择 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>`</kdb>|显示版本控制常用操作菜单弹出层 `（必备）` |
 
-        |快捷键|介绍|
-        |:---------|:---------|
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>/</kbd>|多行注释 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd>|向上开始新的一行 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>|格式化代码 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd>|优化导入的类 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Y</kbd>|大写转小写/小写转大写 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd>|根据输入的类名查找类文件 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>|根据输入的文件名打开文件/目录,打开目录需在末尾多加一个正斜杠 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Up/Down</kbd>|当前光标跳转到当前文件的前/后一个方法名位置 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F12</kbd>|编辑器最大化 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd>|查找方法在哪里被调用 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>|选择要粘贴的内容|
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd>|快速搜索类中的错误|
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd>|关闭打开的所有代码栏|
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd>|查看类的继承结构图|
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>|打开代码所在硬盘文件夹|
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>|复制当前文件磁盘路径到剪切板|
-    - ***Alt + Shift***
+### ***Shift***
 
-        |快捷键|介绍|
-        |:---------|:---------|
-        |<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>|生成构造器/get/set/toString `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>|生成 try-catch 等 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>C/X</kbd>|收起/打开所有的方法 `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>|重构(修改变量名与方法名) `（必备）` |
-        |<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd>|抽取方法|
-        |<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>|局部变量抽取为成员变量|
-        |<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd>|选择/添加 task|
-    - ***Ctrl + Shift + Alt***
+|快捷键|介绍|
+|:---------|:---------|
+|<kbd>Shift</kbd> + <kbd>Enter</kdb>|向下开始新的一行 `（必备）` |
+|<kbd>Shift</kbd> + <kbd>Tab</kdb>|取消缩进 `（必备）` |
+|<kbd>Shift</kbd> + <kbd>F11</kdb>|弹出书签显示层 `（必备）` |
 
-        |快捷键|介绍|
-        |:---------|:---------|
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd>|打开当前项目设置 `（必备）` |
-        |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd>|无格式黏贴|
-    - ***其他***
+### ***Ctrl + Alt***
 
-        |快捷键|介绍|
-        |:---------|:---------|
-        |<kbd>Dobule Shift</kbd>|查找文件 `（必备）` |
-        |<kbd>Esc</kbd>|从工具窗口进入代码文件窗口 `（必备）` |
-        |<kbd>Tab</kbd>|缩进 `（必备）` |
-        |<kbd>F3</kbd>|进入光标所在的方法/变量的接口或是定义处,等效于ctrl+左键单击 `（必备）` |
-        |<kbd>F11</kbd>|添加书签 `（必备）` |
-        |<kbd>F2</kbd>|光标所在的变量/类名/方法名等上面显示文档内容|
-        |<kbd>F4</kbd>|查看继承关系|
+|快捷键|介绍|
+|:---------|:---------|
+|<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd>|打开idea系统设置 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Down</kbd>|向下复制一行 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd>|添加到收藏 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Left/Right</kbd>|切换当前已打开的窗口中的子视图,如debug窗口中有output,debugger等子视图|
+|<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>H</kbd>|查看方法的多层重写结构|
+|<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>/</kbd>|方法参数提示显示|
+
+### ***Ctrl + Shift***
+
+|快捷键|介绍|
+|:---------|:---------|
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>/</kbd>|多行注释 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd>|向上开始新的一行 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>|格式化代码 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd>|优化导入的类 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Y</kbd>|大写转小写/小写转大写 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd>|根据输入的类名查找类文件 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>|根据输入的文件名打开文件/目录,打开目录需在末尾多加一个正斜杠 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Up/Down</kbd>|当前光标跳转到当前文件的前/后一个方法名位置 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F12</kbd>|编辑器最大化 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd>|查找方法在哪里被调用 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>|选择要粘贴的内容|
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd>|快速搜索类中的错误|
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd>|关闭打开的所有代码栏|
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd>|查看类的继承结构图|
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>|打开代码所在硬盘文件夹|
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>|复制当前文件磁盘路径到剪切板|
+
+### ***Alt + Shift***
+
+|快捷键|介绍|
+|:---------|:---------|
+|<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>|生成构造器/get/set/toString `（必备）` |
+|<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>|生成 try-catch 等 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>C/X</kbd>|收起/打开所有的方法 `（必备）` |
+|<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>|重构(修改变量名与方法名) `（必备）` |
+|<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd>|抽取方法|
+|<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>|局部变量抽取为成员变量|
+|<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd>|选择/添加 task|
+
+### ***Ctrl + Shift + Alt***
+
+|快捷键|介绍|
+|:---------|:---------|
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd>|打开当前项目设置 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd>|无格式黏贴|
+        
+### ***其他***
+
+|快捷键|介绍|
+|:---------|:---------|
+|<kbd>Dobule Shift</kbd>|查找文件 `（必备）` |
+|<kbd>Esc</kbd>|从工具窗口进入代码文件窗口 `（必备）` |
+|<kbd>Tab</kbd>|缩进 `（必备）` |
+|<kbd>F3</kbd>|进入光标所在的方法/变量的接口或是定义处,等效于ctrl+左键单击 `（必备）` |
+|<kbd>F11</kbd>|添加书签 `（必备）` |
+|<kbd>F2</kbd>|光标所在的变量/类名/方法名等上面显示文档内容|
+|<kbd>F4</kbd>|查看继承关系|
 
 ## 高效率编码功能介绍
 

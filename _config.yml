@@ -29,6 +29,8 @@ code_dir: downloads/code # Include code 文件夹
 i18n_dir: :lang # 国际化（i18n）文件夹
 skip_render: # 跳过指定文件的渲染，您可使用 glob 表达式来匹配路径。
 - README.md
+- baidu_verify_kunmbyfMoR.html
+- google0a7896c13224b046.html
 
 # Writing，文章，这一块一般不需要修改
 new_post_name: :title.md # Hexo 默认以标题做为文件名称，设为 :year-:month-:day-:title.md 可让您更方便的通过日期来管理文章
@@ -77,6 +79,7 @@ pagination_dir: page # 分页目录
 plugin:
 - hexo-generator-feed
 - hexo-generator-sitemap
+- hexo-generator-baidu-sitemap
 #Feed Atom
 feed:
 type: atom

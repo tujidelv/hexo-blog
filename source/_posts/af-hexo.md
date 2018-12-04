@@ -106,7 +106,7 @@ tags:
     [hexo-cli@1.1.0] link E:\Ebook\JavaSE\develop\nodejs\node_global\hexo@ -> E:\Ebook\JavaSE\develop\nodejs\node_global\node_modules\hexo-cli\bin\hexo
     ```
 - 创建 Hexo 项目
-    ![抱歉,图片休息了](af-hexo/sf-hexo-001.png "hexo 项目目录结构")
+    ![抱歉,图片休息了](af-hexo/af-hexo-001.png "hexo 项目目录结构")
     - 现在初始化后不需要 `npm install` 了，它会默认执行该命令把相关依赖包下载到 node_modules 目录中，同时会自动生成 package-lock.json 文件用以纪录当前实际安装的各个插件包的具体来源和版本号。
     - 安装时间不一定很快，耐心等待一会。
     ```
@@ -183,7 +183,7 @@ tags:
         ```
     - 修改 hexo 站点配置文件 _config.yml 使主题生效
     
-        ![抱歉,图片休息了](af-hexo/sf-hexo-002.png "hexo 主题修改")
+        ![抱歉,图片休息了](af-hexo/af-hexo-002.png "hexo 主题修改")
     - 重新渲染主题静态内容并本地预览
         ```
         Tujide.lv@tujide MINGW64 /e/Ebook/JavaSE/workspace_idea/hexo-blog
@@ -237,7 +237,7 @@ tags:
 - 创建 Github pages 并 SSH 授权
     - 创建好这个特殊仓库之后，在本地生成 SSH 秘钥并添加到 GitHub上，方便电脑上的 git 将内容到 Github 上。
     
-    ![抱歉,图片休息了](af-hexo/sf-hexo-003.png "hexo 仓库")
+    ![抱歉,图片休息了](af-hexo/af-hexo-003.png "hexo 仓库")
 - 把本地的博客内容同步到 Github 上
     - 安装与 hexo 相关的 git 部署插件
         ```
@@ -347,7 +347,7 @@ tags:
         hexo generate/g     // 重新生成一次静态文件
         hexo deploy/d       // 使用部署命令部署到 Github 上
         ```
-    ![抱歉,图片休息了](af-hexo/sf-hexo-004.png "hexo 部署到GitHub")
+    ![抱歉,图片休息了](af-hexo/af-hexo-004.png "hexo 部署到GitHub")
 - 绑定域名
     - 在 source 目录下新建 `CNAME` 文件（文件名叫 CNAME，没有文件后缀的）
         - 以后一些需要放在根目录的资源文件都可以放这里。
@@ -369,83 +369,220 @@ tags:
 
 ## 进阶使用
 
-- 编写脚本方便快速部署和本地预览
-    - 在 hexo 根目录下新建 hs.sh 和 hd.sh 文件,分别加入如下内容：
-        ```
-        #!/bin/bash
-        hexo clean && hexo g && hexo s
-        ```
-        ```
-        #!/bin/bash
-        hexo clean && hexo g && hexo d
-        ```
-    - 在 Git Bash 中分别执行 `./hs.sh` 和`./hd.sh` 来预览和部署。
-- 创建**关于我**页面
-    - 可以编辑 index.md 文件补充需要显示的内容。
+### **编写脚本方便快速部署和本地预览**
+
+- 在 hexo 根目录下新建 hs.sh 和 hd.sh 文件,分别加入如下内容：
+    ```
+    #!/bin/bash
+    hexo clean && hexo g && hexo s
+    ```
+    ```
+    #!/bin/bash
+    hexo clean && hexo g && hexo d
+    ```
+- 在 Git Bash 中分别执行 `./hs.sh` 和`./hd.sh` 来预览和部署。
+
+### **创建[关于我]页面**
+
+- 可以编辑 index.md 文件补充需要显示的内容。
+```
+Tujide.lv@tujide MINGW64 /e/Ebook/JavaSE/workspace_idea/hexo-blog
+$ hexo new page about
+INFO  Created: E:\Ebook\JavaSE\workspace_idea\hexo-blog\source\about\index.md
+```
+
+### **创建[404]页面**
+
+- 对于 github page 来说，只要在根目录有 404.html，当页面找不到时，就会被转发到/404.html 页面，所以我们只要更改这个页面，就可以实现自定义 404 页面了。
+- 但是我们通常会需要与本主题相符的 404 页面，那我们需要以下操作
+    1. 进入 Hexo 根目录，输入 `hexo new page 404` ;
+    2. 打开刚新建的页面文件，默认在 Hexo 文件夹根目录下 `/source/404/index.md`;
+    3. 在顶部插入一行，写上 `permalink: /404`，这表示指定该页固定链接为 `http://"主页"/404.html`。
+
+### **创建[分类&标签]页面**
+
+1. 在 source 目录下新建一个 tags 文件夹
+    ```
+    $ hexo new page tags
+    ```
+2. 编辑 index.md 文件，添加 `layout` 选项，后面的值对应的是主题文件夹下 `layout` 目录下第一级的布局文件，例如layout/tags.ejs
+    ```
+    ---
+    title: tags
+    date: 2018-11-28 20:23:17
+    type: tags
+    layout: "tags"
+    ---
+    ```
+3. 编辑主题配置文件，各个主题的显示名称可能不同
+    ```
+    menu:
+      Home: /
+      Archives: /archives
+      tags: /tags
+    ```
+4. 最后去看下 hexo 站点配置文件对应的选项名称是否对应
+    ```
+    # Directory
+    tag_dir: tags
+    ```
+Tips：最重要的是看一下主题文件里有没有标签页或者分类页的布局文件，一般来说都是有的，只是命名和存放的位置可能不同，所以大家要根据实际情况来修改。categories 同理。
+
+### **图片显示**
+
+- 一般分为外链和本地图片，这里介绍本地图片显示的 2 种方法
+- 绝对路径，可直接在 source 目录下新建 images 文件夹用于存放图片，在 md 文件中如下引用
+    ```
+    ![图片不存在时的提示文字](/images/图片.jpg "鼠标箭头放到图片上的提示文字")
+    ```
+- 相对路径，需先将站点配置文件中的 post_asset_folder 设为 true，然后安装 hexo-asset-image 插件
+    ```
+    # Writing
+    post_asset_folder: true # 启动 Asset 文件夹
+    ```
     ```
     Tujide.lv@tujide MINGW64 /e/Ebook/JavaSE/workspace_idea/hexo-blog
-    $ hexo new page about
-    INFO  Created: E:\Ebook\JavaSE\workspace_idea\hexo-blog\source\about\index.md
+    $ cnpm i hexo-asset-image --save
+    √ Installed 1 packages
+    √ Run 0 scripts
+    √ All packages installed (19 packages installed from npm registry, used 2s(network 2s), speed 153.72kB/s, json 18(31.65kB), tarball 315.44kB)
     ```
-- 创建 **404** 页面
-    - 对于 github page 来说，只要在根目录有 404.html，当页面找不到时，就会被转发到/404.html 页面，所以我们只要更改这个页面，就可以实现自定义 404 页面了。
-    - 但是我们通常会需要与本主题相符的 404 页面，那我们需要以下操作
-        1. 进入 Hexo 根目录，输入 `hexo new page 404` ;
-        2. 打开刚新建的页面文件，默认在 Hexo 文件夹根目录下 `/source/404/index.md`;
-        3. 在顶部插入一行，写上 `permalink: /404`，这表示指定该页固定链接为 `http://"主页"/404.html`。
-- 创建**分类&标签**页面
-    1. 在 source 目录下新建一个 tags 文件夹
-        ```
-        $ hexo new page tags
-        ```
-    2. 编辑 index.md 文件，添加 `layout` 选项，后面的值对应的是主题文件夹下 `layout` 目录下第一级的布局文件，例如layout/tags.ejs
-        ```
-        ---
-        title: tags
-        date: 2018-11-28 20:23:17
-        type: tags
-        layout: "tags"
-        ---
-        ```
-    3. 编辑主题配置文件，各个主题的显示名称可能不同
-        ```
-        menu:
-          Home: /
-          Archives: /archives
-          tags: /tags
-        ```
-    4. 最后去看下 hexo 站点配置文件对应的选项名称是否对应
-        ```
-        # Directory
-        tag_dir: tags
-        ```
-    Tips：最重要的是看一下主题文件里有没有标签页或者分类页的布局文件，一般来说都是有的，只是命名和存放的位置可能不同，所以大家要根据实际情况来修改。categories 同理。
-- 图片显示
-    - 一般分为外链和本地图片，这里介绍本地图片显示的 2 种方法
-    - 绝对路径，可直接在 source 目录下新建 images 文件夹用于存放图片，在 md 文件中如下引用
-        ```
-        ![图片不存在时的提示文字](/images/图片.jpg "鼠标箭头放到图片上的提示文字")
-        ```
-    - 相对路径，需先将站点配置文件中的 post_asset_folder 设为 true，然后安装 hexo-asset-image 插件
-        ```
-        # Writing
-        post_asset_folder: true # 启动 Asset 文件夹
-        ```
-        ```
-        Tujide.lv@tujide MINGW64 /e/Ebook/JavaSE/workspace_idea/hexo-blog
-        $ cnpm i hexo-asset-image --save
-        √ Installed 1 packages
-        √ Run 0 scripts
-        √ All packages installed (19 packages installed from npm registry, used 2s(network 2s), speed 153.72kB/s, json 18(31.65kB), tarball 315.44kB)
-        ```
-        ```
-         ![图片不存在时的提示文字](MD文件名称/图片.jpg "鼠标箭头放到图片上的提示文字")
-        ```
-        Tips：此方法在运行 hexo n "xxxx" 来生成 md 文件时，同时会在/source/_posts 文件夹下生成一个与 md 文件同名的文件夹。
-- 文章排序及置顶
-- 使用 gitment 评论系统
-- 备份当前项目源码
+    ```
+     ![图片不存在时的提示文字](MD文件名称/图片.jpg "鼠标箭头放到图片上的提示文字")
+    ```
+    Tips：此方法在运行 hexo n "xxxx" 来生成 md 文件时，同时会在/source/_posts 文件夹下生成一个与 md 文件同名的文件夹。
+    
+### **添加 rss 为 blog 提供订阅功能**
 
+1. 安装相关插件
+    ```
+    $ cnpm install hexo-generator-feed --save
+    ```
+2. 配置 Hexo 站点配置文件_config.yml(以 3-hexo 为例)
+    ```
+    # Extensions
+    ## Plugins: https://hexo.io/plugins/
+    plugin:
+    - hexo-generator-feed
+    #Feed Atom
+    feed:
+    type: atom
+    path: atom.xml
+    limit: 20
+    ```
+3. 验证配置是否成功
+    - 执行 hexo g，查看一下 public 目录下，如果有 atom.xml 文件，则表明配置成功。
+4. 修改 Hexo 主题配置文件_config.yml(以 3-hexo 为例)
+    ```
+    link:
+      items:
+        rss: /atom.xml
+    ```
+    
+### **添加 sitemap 让搜索引擎收录**
+
+1. 先确认博客是否被收录
+    - 在百度或者谷歌上面输入 `site:你的域名` 来判断，如果能搜索到就说明被收录，否则就没有。
+2. 创建站点地图文件
+    - 您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知 Google 和其他搜索引擎，搜索引擎网页抓取工具会读取此文件，以便更加智能地抓取您的网站。
+    1. 安装百度和 google 插件
+        ```
+        cnpm install hexo-generator-sitemap --save
+        cnpm install hexo-generator-baidu-sitemap --save
+        ```
+    2. 配置 Hexo 站点配置文件_config.yml(以 3-hexo 为例)
+        ```
+        plugin:
+        - hexo-generator-sitemap
+        - hexo-generator-baidu-sitemap
+        ```
+    3. 验证配置是否成功
+        - 执行 hexo g，查看一下 public 目录下，如果有 sitemap.xml 文件，则表明配置成功。
+3. 让百度收录我们的博客
+    - 可以去 [百度站长平台](https://ziyuan.baidu.com/dashboard/index) 进行网站验证和链接提交。
+    - 由于百度不会抓取 GitHub Pages 上的站点，这里不进行操作。
+4. 让谷歌收录我们的博客
+    - 可以去 [Google 站长工具](https://www.google.com/webmasters/tools) 进行站点验证和添加站点地图。
+5. 添加 rebots.txt 文件
+    - ...
+        
+### **文章排序及置顶**
+
+- 文章（site.posts）排序默认按照 .md 文件的创建时间排序，而没有按照文章中的 date 排序。这容易导致问题，比如文件丢失通过 Git 还原后创建时间都是一样的。
+- 设置排序
+    - 方法1：
+        >**[@牵猪的松鼠](http://s.amlove.cn/)根据这篇文章写了一个npm插件 [hexo-generator-topindex](https://www.npmjs.com/package/hexo-generator-topindex)
+        安装插件命令： `npm install hexo-generator-topindex --save`
+    
+    - 方法2：直接修改 node_modules/hexo-generator-index/lib/generator.js
+        ```javascript
+        'use strict';
+        var pagination = require('hexo-pagination');
+        module.exports = function(locals){
+          var config = this.config;
+          var posts = locals.posts;
+            posts.data = posts.data.sort(function(a, b) {
+                if(a.top && b.top) { // 两篇文章top都有定义
+                    if(a.top == b.top) return b.date - a.date; // 若top值一样则按照文章日期降序排
+                    else return b.top - a.top; // 否则按照top值降序排
+                }
+                else if(a.top && !b.top) { // 以下是只有一篇文章top有定义，那么将有top的排在前面（这里用异或操作居然不行233）
+                    return -1;
+                }
+                else if(!a.top && b.top) {
+                    return 1;
+                }
+                else return b.date - a.date; // 都没定义按照文章日期降序排
+            });
+          var paginationDir = config.pagination_dir || 'page';
+          return pagination('', posts, {
+            perPage: config.index_generator.per_page,
+            layout: ['index', 'archive'],
+            format: paginationDir + '/%d/',
+            data: {
+              __index: true
+            }
+          });
+        };
+        ```
+- 设置置顶
+    - 给需要置顶的文章加入top参数，如下
+        ```
+        ---
+        title: Hexo 札记
+        date: 2018-12-01 18:25:23
+        top: 1
+        categories:
+        - 应用框架
+        tags:
+        - hexo
+        - nodejs
+        ---
+        ```
+    - 如果存在多个置顶文章，top 后的参数越大，越靠前。
+
+### **使用 gitment 评论系统**
+
+### **备份当前项目源码**
+
+- 为防止当前项目源文件丢失，特补充此备份操作。
+- 修改 Hexo 项目的 .gitignore 文件，然后通过 IDEA 同步到远程仓库。
+    ```
+    ### Hexo ###
+    .DS_Store
+    Thumbs.db
+    db.json
+    *.log
+    node_modules/
+    public/
+    .deploy*/
+    themes/
+    
+    ### IntelliJ IDEA ###
+    .idea/
+    *.iml
+    ```
+![抱歉,图片休息了](af-hexo/af-hexo-005.png "将 hexo 源文件分享到 github")
 
 ## 参考链接
 

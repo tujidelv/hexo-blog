@@ -17,3 +17,5 @@
     - <del>[最强屏幕录像软件 Camtasia Studio](source/_posts/st-camtasia-studio.md)</del>
 - **Scientific Internet**
     - 更新中...
+- **Typical Example**
+    - [可输入可选择可模糊查询的 select 下拉](source/_posts/te-select.md)
