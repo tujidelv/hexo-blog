@@ -88,6 +88,7 @@ limit: 20
 ## Themes: https://hexo.io/themes/
 theme: 3-hexo # 当前主题名称。值为false时禁用主题
 
+
 # Deployment，部署
 ## 这里是重点，这里是修改发布地址，因为我们前面已经将本地 SSH 密钥信息添加到 Github 设置里面了，所以只要我们电脑里面持有那两个密钥文件就可以无需密码地跟 Github 做同步。
 ## 需要注意的是这里的 repo 采用的是 ssh 的地址，而不是 https 的。分支我们默认采用 master 分支。
@@ -96,3 +97,4 @@ deploy:
   type: git
   repo: git@github.com:tujidelv/tujidelv.github.io.git
   branch: master
+  message: "Site updateed: {{ now('YYYY-MM-DD HH:mm:ss') }}"

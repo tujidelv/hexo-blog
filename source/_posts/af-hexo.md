@@ -563,6 +563,127 @@ Tips：最重要的是看一下主题文件里有没有标签页或者分类页�
 
 ### **使用 gitment 评论系统**
 
+- 简介
+    >[Gitment 项目地址](https://github.com/imsun/gitment)
+    
+    >Gitment 是基于 GitHub Issues 的评论系统。支持在前端直接引入，不需要任何后端代码。可以在页面进行登录、查看、评论、点赞等操作，同时有完整的 Markdown / GFM 和代码高亮支持。尤为适合各种基于 GitHub Pages 的静态博客或项目页面。
+- 注意点
+    - gitment 有两个配置文件(一个 css 文件和一个 js 文件)，gitment 的开发者用远程连接的方式将两个文件引入 hexo 中，其中的 js 文件中需要访问作者自己搭建的服务器，但是现在作者的服务器不好使了，会导致全都配置好了，但是报错。所以要下载到本地自己的项目中，然后在项目中自己引用这两个文件。
+    - 由于主题不同，有的主题的作者在开始设计主题的时候就为用户写好了gitment 的配置代码，只需用户在主题的_config.yml 中开启并填写好配置参数即可，有的主题没有预制好 gitment 的配置代码，就需要用户自己去在样式模板中添加 gitment 代码。
+- 安装 gitment 到主题
+    - 主题已经集成了 gitment 模块
+        ```
+        需要博主自己查看一下自己的主题结构，找到 themes 下的 _config.yml 文件，在文件中找到 gitment 模块的相关参数，然后在 enable 选项后面写上 true 即可完成安装过程。
+        ```
+    - 主题没有集成 gitment 模块
+        ```
+        将这两个文件下载到本地并引入自己主题的母板中就完成了安装，可根据自己的文件结构放置 css 和 js 文件，然后在模板文件中引用两个文件。
+        本质上安装就是在主题模板文件中引入一个 css 和一个 js 文件，集成 gitment 模块的主题只不过是做到了代码分离，让需要配置的参数在_config.yml 中统一配置。
+        gitment 作者给出的方法是在给没有集成的主题中的根本引入办法，如果你能看懂主题作者的组织结构，那完全可以给自己的主题集成 gitment 模块。
+        
+        下载地址：
+        https://imsun.github.io/gitment/style/default.css
+        https://imsun.github.io/gitment/dist/gitment.browser.js
+        ```
+        ```
+        <link rel="stylesheet" href="https://tujidelv.github.io/css/gitment.css">
+        <script src="https://tujidelv.github.io/js/gitment.js"></script>
+        ```
+- 注册 OAuth application
+    - 因为 gitment 是利用了 github 的 issue，所以要注册 OAuth application，来获取配置参数为接下来的配置做准备。
+      
+    - [点击此处](https://github.com/settings/applications/new)处来注册一个新的 OAuth Application。其他内容可以随意填写，但要确保填入正确的 callback URL（一般是评论页面对应的域名，如 <https://lvzhiqiang.top/>）。
+      
+    - 注册后会给两个字符串 Client ID 和 Client Secret , 这两个下面配置的时候要用。
+
+- 配置 gitment 到 hexo 主题中
+    - 主题已经集成了 gitment 模块
+        ```
+        只需在 _config.yml 中找到刚才开启 gitment 的那里，依次填入GitHub 用户名、存储评论的仓库地址、Clieent Id、和 Client Secret。
+        ```
+    - 主题没有集成 gitment 模块
+        ```
+        在刚才添加的母版中继续添加如下代码，并将以下代码中的四个参数按照提示填好即可。
+        ```
+        ```
+        <div id="comments"></div>
+        <script>
+        var gitment = new Gitment({
+          id: '<%=url %>', // 可选。默认为 location.href
+          owner: '你的 GitHub ID(可以是你的 GitHub 用户名，也可以是 Github id，建议直接用 GitHub 用户名就可以)',
+          repo: '存储评论的 Github repo(可以是博客下的仓库，也可以新建一个仓库专门存储评论内容)',
+          oauth: {
+            client_id: '你的 client ID',
+            client_secret: '你的 client secret',
+          },
+        })
+        gitment.render('comments')
+        </script>
+        ```
+- 初始化评论
+    - 理论上按照以上配置完发布即可看到评论区了。只不过每一个帖子下面的评论区都要点击 `Initialize Comments` 才能开始评论。
+    - 根据 gitment 作者的说法，只要博主登录自己的 github 账号然后点击初始化就可以使用了。
+- 常见问题解决
+    1. 评论时点击登录，登录 GitHub 之后跳转回来的时候不能正常跳回刚才评论那页，每次跳到主页。
+        ```
+        解决办法：在注册 OAuth application 时的回调地址有问题，尝试写绑定的域名，而不是用 “https://用户名.github.io”
+        ```
+    2. 报错 `[Error: Comments Not Initialized]`
+        ```
+        文章作者需要登陆 GitHub 授权后，会显示初始化按钮(注意，不要多点按钮，否则 issues 出现多条一样的)
+        点击初始化按钮后，如果正常就会出现"No Comment Yet"
+        关于自动初始化所有文章的功能，可以用脚本来执行自动化，有需要的可以详细了解：https://github.com/imsun/gitment/issues/5
+        ```
+    3. 报错 `[object ProgressEvent]`
+        ```
+        原因：在母版中调用的 js 文件中，有访问 gitment 作者的服务器代码，而作者的服务器不好使了。
+        解决办法： 自己搭建一个服务器（需要有一个 vps 来辅助搭建服务器）
+        参考：https://github.com/imsun/gitment/issues/170
+        --------------------------------
+        1.在服务器中 clone 作者的服务器源码
+            git clone https://github.com/imsun/gh-oauth-server.git
+        2.进入项目，下载依赖，并启动(如果成功,在项目目录下的 nohup.out 文件中的最后，会提示正在监听 3000 端口)
+            npm install && nohup npm start
+        3.替换 js 文件中的作者服务器为自己服务器，在作者的 js 文件中搜索以下字符串并将其替换成刚才搭建服务器的地址，如果没有做好端口映射可直接地址加端口也可以。
+            https://gh-oauth.imsun.net
+        ```
+        ```
+        推荐几位大佬搭建好的：
+            https://bak.smalbox.club
+            https://auth.baixiaotu.cc
+            https://cors.wenjunjiang.win/?remoteUrl=https://github.com/login/oauth/access_token
+            https://github.com/login/oauth/access_token
+        ```
+    4. 报错 `[Error：validation failed]`
+        ```
+        原因：
+            issue 的标签 label 有长度限制！labels 的最大长度限制是 50 个字符。
+        --------------------------------
+        解读：
+            id: '页面 ID', // 可选。默认为 location.href
+            这个id的作用，就是针对一个文章有唯一的标识来判断这篇本章。
+            在issues里面，可以发现是根据网页标题来新建issues的，然后每个issues有两个labels（标签），一个是gitment，另一个就是id。
+            所以明白了原理后，就是因为id太长，导致初始化失败，现在就是要让id保证在50个字符内。
+            对应配置的id为：
+            id: '<%= page.title %>'
+            如果用网页标题也不能保证在50个字符！
+        --------------------------------
+        解决办法：
+            最后，我用文章的时间，这样长度是保证在50个字符内，完美解决！（避免了文章每次更新标题或路径时，会重新创建一个issue评论的问题。）
+            id: '<%= page.date %>'
+        ```
+    5. gitment 的汉化
+        ```
+        只需到模板里将原来定义CSS和JS的那两行改成如下即可
+            <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
+            <script src="https://billts.site/js/gitment.js"></script>
+        来源：https://github.com/imsun/gitment/issues/104
+        ```
+    6. 订阅 issue
+        ```
+        issue 订阅，有新评论时就可以通过邮件提醒，这个功能是把双刃剑，因为有些垃圾订阅邮件骚扰，大家看着用吧。
+        ```
+
 ### **备份当前项目源码**
 
 - 为防止当前项目源文件丢失，特补充此备份操作。
