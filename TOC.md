@@ -16,6 +16,7 @@
     - [阿香婆屏幕截图工具 Ashampoo Snap](source/_posts/st-ashampoo-snap.md)
     - <del>[最强屏幕录像软件 Camtasia Studio](source/_posts/st-camtasia-studio.md)</del>
 - **Scientific Internet**
-    - 更新中...
+    - [SSR 搭建：基础](source/_posts/si-ssr-basic.md)
+    - [SSR 搭建：进阶](source/_posts/si-ssr-advanced.md)
 - **Typical Example**
     - [可输入可选择可模糊查询的 select 下拉](source/_posts/te-select.md)
