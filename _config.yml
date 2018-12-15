@@ -14,9 +14,9 @@ timezone:
 # URL，网址，这一块区域一般可以设置的是 url 这个参数，比如我要设置绑定域名的，这里就需要填写我的域名信息
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 ## 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，则请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。
-url: https://www.lvzhiqiang.top # 网址
+url: https://lvzhiqiang.top # 网址
 root: / # 网站根目录
-permalink: :year/:month/:day/:title/ # 文章的永久链接格式
+permalink: :year/:title.html # 文章的永久链接格式
 permalink_defaults:
 
 # Directory，目录，这一块一般不需要修改
