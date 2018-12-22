@@ -80,6 +80,9 @@ plugin:
 - hexo-generator-feed
 - hexo-generator-sitemap
 - hexo-generator-baidu-sitemap
+search:
+  path: search.xml
+  field: post
 #Feed Atom
 feed:
 type: atom
