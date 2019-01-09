@@ -271,6 +271,7 @@ tags:
     https://free-ss.site/ 免费帐号 免费SS
     https://ssr.plus/ 免费帐号 需回复后才能看，无需注册
     http://www.hishadowsocks.com/ 4小时换1次
+    https://ssray.club/
     ```
 
 ## SSR的进阶使用

@@ -1,5 +1,7 @@
 - **Operating System**
-    - 更新中...
+    - [Linux 札记：Shell 脚本](source/_posts/os-linux-shell.md)
+    - [Linux 札记：常用命令](source/_posts/os-linux-command.md)
+    - [Linux 札记：基础](source/_posts/os-linux-basic.md)
 - **Development Language**
     - [Markdown 札记](source/_posts/dl-markdown.md)
 - **Application Framework**
