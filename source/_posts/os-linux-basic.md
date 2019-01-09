@@ -18,7 +18,7 @@ tags:
 
 ## 简介
 
-基础知识普及中...
+记录一些基础知识...
 
 ## 正篇
 
@@ -568,8 +568,14 @@ dpt:debian,ubuntu
     ~]# history ，第一次会加载命令历史文件中的命令历史记录到内存中，再加载当前shell中执行过的命令历史记录
     	定制history的功能，可通过环境变量实现
     		HISTSIZE：shell进程可保留的命令历史的条数
+    		    eg1：export HISTSIZE=10000
     		HISTFILE：持久保存命令历史的文件（~/.bash_history），是在用户shell登出时自动进行保存的
+    		    eg1：export HISTFILE=/var/log/histlog/${LOGNAME}/hist_${ip}
     		HISTFILESIZE：命令历史文件的大小
+    		    eg1：export HISTFILESIZE=10000
+    		HISTTIMEFORMAT：显示历史命令的时间戳(当HISTTIMEFORMAT这个环境变量被设置之后，之后的那些新执行的bash命令才会被打上正确的时间戳。在此之前的所有命令，都将会显示成设置HISTTIMEFORMAT变量的时间)
+    		    eg1：export HISTTIMEFORMAT='%F %T'
+    		    eg2：export HISTTIMEFORMAT="[%Y.%m.%d %H:%M:%S `whoami`] :"
     用法：
     	history [-c] [-d 偏移量] [n] 或 history -anrw [文件名] 或 history -ps 参数 [参数...]
     	-a：追加本次会话新执行的命令历史列表至历史文件中
