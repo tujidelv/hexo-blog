@@ -104,7 +104,7 @@ shell脚本编程笔记...
     ```
     ![抱歉,图片休息了](os-linux-shell/os-linux-shell-001.png)
 
-### bash中的运算符
+### 运算符
 
 - `逻辑运算符`
     ```
@@ -220,6 +220,24 @@ shell脚本编程笔记...
     		! EXPRESSION
     ```
     ![抱歉,图片休息了](os-linux-shell/os-linux-shell-004.png)
+    
+### 流程控制语句
+
+- `顺序执行`
+- `选择执行`
+    ```
+    if 判断条件
+    then 
+        条件为真的分支代码
+    fi
+    ---------------------
+    if 判断条件; then
+        条件为真的分支代码
+    else
+        条件为假的分支代码
+    fi
+    ```
+- `循环执行`
 
 ### 练习
 
@@ -263,6 +281,25 @@ shell脚本编程笔记...
     [ "$#" -lt 1 ] && echo "The must one arg." && exit 20
     [ -e "$1" ] || { echo "No such file or directory" && exit 30;}
     echo "The blankspace is $(grep '^[[:space:]]*$' $1 | wc -l) lines."
+    ```
+---
+- 写一个脚本
+    ```bash
+    #!/bin/bash
+    #
+    
+    if [ $# -lt 1 ]; then
+            echo "At least one argument."
+            exit 1
+    fi
+    
+    if id $1 &> /dev/null; then
+            echo "$1 exists."
+            exit 0
+    else
+            useradd $1
+            [ $? -eq 0 ] && echo "$1" | passwd --stdin $1 &> /dev/null && exit 0 || exit 2
+    fi
     ```
 
 ## 参考链接
