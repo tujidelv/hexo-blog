@@ -1,5 +1,5 @@
 ---
-title: Linux 札记：常用命令
+title: Linux 系统入门：常用命令
 date: 2018-12-31 15:10:20
 categories:
 - 操作系统
@@ -7,7 +7,7 @@ tags:
 - linux
 ---
 
-# Linux 札记：常用命令
+# Linux 系统入门：常用命令
 
 ## 目录
 
@@ -30,7 +30,7 @@ tags:
         显示命令的完整路径
         ```
     - 命令格式
-        ```jshelllanguage
+        ```
         ~]# which [options] [--] programname [...]
         ```
     - 命令参数
@@ -43,7 +43,7 @@ tags:
         增强版的which命令，会显示路径、源码文件、手册页
         ```
     - 命令格式
-        ```jshelllanguage
+        ```
         ~]# whereis [options] [-BMS directory... -f] name...
         ```
     - 命令参数
@@ -59,7 +59,7 @@ tags:
             whatis能够在数据库里以我们指定的关键字去查找相应的说明
         ```
     - 命令格式
-        ```jshelllanguage
+        ```
         ~]# whatis [-dlv?V] [-r|-w] [-s list] [-m system[,...]] [-M path] [-L locale] [-C file] name ...
         ```
 - `echo`
@@ -93,6 +93,101 @@ tags:
         [root@host ~]# echo "$SHELL"
         /bin/bash
         ```
+- `watch`
+    - 命令功能
+        ```
+        阶段性地执行指定的COMMAND
+        ```
+    - 命令格式
+        ```
+        ~]# watch [-n #] <COMMAND>
+        ```
+    - 命令参数
+        ```
+        -n #: 指定刷新间隔时间，单位是秒
+        ```
+    - 命令实例
+        ```
+        [root@host ~]watch -n1 'ifconfig -eth0'
+        ```
+
+### ***待处理***
+
+```
+virt-what   用于查看服务器是kvm还是xen架构的虚拟化
+netstat -tunlp | grep 端口号    用于查看指定端口号的进程情况	
+	-t  tcp协议相关
+	-u  udp协议相关
+	-n  以数字显示IP和端口
+	-l  处于监听状态
+	-p  显示相关进程及PID
+ps：显示进程状态
+    常用组合：aux
+        u: 以用户为中心组织进程状态信息显示
+        a: 与终端相关的进程；
+        x: 与终端无关的进程；
+    常用组合：-ef
+        -e: 显示所有进程
+        -f: 显示完整格式程序信息
+top：
+    有许多内置命令：
+        排序：
+            P：以占据的CPU百分比；
+            M：占据内存百分比；
+            T：累积占据CPU时长；
+        首部信息显示：
+            uptime信息：l命令
+            tasks及cpu信息：t命令
+                cpu分别显示：1 (数字)
+            memory信息：m命令
+        退出命令：q
+        修改刷新时间间隔：s
+        终止指定进程：k
+    选项：
+        -d #: 指定刷新时间间隔，默认为3秒；
+        -b: 以批次方式；
+        -n #: 显示多少批次；
+kill：向进程发送控制信号，以实现对进程管理
+    显示当前系统可用信号：
+        # kill -l
+        # man 7 signal
+    常用信号：
+        1) SIGHUP: 无须关闭进程而让其重读配置文件；
+        2) SIGINT: 中止正在运行的进程；相当于Ctrl+c；
+        9) SIGKILL: 杀死正在运行的进程；
+        15) SIGTERM：终止正在运行的进程；
+        18) SIGCONT：
+        19) SIGSTOP：
+    指定信号的方法：
+        (1) 信号的数字标识；1, 2, 9
+        (2) 信号完整名称；SIGHUP
+        (3) 信号的简写名称；HUP
+    向进程发信号：
+        kill [-SIGNAL] PID...
+lsof -i:端口号
+    用于查看某一端口的占用情况
+crontab：定时任务
+    crontab [-u user] [-l | -r | -e] [-i] 
+        -l: 列出所有任务；
+        -e: 编辑任务；
+        -r: 移除所有任务；
+        -i：同-r一同使用，以交互式模式让用户有选择地移除指定任务；
+        -u user: 仅root可运行，代为为指定用户管理cron任务；
+chkconfig：开机自启
+    --list：查看哪些服务开机自动运行
+    --add SRV_SCRIPT：添加脚本到开机自动启动项目中
+    --del SRV_SCRIPT：删除
+    SRV_SCRIPT on｜off：配置某服务是否开机自动运行
+wget：网络客户端工具
+    wget [option]... [URL]...
+        -q: 静默模式
+        -c: 续传
+        -P 保存位置
+        --limit-rates=: 指定传输速率
+rz
+sz
+scp
+```
 
 ### ***日期相关***
 
@@ -292,6 +387,34 @@ Linux系统启动时从硬件时钟读取日期和时间信息，读取完成以
         ```
 
 ### ***文件管理***
+
+- `dd`
+    - 命令功能
+        ```
+        convert and copy a file(转换并复制文件),cp是通过文件系统复制的,而dd是通过块接口复制的,虽然都是复制但dd要底层的多,效率更高
+        ```
+    - 命令格式
+        ```
+        ~]# dd if=/PATH/FROM/SRC of=/PATH/TO/DEST [OPTIONS...]
+        ```
+    - 命令参数
+        ```
+        bs=#：block size, 复制单元大小,单位是字节；
+        count=#：复制多少个bs；
+        ```
+    - 命令实例
+        ```
+        磁盘拷贝：
+            ~]# dd if=/dev/sda of=/dev/sdb
+        备份MBR：
+            ~]# dd if=/dev/sda of=/tmp/mbr.bak bs=512 count=1
+        破坏MBR中的bootloader：使用bs=512可以快速清除磁盘上的分区表
+            ~]# dd if=/dev/zero of=/dev/sda bs=256 count=1
+            
+            两个特殊设备：
+                /dev/null: 数据黑洞；
+                /dev/zero：吐零机；
+        ```
 
 - `cp`
     - 命令功能
@@ -1414,6 +1537,90 @@ Linux系统启动时从硬件时钟读取日期和时间信息，读取完成以
         ```
         gnu awk,文本报告生成器
         ```
+
+### ***压缩、解压缩及归档工具***
+
+```
+压缩：根据一定算法
+归档：能实现将多个文件打包成单个文件，即为归档文件
+------------------------
+压缩、解压缩工具：
+    compress/uncompress, .Z
+        早期时候使用的工具,很多程序包的源码以.Z的格式出现,现在很少见到.
+    gzip/gunzip, .gz
+        早期时候非常常用的工具,现在的发行版上依然会使用,采用'LZ77'的压缩算法,压缩比不是特别高,但在早期时候非常快速高效
+        只能压缩文件,不能压缩目录,并且为了节约空间默认会删除原文件,只保留压缩后的文件
+    bzip2/bunzip2, .bz2
+        采用比gzip更为高效的压缩算法(基于LZ77/LZ78),来实现更高压缩比
+        只能压缩文件,不能压缩目录,并且为了节约空间默认会删除原文件,只保留压缩后的文件
+    xz/unxz, xz
+        目前比较推崇使用的工具,xz的压缩比比bzip2更大,CentOS5不支持,需要额外安装
+        只能压缩文件,不能压缩目录,并且为了节约空间默认会删除原文件,只保留压缩后的文件
+归档工具：
+    zip/unzip, zip
+        非常通用的比较古老的工具,各种操作系统基本都支持,不但是一个归档工具还是一个压缩/解压缩工具
+        能对目录进行,将目录下的所有文件(需指明/dir/*)打包成单个文件,再进行压缩
+    tar
+```
+- `gzip/gunzip`
+    ```
+    gzip [OPTION]... FILE ...
+        -d: 解压缩，相当于gunzip
+        -c: 将压缩后的结果输出至标准输出,这样会保留原文件
+            gzip -c /path/to/somefile > /path/to/somecfile.gz
+        -#：指定压缩比，默认为6，范围为1-9,压缩比越大,压缩后生成的文件越小,所消耗的时间越长
+        
+        zcat somefile.gz: 不解压查看gzip压缩后的文件的内容
+    ```
+- `bzip2/bunzip2`
+    ```
+    bzip2 [OPTION]... FILE ...
+        -k: keep, 保留原文件
+        -d：解压缩，相当于bunzip2
+        -#：指定压缩比，默认为6，范围为1-9,压缩比越大,压缩后生成的文件越小,所消耗的时间越长
+        
+        bzcat somefile.gz: 不解压查看bzip2压缩后的文件的内容
+    ```
+- `xz/unxz`
+    ```
+    xz [OPTION]... FILE ...
+        -k: keep, 保留原文件
+        -d：解压缩，相当于unxz
+        -#：指定压缩比，默认为6，范围为1-9,压缩比越大,压缩后生成的文件越小,所消耗的时间越长
+        
+        xzcat somefile.gz: 不解压查看xz压缩后的文件的内容
+    ```
+- `zip/unzip`
+    ```
+    zip ZIPFILE.zip src_file...
+        zip pam.d.zip pam.d/*
+    unzip ZIPFILE.zip
+        -d：解压到指定位置
+    ```
+- `tar`
+    ```
+    tar [OPTION]... 
+        (1) 创建归档
+            tar -c -f /PATH/TO/SOMEFILE.tar FILE...
+            tar -cf /PATH/TO/SOMEFILE.tar FILE...
+        (2) 查看归档文件中的文件列表
+            tar -t -f /PATH/TO/SOMEFILE.tar
+        (3) 展开归档
+            tar -x -f /PATH/TO/SOMEFILE.tar
+            tar -x -f /PATH/TO/SOMEFILE.tar -C /PATH/TO/DIR
+            
+        tar可直接通过选项调用压缩工具针对归档文件执行压缩或解压：解压并展开归档时可以不用带以下参数就能自动判断压缩格式
+            -z: gzip
+            -j: bzip2
+            -J: xz
+        -C DIR：解压到指定目录,目录必须事先存在
+    ```
+    
+    
+    
+    
+    
+    
 
 ## 参考链接
 

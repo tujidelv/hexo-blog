@@ -1,5 +1,5 @@
 ---
-title: Linux 札记：Shell 脚本
+title: Linux 系统入门：Shell 脚本
 date: 2019-01-02 20:51:18
 categories:
 - 操作系统
@@ -7,7 +7,7 @@ tags:
 - linux
 ---
 
-# Linux 札记：Shell 脚本
+# Linux 系统入门：Shell 脚本
 
 ## 目录
 
@@ -42,6 +42,34 @@ shell脚本编程笔记...
     	注：脚本中一旦遇到exit命令,脚本会立即终止;终止退出状态取决于exit命令后面的数字
     注：如果未给脚本指定退出状态码，整个脚本的退出状态码取决于脚本中执行的最后一条命令的状态码
     ```
+- `bash脚本编程之用户交互`
+    ```
+    # read [option]... [name ...]    从标准输入读入一行,并可将其切割成字段对位放入变量中 
+        -p 'PROMPT'：添加提示信息
+            也可这样写：$ echo -n "Enter a user name:";read name
+            对bash而言,在同一行中使用分号隔开,2个命令会顺序执行
+        -t TIMEOUT：设置命令等待的超时时间,单位为秒,在交互中用户如果超时没输入可以在脚本中给默认值
+    # bash -n /path/to/some_script
+    	检测脚本中的语法错误,不能检查逻辑错误
+    # bash -x /path/to/some_script
+        调试(单步)执行,它能显示其中执行的每一个代码的详细过程
+    ```
+    ```
+    #!/bin/bash
+    # Version: 0.0.1
+    # Author: MageEdu
+    # Description: read testing
+
+    read -p "Enter a disk special file: " diskfile
+    [ -z "$diskfile" ] && echo "Fool" && exit 1
+
+    if fdisk -l | grep "^Disk $diskfile" &> /dev/null; then
+        fdisk -l $diskfile
+    else
+        echo "Wrong disk special file."
+        exit 2
+    fi
+    ```
 
 ### 变量
 
@@ -53,6 +81,7 @@ shell脚本编程笔记...
     ```
     字符型：
     数值型：整型,浮点型
+        declare -i name：声明一个整型变量
     ```
 - `变量命名法则`
     ```
@@ -226,18 +255,80 @@ shell脚本编程笔记...
 - `顺序执行`
 - `选择执行`
     ```
-    if 判断条件
-    then 
-        条件为真的分支代码
-    fi
-    ---------------------
-    if 判断条件; then
-        条件为真的分支代码
-    else
-        条件为假的分支代码
-    fi
+    判断条件：
+        a. 根据bash命令的执行状态结果(true或false),具体取决于用到的命令 
+        b. 测试命令
+    if语句可嵌套使用
+    ```
+    ```
+    单分支：
+        if 判断条件; then
+            条件为真的分支代码
+        fi
+    双分支：
+        if 判断条件; then
+            条件为真的分支代码
+        else
+            条件为假的分支代码
+        fi
+    多分支：自上而下进行条件判断，第一次遇到为“真”的条件时，执行其分支，而后结束；
+        if CONDITION1; then
+            if-true
+        elif CONDITION2; then
+            if-ture 
+        elif CONDITION3; then
+            if-ture 
+        ...
+        esle
+            all-false
+        fi
     ```
 - `循环执行`
+    ```
+    循环：
+        循环次数已知：遍历
+            for
+        循环次数未知：
+            while
+            until
+    循环可以嵌套
+    ```
+    ```
+    for循环：
+        for 变量名 in 列表; do
+            循环体(要执行的代码；可能要执行n遍)
+        done
+        ---------------------
+        执行机制：
+            依次将列表中的元素赋值给“变量名”; 每次赋值后都要执行一次循环体; 直到列表中的元素耗尽，循环结束; 
+        列表生成方式：
+            (1) 直接给出列表；
+            (2) 整数列表；
+                (a) {start..end}
+                (b) $(seq [start [step]] end) 
+            (3) 返回列表的命令；例如ls /var等等
+                $(COMMAND)
+            (4) 文件名通配机制；
+                例如for file in /var/*;do
+            (b) 变量引用；
+                $@, $*
+    while循环：
+        while 测试条件; do
+            循环体
+        done
+        ---------------------
+        执行机制：
+            测试条件为真，进入循环；测试条件为假，退出循环；
+            测试条件一般通过变量来描述，需要在循环体不变量地改变变量的值，以确保某一时刻测试条件为假，进而结束循环；
+    until循环：
+        until 测试条件; do
+            循环体
+        done
+        ---------------------
+        执行机制：
+            测试条件为假，进入循环；测试条件为真，退出循环；
+            测试条件一般通过变量来描述，需要在循环体不变量地改变变量的值，以确保某一时刻测试条件为真，进而结束循环；
+    ```
 
 ### 练习
 
@@ -283,7 +374,7 @@ shell脚本编程笔记...
     echo "The blankspace is $(grep '^[[:space:]]*$' $1 | wc -l) lines."
     ```
 ---
-- 写一个脚本
+- 写一个脚本,添加用户
     ```bash
     #!/bin/bash
     #
@@ -300,6 +391,73 @@ shell脚本编程笔记...
             useradd $1
             [ $? -eq 0 ] && echo "$1" | passwd --stdin $1 &> /dev/null && exit 0 || exit 2
     fi
+    ```
+- 用户键入文件路径，脚本来判断文件类型
+    ```bash
+    #!/bin/bash
+    #
+
+    read -p "Enter a file path: " filename
+
+    if [ -z "$filename" ]; then
+        echo "Usage: Enter a file path."
+        exit 2
+    fi
+
+    if [ ! -e $filename ]; then
+        echo "No such file."
+        exit 3
+    fi
+
+    if [ -f $filename ]; then
+        echo "A common file."
+    elif [ -d $filename ]; then
+        echo "A directory."
+    elif [ -L $filename ]; then
+        echo "A symbolic file."
+    else
+        echo "Other type."
+    fi
+    ```
+---
+- 添加10个用户, user1-user10；密码同用户名
+    ```bash
+    #!/bin/bash
+    #
+
+    if [ ! $UID -eq 0 ]; then
+        echo "Only root."
+        exit 1
+    fi
+
+    for i in {1..10}; do
+        if id user$i &> /dev/null; then
+            echo "user$i exists."
+        else
+            useradd user$i
+            if [ $? -eq 0 ]; then
+                echo "user$i" | passwd --stdin user$i &> /dev/null
+                echo "Add user$i finished."
+            fi
+        fi
+    done
+    ```
+- 判断某路径下所有文件的类型
+    ```bash
+    #!/bin/bash
+    #
+
+    for file in $(ls /var); do
+        if [ -f /var/$file ]; then
+        echo "Common file."
+        elif [ -L /var/$file ]; then
+        echo "Symbolic file."
+        elif [ -d /var/$file ]; then
+        echo "Directory."
+        else
+        echo "Other type."
+        fi
+    done
     ```
 
 ## 参考链接

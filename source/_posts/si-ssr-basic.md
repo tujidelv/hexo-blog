@@ -182,7 +182,7 @@ tags:
 ### BandwagonHost VPS
 
 1. 选择对应且需要的VPS方案
-    - [官网](https://bwh8.net/)
+    - [官网](https://bwh88.net/)
     - [搬瓦工VPS中文网](http://banwagong.cn/)
     - 即便我们购买低配置方案之后，以后也可以升级到其他方案的。
 2. 核对方案配置以及选择时间期限和机房
