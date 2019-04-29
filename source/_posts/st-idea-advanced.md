@@ -156,142 +156,160 @@ tags:
 
 ## 高效率编码功能介绍
 
-- Maven 配置
-- 版本控制
-    - IDEA 对版本控制的支持是以插件化的方式实现的，旗舰版默认支持目前主流的版本控制软件：CVS、SVN、Git、Mercurial、Perforce、TFS。
-    又因为目前太多人使用 Github 进行协同或是项目版本管理，同时自带了 Github 插件，方便 Checkout 和管理你的 Github 项目，
+### `Maven 配置`
+
+- Maven 常用设置(`同时在Other Settings中进行默认设置`)
+    ![抱歉,图片休息了](st-idea-advanced/st-idea-advanced-001.png)
+    ![抱歉,图片休息了](st-idea-advanced/st-idea-advanced-002.png)
+- Maven 骨架创建 JavaWeb 项目(`创建普通maven项目时不用选择quickstart,默认就行`)
+    ![抱歉,图片休息了](st-idea-advanced/st-idea-advanced-003.png)
+- Maven 组件界面介绍
+    ![抱歉,图片休息了](st-idea-advanced/st-idea-advanced-004.png)
+    
+    
+
+### `版本控制`
+
+- IDEA 对版本控制的支持是以插件化的方式实现的，旗舰版默认支持目前主流的版本控制软件：CVS、SVN、Git、Mercurial、Perforce、TFS。
+又因为目前太多人使用 Github 进行协同或是项目版本管理，同时自带了 Github 插件，方便 Checkout 和管理你的 Github 项目，
+    ```
+    Background：后台进程处理			
+    Confirmation：弹窗提示,是否提交,merge			
+    Issue Navigation：问题导航			
+    GitHub：github配置			
+    CVS：cvs配置			
+    Subversion：svn配置			
+    TFS：工作流引擎管理
+    ```
+- 常用设置
+    ```
+    1. 设置子目录有文件被修改了，则该文件的所有上层目录都显示版本控制被修改的颜色
+        Version Control,勾选'Show directories with changed descendants',默认是不勾选的
+    2. 设置新建或者删除文件时Git做默认如何处理
+        Version Control->Confirmation,修改'When files are created'和'When files are deleted'
+    3. 设置忽略文件
+        Version Control->Ignored Files,添加不想加入到版本控制的文件和目录.对于已经加入到版本控制的文件使用此功能，则表示该文件或目录无法再使用版本控制相关的操作，比如提交、更新等
+    4. 关联本地git.exe
+        Version Control->Git,在Path to Git executable中选择
+    5. 关联GitHub账户
+        Version Control->GitHub,选择"+"号关联
+    6. 支持从当前登陆的GitHub账号上直接Clone项目到本地
+        VCS->Checkout from Version Control->Git
+        File->New->Project from Version Control->Git
+    7. 支持将本地项目分享到你的GitHub账号上
+        VCS->Import into Version Control->Share Project On GitHub
+        此时会在GitHub上创建一个新的仓库，而非更新已经存在的仓库,默认采用https方式传输
+    8. Commit Changes弹窗介绍
+        Before Commit：
+            Reformat code：格式化代码，如果是Web开发建议不要勾选，因为格式化JSP类文件，格式化效果不好。如果都是Java类则可以安心格式化
+            Rearrange code：重新编排代码，IDEA支持各种复杂的编排设置选项
+            Optimize imports：优化导入包，会自动去掉没有使用的包。这个建议都勾选，因其只对Java类有作用，所以不用担心有副作用
+            Perform code analysis：进行代码分析，这个建议不用在提交的时候处理，而是在开发完之后，要专门养成对代码进行分析的习惯。IDEA 集成了代码分析功能
+            Check TODO：检查代码中的TODO。记录待办事项
+            Cleanup：清除下版本控制系统，去掉一些版本控制系统的错误信息，建议勾选（主要针对 SVN，Git 不适用）
+        标识着不同颜色的文件：
+            红色：未被版本控制的文件，即未添加到版本控制的文件，例如我们添加到ignore中的文件
+            绿色：新加入版本的文件，即我们新创建的文件，还未提交到远程仓库
+            蓝色：修改过的文件，即远程仓库中已有该文件，我们这次对它进行了修改，但是还未提交
+    9. 点击界面右下角位置可以切换分支和创建分支，以及合并、删除分支等操作
+    ```
+
+### `Debug 技巧`
+
+- Debug 设置				
+    ```
+    Settings->Build,Execution,Deployment->Debugger,Transport选中Shared memory
+    表示设置Debug连接方式，默认是Socket。Shared memory是Windows特有的一个属性，一般在Windows系统下建议使用此设置，相对于Socket会快
+    ```
+- Debug 常用快捷键
+    ```
+    Step Over(F6)：进入下一步，如果当前行断点是一个方法，则不进入当前方法体内
+    Step Into(F5)：进入下一步，如果当前行断点是一个方法，则进入当前方法体内(自定义方法)
+    Force Step Into(Alt+Shift+F7)：进入下一步，如果当前行断点是一个方法，则进入当前方法体内(所有方法,包括JDK库)
+    Step Out(F7)：跳出
+    Drop Frame：该按钮可以用来退回到当前停住的断点的上一层方法上，可以让过掉的断点重新来过
+    Evaluate Expression(Ctrl+U)：选中对象，弹出可输入计算表达式调试框，查看该输入内容的调试结果
+    Resume Program(F8)：恢复程序运行，但如果该断点下面代码还有断点则停在下一个断点上
+    Stop：停止
+    View Breakpoints：查看所有断点
+    Mute Breakpoints：点中，使得所有的断点失效
+    Restore Layout：窗口还原
+    ```
+- Debug 其他用法
+    ```
+    条件断点：调试的时候，在循环里增加条件判断，可以极大的提高效率，心情也能愉悦
+    在断点处右击调出条件断点。可以在满足某个条件下，实施断点。
         ```
-        Background：后台进程处理			
-        Confirmation：弹窗提示,是否提交,merge			
-        Issue Navigation：问题导航			
-        GitHub：github配置			
-        CVS：cvs配置			
-        Subversion：svn配置			
-        TFS：工作流引擎管理
+
+### `实时代码模板`
+
+- 功能介绍
+    - 它的原理就是配置一些常用代码字母缩写，在输入简写时可以出现你预定义的固定模式的代码，使得开发效率大大提高，同时也可以增加个性化。最简单的例子就是在 Java 中输入 sout 会出现 System.out.println()。
+    - 官方介绍 Live Templates：<https://www.jetbrains.com/help/idea/using-live-templates.html>
+- 已有的常用模板
+    - 所处位置： Settings->Editor->General->Postfix Completion | Editor->Live Templates
+        - 二者的区别：Live Templates 可以自定义，而 Postfix Completion 不可以。同时，有些操作二者都提供了模板，Postfix Templates较Live Templates 能快 0.01 秒
+    - 举例
         ```
-    - 常用设置
+        psvm : 可生成main方法
+        sout : 快捷输出System.out.println()
+            soutp => System.out.println("方法形参名 = " + 形参名); 
+            soutm => System.out.println("当前类名.当前方法");
+            soutv => System.out.println("变量名 = " + 变量); 
+            "abc".sout => System.out.println("abc");
+        fori : 可生成普通for循环
+            iter => 可生成增强for循环
+            itar => 可生成普通for循环并赋值
+        list.for : 可生成list集合的增强for循环
+            list.fori => 可生成list集合的普通for循环
+            list.forr => 可生成list集合的普通for循环(倒序)
+        ifn：可生成if(xxx = null)
+            inn => 可生成if(xxx != null)
+            xxx.nn或xxx.null  (Postfix Completion)
+        prsf：可生成private static final
+            psf => 可生成public static final
+            psfi => 可生成public static final int
+            psfs => 可生成public static final String
+        ```			
+- 修改现有模板
+    - 如果对于现有的模板，感觉不习惯、不适应的，可以修改。
+    - 举例
         ```
-        1. 设置子目录有文件被修改了，则该文件的所有上层目录都显示版本控制被修改的颜色
-            Version Control,勾选'Show directories with changed descendants',默认是不勾选的
-        2. 设置新建或者删除文件时Git做默认如何处理
-        	Version Control->Confirmation,修改'When files are created'和'When files are deleted'
-        3. 设置忽略文件
-        	Version Control->Ignored Files,添加不想加入到版本控制的文件和目录.对于已经加入到版本控制的文件使用此功能，则表示该文件或目录无法再使用版本控制相关的操作，比如提交、更新等
-        4. 关联本地git.exe
-        	Version Control->Git,在Path to Git executable中选择
-        5. 关联GitHub账户
-        	Version Control->GitHub,选择"+"号关联
-        6. 支持从当前登陆的GitHub账号上直接Clone项目到本地
-        	VCS->Checkout from Version Control->Git
-        	File->New->Project from Version Control->Git
-        7. 支持将本地项目分享到你的GitHub账号上
-        	VCS->Import into Version Control->Share Project On GitHub
-        	此时会在GitHub上创建一个新的仓库，而非更新已经存在的仓库,默认采用https方式传输
-        8. Commit Changes弹窗介绍
-        	Before Commit：
-        		Reformat code：格式化代码，如果是Web开发建议不要勾选，因为格式化JSP类文件，格式化效果不好。如果都是Java类则可以安心格式化
-        		Rearrange code：重新编排代码，IDEA支持各种复杂的编排设置选项
-        		Optimize imports：优化导入包，会自动去掉没有使用的包。这个建议都勾选，因其只对Java类有作用，所以不用担心有副作用
-        		Perform code analysis：进行代码分析，这个建议不用在提交的时候处理，而是在开发完之后，要专门养成对代码进行分析的习惯。IDEA 集成了代码分析功能
-        		Check TODO：检查代码中的TODO。记录待办事项
-        		Cleanup：清除下版本控制系统，去掉一些版本控制系统的错误信息，建议勾选（主要针对 SVN，Git 不适用）
-        	标识着不同颜色的文件：
-        		红色：未被版本控制的文件，即未添加到版本控制的文件，例如我们添加到ignore中的文件
-        		绿色：新加入版本的文件，即我们新创建的文件，还未提交到远程仓库
-        		蓝色：修改过的文件，即远程仓库中已有该文件，我们这次对它进行了修改，但是还未提交
-        9. 点击界面右下角位置可以切换分支和创建分支，以及合并、删除分支等操作
-        ```
-- Debug 技巧
-    - Debug 设置				
-        ```
-        Settings->Build,Execution,Deployment->Debugger,Transport选中Shared memory
-        表示设置Debug连接方式，默认是Socket。Shared memory是Windows特有的一个属性，一般在Windows系统下建议使用此设置，相对于Socket会快
-        ```
-    - Debug 常用快捷键
-        ```
-        Step Over(F6)：进入下一步，如果当前行断点是一个方法，则不进入当前方法体内
-        Step Into(F5)：进入下一步，如果当前行断点是一个方法，则进入当前方法体内(自定义方法)
-        Force Step Into(Alt+Shift+F7)：进入下一步，如果当前行断点是一个方法，则进入当前方法体内(所有方法,包括JDK库)
-        Step Out(F7)：跳出
-        Drop Frame：该按钮可以用来退回到当前停住的断点的上一层方法上，可以让过掉的断点重新来过
-        Evaluate Expression(Ctrl+U)：选中对象，弹出可输入计算表达式调试框，查看该输入内容的调试结果
-        Resume Program(F8)：恢复程序运行，但如果该断点下面代码还有断点则停在下一个断点上
-        Stop：停止
-        View Breakpoints：查看所有断点
-        Mute Breakpoints：点中，使得所有的断点失效
-        Restore Layout：窗口还原
-        ```
-    - Debug 其他用法
-        ```
-        条件断点：调试的时候，在循环里增加条件判断，可以极大的提高效率，心情也能愉悦
-        在断点处右击调出条件断点。可以在满足某个条件下，实施断点。
-        ```
-- 实时代码模板
-    - 功能介绍
-    	- 它的原理就是配置一些常用代码字母缩写，在输入简写时可以出现你预定义的固定模式的代码，使得开发效率大大提高，同时也可以增加个性化。最简单的例子就是在 Java 中输入 sout 会出现 System.out.println()。
-    	- 官方介绍 Live Templates：<https://www.jetbrains.com/help/idea/using-live-templates.html>
-    - 已有的常用模板
-    	- 所处位置： Settings->Editor->General->Postfix Completion | Editor->Live Templates
-    		- 二者的区别：Live Templates 可以自定义，而 Postfix Completion 不可以。同时，有些操作二者都提供了模板，Postfix Templates较Live Templates 能快 0.01 秒
-    	- 举例
-            ```
-            psvm : 可生成main方法
-            sout : 快捷输出System.out.println()
-                soutp => System.out.println("方法形参名 = " + 形参名); 
-                soutm => System.out.println("当前类名.当前方法");
-                soutv => System.out.println("变量名 = " + 变量); 
-                "abc".sout => System.out.println("abc");
-            fori : 可生成普通for循环
-                iter => 可生成增强for循环
-                itar => 可生成普通for循环并赋值
-            list.for : 可生成list集合的增强for循环
-                list.fori => 可生成list集合的普通for循环
-                list.forr => 可生成list集合的普通for循环(倒序)
-            ifn：可生成if(xxx = null)
-                inn => 可生成if(xxx != null)
-                xxx.nn或xxx.null  (Postfix Completion)
-            prsf：可生成private static final
-                psf => 可生成public static final
-                psfi => 可生成public static final int
-                psfs => 可生成public static final String
-            ```			
-    - 修改现有模板
-    	- 如果对于现有的模板，感觉不习惯、不适应的，可以修改。
-    	- 举例
-            ```
-            修改Abbreviation：
-                Settings->Editor->Live Templates,定位到other->psvm,将Abbreviation值改为main
-            修改Template text：
-                Settings->Editor->Live Templates,定位到plain->psfi,将Template text值改为public static final int $VAR1$ = $VAR2$;$END$	
-            ```		
-    - 自定义模板
-    	- IDEA 提供了很多现成的 Templates,但你也可以根据自己的需要创建新的 Template。
-        ```
-        1. 定义一个模板组	
-            Settings->Editor->Live Templates,点击"+"号,选择Template Group...,
-        2. 选中自定义的模板组，点击"+"来定义模板	
-            Settings->Editor->Live Templates,点击"+"号,选择Live Template,	
-        3. 填写模板的内容
-            Abbreviation：模板的缩略名
-            Description：模板的描述
-            Template text：模板的代码片段
-            应用范围：比如点击Define,选择java
-            Edit variables：	https://www.jetbrains.com/help/idea/template-variables.html
-        ```
-- 数据库管理工具
-    - IDEA 的 Database 最大特性就是对于 JavaWeb 项目来讲,对常用的 ORM 框架有很好的支持,比如配置好了 Database 之后，IDEA 会自动识别 domain 对象与数据表的关系，也可以通过 Database 的数据表直接生成 domain 对象等等。
-    - 关联方式
-        ```
-        Database->"+"->Data Source->MySQL,填写相关信息
-        ```
-    - 常用操作
-        ```
-        3：同步当前数据库连接。这个是最重要的操作，有一些情况下，当我们配置好连接之后，没有显示数据表，那就是需要点击该按钮进行同步。还有一种情况就是我们在IDEA之外用其他工具操作数据库，比如新建表。而此时IDEA的 Database如果没有同步到新表，也是需要点击此按钮进行同步的
-        4：配置当前连接，跟我们首次设置连接的界面是一样的
-        5：断开当前的连接
-        6：显示相应数据库对象的数据
-        7：编辑修改当前数据库对象
-        ```
+        修改Abbreviation：
+            Settings->Editor->Live Templates,定位到other->psvm,将Abbreviation值改为main
+        修改Template text：
+            Settings->Editor->Live Templates,定位到plain->psfi,将Template text值改为public static final int $VAR1$ = $VAR2$;$END$	
+        ```		
+- 自定义模板
+    - IDEA 提供了很多现成的 Templates,但你也可以根据自己的需要创建新的 Template。
+    ```
+    1. 定义一个模板组	
+        Settings->Editor->Live Templates,点击"+"号,选择Template Group...,
+    2. 选中自定义的模板组，点击"+"来定义模板	
+        Settings->Editor->Live Templates,点击"+"号,选择Live Template,	
+    3. 填写模板的内容
+        Abbreviation：模板的缩略名
+        Description：模板的描述
+        Template text：模板的代码片段
+        应用范围：比如点击Define,选择java
+        Edit variables：	https://www.jetbrains.com/help/idea/template-variables.html
+    ```
+
+### `数据库管理工具`
+
+- IDEA 的 Database 最大特性就是对于 JavaWeb 项目来讲,对常用的 ORM 框架有很好的支持,比如配置好了 Database 之后，IDEA 会自动识别 domain 对象与数据表的关系，也可以通过 Database 的数据表直接生成 domain 对象等等。
+- 关联方式
+    ```
+    Database->"+"->Data Source->MySQL,填写相关信息
+    ```
+- 常用操作
+    ```
+    3：同步当前数据库连接。这个是最重要的操作，有一些情况下，当我们配置好连接之后，没有显示数据表，那就是需要点击该按钮进行同步。还有一种情况就是我们在IDEA之外用其他工具操作数据库，比如新建表。而此时IDEA的 Database如果没有同步到新表，也是需要点击此按钮进行同步的
+    4：配置当前连接，跟我们首次设置连接的界面是一样的
+    5：断开当前的连接
+    6：显示相应数据库对象的数据
+    7：编辑修改当前数据库对象
+    ```
 
 ## 插件推荐、开发介绍
 
