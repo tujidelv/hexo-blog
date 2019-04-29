@@ -85,6 +85,10 @@ tags:
     5. 合并分支
         工程右键'Team'->'Merge...',选择'Local'->'hot_fix',合并成功后把master推送到远程库
 	```
+	
+## Maven的使用
+
+![抱歉,图片休息了](st-eclipse/st-eclipse-001.png) 
     
 ## 参考链接
 
