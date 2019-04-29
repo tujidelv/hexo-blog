@@ -1,13 +1,24 @@
 - **Operating System**
-    - [Linux 札记：Shell 脚本](source/_posts/os-linux-shell.md)
-    - [Linux 札记：常用命令](source/_posts/os-linux-command.md)
-    - [Linux 札记：基础](source/_posts/os-linux-basic.md)
+    - [Linux 常用程序包的安装与配置](source/_posts/os-linux-packages-install.md)
+    - [Linux 系统管理：磁盘、文件系统、RAID、LVM2、程序包](source/_posts/os-linux-sysadmin-first.md)
+    - [Linux 系统入门：Shell 脚本](source/_posts/os-linux-shell.md)
+    - [Linux 系统入门：常用命令](source/_posts/os-linux-command.md)
+    - [Linux 系统入门：基础](source/_posts/os-linux-basic.md)
 - **Development Language**
+    - [性能调优之JVM](source/_posts/dl-java-jvm.md)
+    - [Java8新特性](source/_posts/dl-java-8.md)
     - [Markdown 札记](source/_posts/dl-markdown.md)
 - **Application Framework**
+    - [分布式系列之 Redis](source/_posts/af-redis.md)
+    - [分布式系列之 Zookeeper](source/_posts/af-zookeeper.md)
+    - [微服务架构之 Dubbo](source/_posts/dubbo.md)
+    - [微服务架构之 SpringCloud](source/_posts/af-springcloud.md)
+    - [微服务架构之 SpringBoot](source/_posts/af-springboot.md)
+    - [消息中间件之 RocketMQ](source/_posts/af-mq-rocketmq.md)
     - [NodeJS 札记](source/_posts/af-nodejs.md)
     - [Hexo 札记](source/_posts/af-hexo.md)
 - **Software Tool**
+    - [项目管理工具之Maven](source/_posts/st-maven.md)
     - [Eclipse 札记](source/_posts/st-eclipse.md)
     - [IDEA 札记：基础](source/_posts/st-idea-basic.md)
     - [IDEA 札记：进阶](source/_posts/st-idea-advanced.md)
@@ -22,3 +33,5 @@
     - [SSR 搭建：进阶](source/_posts/si-ssr-advanced.md)
 - **Typical Example**
     - [可输入可选择可模糊查询的 select 下拉](source/_posts/te-select.md)
+    - [Mysql 数据库自动备份脚本](source/_posts/te-db-backup.md)
+    - [CentOS7 添加开机启动服务/脚本](source/_posts/te-script-powerboot.md)
