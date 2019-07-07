@@ -139,7 +139,8 @@ tags:
 -1969年以前，Bell(AT&T),MIT(麻省理工),GE（通用电器）3大实验室联合研发Multics项目 = 试图建立一个具备众多功能的一个信息功能应用工具。
     Ken Thompson（Bell实验室人员）：Space Travel（一款游戏）
 	DEC（一个公司）：PDP-11（小型机）,VAX（VMS）
-	PDP-7：Ken在该设备上用汇编语言写了一个程序Unics（与Multics相比功能更单一,这个是戏称的非正式的名称，因为思想源自Multics），用来跑Space Travel	
+	PDP-7：Ken在该设备上用汇编语言写了一个程序Unics（与Multics相比功能更单一,这个是戏称的非正式的名称，因为思想源自Multics），用来跑Space Travel
+-1970年，可称为"UNIX元年"。
 -1971年，Ken等人承包了nroff（文字处理程序）项目,运行在Unics上;Intel发布第一微处理器4004。
 -1972年，unix装机量在Bell实验室达到10台，跑在它上面的应用程序是用B语言写的。
 	B（解释型编程语言）：Dennis Ritch（Bell实验室另一个人员）升级成C语言（B+）

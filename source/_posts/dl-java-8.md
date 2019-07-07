@@ -262,13 +262,168 @@ Function<Integer,String[]> fun = (x) -> new String[x];
             Map<Boolean,List<Emp>> vd= list.stream().collect(Collectors.partitioningBy(Employee::getManage));
 ```
 
+- ***并行流与串行流***
+
+```
+- 并行流就是把一个内容分成多个数据块，并用不同的线程分别处理每个数据块的流。
+- Java 8 中将并行进行了优化，我们可以很容易的对数据进行并行操作。Stream API可以声明性地通过parallel()与sequential()在并行流与顺序流之间进行切换。
+```
+
+```
+了解Fork/Join框架
+    Fork/Join 框架,就是在必要的情况下，将一个大任务，进行拆分(fork)成若干个小任务（拆到不可再拆时），再将一个个的小任务运算的结果进行join汇总。
+Fork/Join框架与传统线程池的区别
+    采用 “工作窃取”模式（work-stealing）,
+        当执行新的任务时它可以将其拆分成更小的任务执行，并将小任务加到线程队列中，然后再从一个随机线程的队列中偷一个并把它放在自己的队列中。
+    相对于一般的线程池实现,fork/join框架的优势体现在对其中包含的任务的处理方式上,在一般的线程池中,如果一个线程正在执行的任务由于某些原因
+        无法继续运行,那么该线程会处于等待状态.而在fork/join框架实现中,如果某个子问题由于等待另外一个子问题的完成而无法继续运行.那么处理该子
+        问题的线程会主动寻找其他尚未运行的子问题来执行.这种方式减少了线程的等待时间,提高了性能。
+```
+---
+```java
+public class Test {
+    public static void main(String[] args) {
+        Instant start = Instant.now();
+        long reduce = LongStream.rangeClosed(0L, 100000000000L)
+                .parallel()
+                .reduce(0L, Long::sum);
+        System.out.println(reduce);
+        Instant end = Instant.now();
+        System.out.println("耗费时间:" + Duration.between(start, end).toMillis());
+    }
+}
+```
 
 ### `接口中的默认方法与静态方法`
 
+- 接口中的默认方法
+
+```
+- Java 8中允许接口中包含具有具体实现的方法，该方法称为“默认方法”，默认方法使用default关键字修饰。
+- 接口默认方法的”类优先”原则
+    若一个接口中定义了一个默认方法，而另外一个父类或接口中又定义了一个同名的方法时,
+    1.选择父类中的方法。如果一个父类提供了具体的实现，那么接口中具有相同名称和参数的默认方法会被忽略。 
+    2.接口冲突。如果一个父接口提供一个默认方法，而另一个接口也提供了一个具有相同名称和参数列表的方法（不管方法是否是默认方法），那么必须覆盖该方法来解决冲突。
+```
+- 接口中的静态方法
+
+```
+- Java8 中，接口中允许添加静态方法。静态方法使用static关键字修饰。
+```
+
 ### `新时间日期 API`
+
+- LocalDate、LocalTime、LocalDateTime
+
+```
+LocalDate、LocalTime、LocalDateTime类的实例是不可变的对象，分别表示使用ISO-8601日历系统的日期、时间、日期和时间。
+    它们提供了简单的日期或时间，并不包含当前的时间信息，也不包含与时区相关的信息。
+注：ISO-8601日历系统是国际标准化组织制定的现代公民的日期和时间的表示法。
+```
+```
+now() 静态方法，根据当前时间创建对象 
+    LocalDate localDate = LocalDate.now(); 
+    LocalTime localTime = LocalTime.now(); 
+    LocalDateTime localDateTime = LocalDateTime.now(); 
+of() 静态方法，根据指定日期/时间创建对象 
+    LocalDate localDate = LocalDate.of(2016, 10, 26); 
+    LocalTime localTime = LocalTime.of(02, 22, 56); 
+    LocalDateTime localDateTime = LocalDateTime.of(2016, 10, 26, 12, 10, 55);
+plusDays, plusWeeks, plusMonths, plusYears  向当前LocalDate对象添加几天、几周、几个月、几年
+minusDays, minusWeeks, minusMonths, minusYears  从当前LocalDate对象减去几天、几周、几个月、几年 
+plus, minus 添加或减少一个Duration或Period 
+withDayOfMonth, withDayOfYear, withMonth, withYear  将月份天数、年份天数、月份、年份修改为指定的值并返回新的LocalDate对象
+---------
+getYear 获得年份 
+getMonthValue 获得月份(1-12) 
+    getMonth 获得月份, 返回一个Month枚举值 
+getDayOfMonth 获得月份天数(1-31) 
+    getDayOfYear 获得年份天数(1-366) 
+getDayOfWeek 获得星期几(返回一个DayOfWeek枚举值) 
+until 获得两个日期之间的 Period 对象，或者指定ChronoUnits的数字 
+isBefore, isAfter 比较两个LocalDate
+isLeapYear 判断是否是闰年
+```
+
+- Instant
+
+```
+用于“时间戳”的运算。它是以Unix元年(UTC时区1970年1月1日午夜时分)开始所经历的时间进行运算
+```
+```
+now() 静态方法，默认获取UTC时区
+```
+
+- Duration、Period
+
+```
+Duration:用于计算两个“时间”间隔
+    between(Temporal,Temporal)
+    toMillis()
+Period:用于计算两个“日期”间隔
+    between(LocalDate,LocalDate)
+    getYears
+    getMonths
+    getDays
+```
+
+- 日期的操纵
+
+```
+TemporalAdjuster : 时间校正器。有时我们可能需要获取例如：将日期调整到“下个周日”等操作。
+TemporalAdjusters : 该类通过静态方法提供了大量的常用TemporalAdjuster的实现。
+```
+```
+LocalDate nextSunday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+```
+
+- 解析与格式化
+
+```
+java.time.format.DateTimeFormatter 类：该类提供了三种格式化方法：
+    预定义的标准格式
+    语言环境相关的格式
+    自定义的格式 ofPattern
+```
+
+- 时区的处理
+
+```
+Java8 中加入了对时区的支持，带时区的时间为分别为：ZonedDate、ZonedTime、ZonedDateTime
+其中每个时区都对应着ID，地区ID都为“{区域}/{城市}”的格式,例如 ：Asia/Shanghai等
+----
+ZoneId类中包含了所有的时区信息
+    getAvailableZoneIds() : 可以获取所有时区时区信息
+    of(id) : 用指定的时区信息获取ZoneId对象
+例如指定时区构建时间：LocalDateTime now = LocalDateTime.now(ZoneId.of("Europe/Tallinn"));
+```
 
 ### `其他新特性`
 
+- Optional 类
+
+```
+Optional<T> 类(java.util.Optional)是一个容器类，代表一个值存在或不存在。
+    原来用null表示一个值不存在，现在Optional可以更好的表达这个概念。并且可以避免空指针异常。
+```
+```
+常用方法：
+    Optional.of(T t) : 创建一个Optional实例
+    Optional.empty() : 创建一个空的Optional实例
+    Optional.ofNullable(T t) : 若t不为null,创建Optional实例,否则创建空实例
+    isPresent() : 判断是否包含值
+    orElse(T t) :  如果调用对象包含值，返回该值，否则返回t,类似mysql中的ifnull函数
+    orElseGet(Supplier s) : 如果调用对象包含值，返回该值，否则返回s获取的值
+    map(Function f) : 如果有值对其处理，并返回处理后的Optional，否则返回 Optional.empty()
+    flatMap(Function mapper) : 与map类似，要求返回值必须是Optional
+```
+
+- 重复注解与类型注解
+
+```
+Java 8对注解处理提供了两点改进：可重复的注解及可用于类型的注解。
+```
+![抱歉,图片休息了](dl-java-8/dl-java-8-001.png) 
 
 ## 参考链接
 
