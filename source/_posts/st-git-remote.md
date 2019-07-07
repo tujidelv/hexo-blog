@@ -18,95 +18,108 @@ tags:
 
 ## 简介
 
-- 代码托管中心：用来维护远程仓库
-    - 外网环境：Github,码云等等
-    - 内网环境：Gitlab,GitBucket 等等
+代码托管中心：用来维护远程仓库
+```
+外网环境：Github,码云等等
+内网环境：Gitlab,GitBucket 等等
+```
 
 ## 分类
 
 ### GitHub(外网环境)
-    
-- 既是一个免费托管开源代码的远程仓库，可将个人的开源项目放上去；还是一个开源协作社区，即可让别人参与你的开源项目，也可参与别人的开源项目。
+   
+```
+- 既是一个免费托管开源代码的远程仓库，可将个人的开源项目放上去；
+    还是一个开源协作社区，即可让别人参与你的开源项目，也可参与别人的开源项目。
 - Github 常用按钮说明
     - Watch：关注该项目，作者有更新的时候，会在你的 Github 主页有通知消息。
     - Star：收藏该项目，在你的头像上有一个 “Your stars” 链接，可以看到你的收藏列表，以方便下次进来。
     - Fork：复制一份项目到自己的 Github 空间上，你可以自己开发自己的这个地址项目，然后 Pull Request 给项目原主人。
+```    
 ---
-1. 本地创建 SSH Key
-    - 在用户主目录下，如果有.ssh 目录并且该目录下有 id_rsa 和 id_rsa.pub 两个文件，则跳过这步；否则在 window 下打开Git Bash。
-        ```shell
-        $ ssh-keygen -t rsa -C "tujide.lv@foxmail.com"
-        ```
-    - 一直默认回车，生成的 2 个文件就是 SSH Key 的秘钥对，id_rsa 是私钥，不能泄露，id_rsa.pub 是公钥，可以告诉别人。
-2. GitHub 添加本地 SSH Key
-    - 登陆 GitHub，打开"Settings"=>"SSH Keys"页面，点击"New SSH Key"，填上任意 Title，在 Key 文本框里粘贴 id_rsa.pub 文件的内容，点击"Add Key"。
-        - 可以添加多个，这样有这些公钥的电脑就可以将本地仓库代码推送到GitHub远程仓库中。
-3. 添加远程仓库
-    - 登录 GitHub，打开"New repository",在"Repository name"填入 learngit，其他保持默认设置，点击"Create repository"，就创建了一个新的 Git 仓库。
-        - 该仓库为公开的，可通过交保护费让 GitHub 把仓库变成私有，或自己搭建 Git 服务器。
-        - 该仓库默认是空的，可以克隆出新的仓库，也可以与本地仓库关联，把本地仓库的内容推送到该仓库。
-4. 关联远程仓库并推送
-    - 查看远程库的详细信息
-        ```shell
-        $ git remote -v
-        ```
-    - 关联远程库并创建别名
-        ```shell
-        $ git remote add <远程仓库别名> git@github.com:GitHub账户名/learngit.git
-        ```
-        - 如果在使用命令 git remote add 时报错(fatal: remote origin already exists.),说明本地库已经关联了一个名叫 origin 的远程库，有如下2种处理方案。
-            ```
-            1.删除已有的远程仓库origin,再关联
-                - $ git remote rm origin
-            2.因为git是分布布,支持同步到多个远程库,远程仓库的名字不能一样
-                - $ git remote add gitee git@gitee.com:xxx/xxx.git
-                - $ git remote add github git@github.com:xxx/xxx.git
-            ```
-    - 将本地库的内容(指定分支)推送到远程库对应的远程分支上(不存在时会自动新建)
-        ```shell
-        $ git push <远程仓库别名> 分支名
-        ```
-        - **-u 参数，第一次推送时需要,会把本地 master 分支和远程 master 分支关联起来，在以后的推送或拉取可以简化命令。**
-5. 从远程仓库克隆
-    - SSH 协议 Clone,没有添加 Key 将不能推送;Https 协议 Clone,需要登陆有权限的 GitHub 帐号才能推送
-        - 没加入团队是无法推送的,项目发起者可在'Settings'->'Collaborators'中邀请 GitHub 成员加入团队,并把邀请链接发给成员,成员登陆自己的帐号访问邀请链接以同意加入团队,即可进行远程推送。
-        - HTTPS 协议是无法记住登陆帐号的,第一次推送登陆后,而再次推送无需登陆,是因为 win10 系统的'凭据管理器'中的'Windows凭据'记住了密码,如果下次想切换别的帐号登陆,可以到此删除掉重新登陆。
-    - 把远程库下载到本地,因为是读操作,不需要验证身份
-        ```shell
-        $ git clone git@github.com:GitHub账户名/gitskills.git
-        ```
-        - 会关联远程库并创建别名,同时会把本地仓库 master 分支与远程仓库的 master 分支关联起来,在以后的推送或拉取时可以简化命令
-        - --depth=1,用于指定克隆深度,为 1 表示只克隆最近一次 commit,历史旧数据不 clone,可用于解决项目过大时 clone 导致 timeout 的问题,但他只会把默认分支 clone 下来,其他远程分支并不在本地,如需要的话可如下命令拉取其他分支。
-            ```shell
+- 本地创建 SSH Key
+
+```
+1.在用户主目录下，如果有.ssh目录并且该目录下有id_rsa和id_rsa.pub两个文件，则跳过这步；否则在window 下打开Git Bash。
+    $ ssh-keygen -t rsa -C "tujide.lv@foxmail.com"
+2.一直默认回车，生成的2个文件就是SSH Key的秘钥对，id_rsa是私钥，不能泄露，id_rsa.pub是公钥，可以告诉别人。
+```
+- GitHub 添加本地 SSH Key
+
+```
+1.登陆GitHub，打开"Settings"=>"SSH Keys"页面，点击"New SSH Key"，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容，点击"Add Key"。
+    可以添加多个，这样有这些公钥的电脑就可以将本地仓库代码推送到GitHub远程仓库中。
+```
+- 添加远程仓库
+
+```
+1.登录GitHub，打开"New repository",在"Repository name"填入learngit，其他保持默认设置，点击"Create repository"，就创建了一个新的Git仓库。
+    该仓库为默认公开的，可通过交保护费让GitHub把仓库变成私有(被微软收购后免费)，或自己搭建Git服务器。
+    该仓库默认是空的，可以与本地仓库关联，把本地仓库的内容推送到该仓库。
+```
+- 关联远程仓库并推送
+
+```
+1. 查看远程库的详细信息
+    $ git remote -v
+2.关联远程库并创建别名
+    $ git remote add <远程仓库别名> git@github.com:GitHub账户名/learngit.git
+    注：如果在使用命令git remote add时报错(fatal: remote origin already exists.),说明本地库已经关联了一个名叫origin的远程库，有如下2种处理方案。
+        1.删除已有的远程仓库origin,再关联
+            - $ git remote rm origin
+        2.因为git是分布布,支持同步到多个远程库,远程仓库的名字不能一样
+            - $ git remote add gitee git@gitee.com:xxx/xxx.git
+            - $ git remote add github git@github.com:xxx/xxx.git
+3.将本地库的内容(指定分支)推送到远程库对应的远程分支上(不存在时会自动新建)
+    $ git push <远程仓库别名> 分支名
+    注：-u 参数，第一次推送时需要,会把本地master分支和远程master分支关联起来，在以后的推送或拉取可以简化命令。
+注：IDEA中可以通过"Share Project on GitHub"将项目直接分享到GitHub上。
+```
+- 从远程仓库克隆
+
+```
+1.SSH协议Clone,没有添加Key将不能推送;Https协议Clone,需要登陆有权限的GitHub帐号才能推送。
+    - 没加入团队是无法推送的,项目发起者可在'Settings'->'Collaborators'中邀请GitHub成员加入团队,并把邀请链接发给成员,成员登陆自己的帐号访问邀请链接以同意加入团队,即可进行远程推送。
+    - HTTPS协议是无法记住登陆帐号的,第一次推送登陆后,而再次推送无需登陆,是因为win10系统的'凭据管理器'中的'Windows凭据'记住了密码,如果下次想切换别的帐号登陆,可以到此删除掉重新登陆。
+2.把远程库下载到本地,因为是读操作,不需要验证身份
+    $ git clone git@github.com:GitHub账户名/gitskills.git
+    注：会关联远程库并创建别名,同时会把本地仓库master分支与远程仓库的master分支关联起来,在以后的推送或拉取时可以简化命令。
+        1.--depth=1,用于指定克隆深度,为1表示只克隆最近一次commit,历史旧数据不clone,可用于解决项目过大时clone导致timeout的问题,但他只会把默认分支 clone 下来,其他远程分支并不在本地,
+            如需要的话可如下命令拉取其他分支。
             $ git remote set-branches origin 'remote_branch_name'
             $ git fetch --depth=1 origin remote_branch_name
-            ```
-    - **GitHub 还会给出多个地址，如 `https://github.com/GitHub账户名/gitskills.git`，因为 Git 支持多种协议，默认是通过 ssh 支持的原生git协议，速度最快；也可用 https 等其他协议，速度慢，每次推送必须输入口令。**
-6. 拉取
-    1. 首先,可以试图用 **git push origin branch-name** 推送自己的修改。
-    2. 如果推送失败,则因为不是基于 GitHub 远程库的最新版所做的修改(即远程分支比你的本地更新),需先用 **git pull/fetch** 抓取远程的新提交,因为是读操作,不需要验证身份。
-        - fetch
-            - 把远程的更新下载到本地,可 git checkout origin/master 切换查看内容,并没有修改工作区,可 git merge origin/master 进行合并操作。
-        - pull = fetch + merge
-            - 如果 git pull 提示"no tracking information",则说明没有创建本地分支和远程分支的链接关系,用命令 **git branch --set-upstream-to=origin/branch-name branch-name**再进行git pull。
-            ```
-            $ git pull      //如果当前分支只有一个追踪分支,可以省略远程仓库名即可更新并合并
-            $ git pull origin      //如果当前分支有多个追踪分支,可以指定当前分支与指定的远程追踪分支进行更新并合并
-            $ git pull origin master      //指定当前分支与指定的远程master分支进行更新并合并
-            $ git pull origin master1:master2      //指定本地的master2分支与指定的远程master1分支进行更新并合并
-            ```
-    3. 如果合并有冲突,则手动解决冲突(解决的方法和分支管理中的解决冲突完全一样),并在本地提交。
-    4. 没有冲突或者解决掉冲突后,再用 git push origin branch-name 推送就能成功。
-7. 跨团队协作/参与一个开源项目
-    1. 以自己身份进入开源项目主页,点击"fork"克隆到自己的远程仓库下。
-    2. 从自己的远程仓库下克隆项目到本地,这样才能推送修改。
-    3. 如果想修复开源项目的一个 bug，或者新增一个功能，立刻就可以开始干活，干完后，往自己的远程仓库推送	。
-    4. 如果希望开源项目的官方能接受你的修改，可以在 GitHub 上发起一个 pull request,对方是否接受你的 pull request就不一定了。
-        1. 在自己远程仓库项目主页中,点击'Pull requests'/'New pull request',此时'bask fork'选择官方作者,'head fork'选择自己,点击'Create pull request',填好标题和说明(可选)确认。
-        2. 此时官方作者可在项目主页中,点击'Pull requests',能看到自己刚刚发送的请求,进去后可在里面跟请求者对话,点击'Files changed'审核代码,没问题的话可点击'Merge pull request'合并代码。
-        3. 在自己远程仓库项目主页中,如果官方作者有回复内容,可在刚发送的请送中看到官方的回复内容,也可回复。
-    5. 如果官方作者有提交新的代码,可在自己项目主页中,点击'Pull requests'/'New pull request',此时'bask fork'选择自己,'head fork'选择官方作者,点击'Create pull request',填好标题和说明(可选)确认。								
-        - 没问题的点击'Merge pull request'合并代码以获取官方作者的最新代码。
+    注：GitHub还会给出多个地址，如`https://github.com/GitHub账户名/gitskills.git`，因为Git支持多种协议，默认是通过ssh支持的原生git协议，速度最快；也可用https等其他协议，速度慢，
+        每次推送必须输入口令。
+```
+- 拉取
+
+```
+1.首先,可以试图用"git push origin branch-name"推送自己的修改。
+2.如果推送失败,则因为不是基于GitHub远程库的最新版所做的修改(即远程分支比你的本地更新),需先用"git pull/fetch"抓取远程的新提交,因为是读操作,不需要验证身份。
+    - fetch
+        - 把远程的更新下载到本地,可"git checkout origin/master"切换查看内容,并没有修改工作区,可"git merge origin/master"进行合并操作。
+    - pull = fetch + merge
+        - 如果"git pull"提示"no tracking information",则说明没有创建本地分支和远程分支的链接关系,用命令"git branch --set-upstream-to=origin/branch-name branch-name"再进行git pull。
+        $ git pull      //如果当前分支只有一个追踪分支,可以省略远程仓库名即可更新并合并
+        $ git pull origin      //如果当前分支有多个追踪分支,可以指定当前分支与指定的远程追踪分支进行更新并合并
+        $ git pull origin master      //指定当前分支与指定的远程master分支进行更新并合并
+        $ git pull origin master1:master2      //指定本地的master2分支与指定的远程master1分支进行更新并合并
+3.如果合并有冲突,则手动解决冲突(解决的方法和分支管理中的解决冲突完全一样),并在本地提交。
+4.没有冲突或者解决掉冲突后,再用"git push origin branch-name"推送就能成功。
+```
+- 跨团队协作/参与一个开源项目
+
+```
+1.以自己身份进入开源项目主页,点击"fork"克隆到自己的远程仓库下。
+2.从自己的远程仓库下克隆项目到本地,这样才能推送修改。ll
+3.如果想修复开源项目的一个bug，或者新增一个功能，立刻就可以开始干活，干完后，往自己的远程仓库推送。
+4.如果希望开源项目的官方能接受你的修改，可以在GitHub上发起一个pull request,对方是否接受你的pull request就不一定了。
+    1. 在自己远程仓库项目主页中,点击'Pull requests'/'New pull request',此时'bask fork'选择官方作者,'head fork'选择自己,点击'Create pull request',填好标题和说明(可选)确认。
+    2. 此时官方作者可在项目主页中,点击'Pull requests',能看到自己刚刚发送的请求,进去后可在里面跟请求者对话,点击'Files changed'审核代码,没问题的话可点击'Merge pull request'合并代码。
+    3. 在自己远程仓库项目主页中,如果官方作者有回复内容,可在刚发送的请送中看到官方的回复内容,也可回复。
+5.如果官方作者有提交新的代码,可在自己项目主页中,点击'Pull requests'/'New pull request',此时'bask fork'选择自己,'head fork'选择官方作者,点击'Create pull request',填好标题和说明(可选)确认。								
+    - 没问题的点击'Merge pull request'合并代码以获取官方作者的最新代码。
+```
       
 ### 码云(外网环境)
 

@@ -23,6 +23,7 @@ tags:
 
 ### 精华帖...
 
+- [通过淘宝“买家秀”，我花8000块睡到了喜欢的coser](http://www.sohu.com/a/270138940_115207)
 - [中国2018社会热点大事记-月光博客](https://www.williamlong.info/archives/5567.html)
 - [罗振宇2018“时间的朋友”跨年演讲精华版全文|罗振宇|时间的朋友|演讲_新浪科技_新浪网](http://tech.sina.com.cn/i/2019-01-01/doc-ihqhqcis2043090.shtml)
 - [一个越南新娘在中国的26年](http://renjian.163.com/18/1123/14/E1A8RTTI000181RV.html "一个越南19岁少女被卖到了中国，做家务，生孩子，用她后来赚的钱偿还了父亲买她时花的钱。她的女儿记录了母亲被卖到中国这26年发生的故事。想不到当今的社会买新娘这种事在偏远地区如此平常，希望作者的文章能够引起社会关注。")
@@ -34,6 +35,7 @@ tags:
 
 ### 知乎&&豆瓣...
 
+- [天天“性生活”，偶尔打个胎，一个色情服务人员的自诉](https://zhuanlan.zhihu.com/p/36093761)
 - [知乎封神榜 - 您的知乎之旅从此开始](http://www.zhihufans.com/index.php)
 - [煎蛋 - 地球上没有新鲜事](http://jandan.net/new "煎蛋以译介方式传播网络新鲜资讯")
 ---
@@ -46,7 +48,7 @@ tags:
 ---
 - [如何评价deepfakes用深度学习技术所合成的明星AV?](https://www.zhihu.com/question/264019472)
 - [水野朝阳哪位大神能评价下以及预测发展？](https://www.zhihu.com/question/37161602 "美图欣赏：https://movie.douban.com/celebrity/1363672/")
-- [超级超级贵的丝袜到底有什么不一样的地方？](https://www.zhihu.com/question/28753270 "为什么男人和女人都喜欢丝袜呢？首先是因为人类的的原始欲望，出生与子宫，喜欢全身被覆盖。其次穿着丝袜能够展示身材，对男性是一种性暗示。")
+- [超级超级贵的丝袜到底有什么不一样的地方？](https://www.zhihu.com/question/28753270 "为什么男人和女人都喜欢丝袜呢？首先是因为人类的的原始欲望，喜欢全身被覆盖。其次穿着丝袜能够展示身材，对男性是一种性暗示。")
 - [文学作品里有哪些经典开场白？](https://www.zhihu.com/question/27884620)
 - [有一个漂亮的室友是一种什么样的体验？](https://www.zhihu.com/question/37006507)
 - [风清扬和东方不败的武功谁更厉害？](https://www.zhihu.com/question/20771438)
@@ -80,6 +82,7 @@ tags:
 - [比特币交易如何防伪?私钥公钥地址啥意思?李永乐老师讲比特币第二集](https://weibo.com/tv/v/HgkzP4q2d?fid=1034:4338921413505538)
 ---
 - [买家秀](https://h5.m.taobao.com/ocean/privatenode/shop.html?sellerId=2193570902 "比如搜索商品关键字，找到商品卡片页中的店铺名称，复制名字中的连接，包含有店铺ID的一串数字,替换即可")
+- [买家秀](https://h5.m.taobao.com/ocean/privatenode/shop.html?sellerId=50852803)
 - [淘宝官方出品图片墙，撩汉出品买家秀汇总](https://h5.m.taobao.com/ocean/privatenode/shop.html?sellerId=673336836)
 - [淘宝官方出品图片墙，妖怪森林买家秀汇总](https://h5.m.taobao.com/ocean/privatenode/shop.html?sellerId=109043255)
 - [媚媚内衣实验室](https://market.m.taobao.com/apps/abs/9/41/index?wh_weex=true&pageId=6273&wx_navbar_hidden=true&wx_navbar_transparent=true&accountId=1994013081&content_id=217303897213)
@@ -94,6 +97,8 @@ tags:
 
 ### 福利吧
 
+- [全网趣味网站分享第五期：影视搜索/任正非讲话资料/保险万事通/IPFS客户端/捷径大全](http://fulibus.net/website5.html)
+- [生活必备的查询网址：查征信、婚姻、交友借钱明明白白](http://fulibus.net/zxgk.html)
 - [在线工具：趣味生成器，好玩停不下来！](http://fulibus.net/shengchengqi.html)
 - [【安卓、PC】BhVip团队破解福利软件更新合集](http://fulibus.net/bhvip.html)
 - [安卓：日本版抖音+美国版抖音（破解版不锁区）](http://fulibus.net/tiktok.html)

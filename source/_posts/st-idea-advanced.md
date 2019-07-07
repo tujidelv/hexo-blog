@@ -337,36 +337,38 @@ tags:
         Nyan Progress Bar
         Gitee
         NodeJS
+        Lombok
         ```
     - 备用插件
         ```
         Alibaba Java Coding Guidelines：阿里巴巴出的代码规范检查插件
+        JRebel for IntelliJ：热部署
+        Translation：翻译插件
+        Maven Helper：Maven辅助插件
+        MybatisX：mybatis框架辅助（免费）
+        Lombok Plugin：Lombok 功能辅助插件
+        Git Flow Integration：Git Flow的图形界面操作
+        .ignore：各类版本控制忽略文件生成工具
+        GenerateAllSetter：new POJO类的快速生成set方法
+        GsonFormat：把JSON字符串直接实例化成类
+        Rainbow Brackets：对各个对称括号进行着色，方便查看
+        String Manipulation：驼峰式命名和下划线命名交替变化
+        --------------------------
         IDE Features Trainer：IDEA官方出的学习辅助插件
         Key promoter：快捷键提示
         Grep Console：自定义设置控制台输出
-        String Manipulation：驼峰式命名和下划线命名交替变化
         CheckStyle-IDEA：代码规范检查
         FindBugs-IDEA：潜在Bug检查
         MetricsReloaded：代码复杂度检查
         Statistic：代码统计
-        JRebel for IntelliJ：热部署
         CodeGlance：在编辑代码最右侧，显示一块代码小地图
-        GsonFormat：把JSON字符串直接实例化成类
         Markdown Navigator：书写Markdown文章
         Eclipse Code Formatter：使用 Eclipse 的代码格式化风格，在一个团队中如果公司有规定格式化风格，这个可以使用
         Jindent-Source Code Formatter：自定义类、方法、doc、变量注释模板
-        Translation：翻译插件
-        Maven Helper：Maven辅助插件
         Properties to YAML Converter：把Properties的配置格式改为YAML格式
-        Git Flow Integration：Git Flow的图形界面操作
-        Rainbow Brackets：对各个对称括号进行着色，方便查看
-        MybatisX：mybatis框架辅助（免费）
-        Lombok Plugin：Lombok 功能辅助插件
-        .ignore：各类版本控制忽略文件生成工具
         mongo4idea：mongo客户端
         iedis：redis客户端
         VisualVM Launcher：项目启动的时候也启动VisualVM
-        GenerateAllSetter：new POJO类的快速生成set方法
         ```
 - Java 热部署插件 JRebel 安装及使用
 - 插件开发

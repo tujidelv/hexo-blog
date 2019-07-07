@@ -302,9 +302,9 @@ tags:
             Add unambiguous imports on the fly：书写代码时自动导入需要用到的包
             Optimize imports on the fly：自动帮我们优化导入的包,比如去掉一些没有用到的包
         ```
-    - **设置方法间的分隔线**
+    - **设置显示行数及方法间的分隔线**
         ```
-        General->Apperance,勾选'Show method separators'
+        General->Apperance,勾选'Show method separators'和'Show line numbers'
         ```
     - **设置忽略代码提示区分大小写**
         ```
