@@ -398,6 +398,20 @@ tags:
         ```
     - ***断点调试***
         - 详见高级篇
+    - ***部署应用到服务器***
+        ```
+        1.配置服务器信息
+            Deployment,进行服务器信息的配置,包括服务器地址和权限认证,并且在Mapping选项卡完成本地工程与服务器路径的映射。
+        2.配置Maven打包插件
+            以SpringBoot应用为例,需要配置"spring-boot-maen-plugin"插件,这样执行"mvn package"命令时,即可得到一个可运行的Jar。
+        3.部署Jar包
+            在"target"目录下找到上一步生成的可执行jar文件右键,依次找到"Deployment->Upload to XXX",就可以上传到远程服务器上。
+        4.启动应用
+            在菜单栏"Tools->StartSSH session"中开启远程服务器的终端,在IDEA下方可以执行远程指令。
+                也可以在"Tools->Deployment->Browse Remote Host"中可视化地浏览服务器上的文件列表,检查应用是否部署成功。
+            在远程终端中,找到对应的fatjar,执行"java -jar xxx.jar",便完成了整个部署流程。
+        可考虑别一种方案：阿里Cloud Toolkit插件            
+        ```
 - Languages & Frameworks(语言和框架)
 - Tools(工具集)
     - 设置默认浏览器

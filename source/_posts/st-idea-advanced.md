@@ -338,11 +338,11 @@ tags:
         Gitee
         NodeJS
         Lombok
+        Alibaba Java Coding Guidelines：阿里巴巴出的代码规范检查插件
+        JRebel for IntelliJ：热部署
         ```
     - 备用插件
         ```
-        Alibaba Java Coding Guidelines：阿里巴巴出的代码规范检查插件
-        JRebel for IntelliJ：热部署
         Translation：翻译插件
         Maven Helper：Maven辅助插件
         MybatisX：mybatis框架辅助（免费）
