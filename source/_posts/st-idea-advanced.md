@@ -107,6 +107,7 @@ tags:
 |快捷键|介绍|
 |:---------|:---------|
 |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>/</kbd>|多行注释 `（必备）` |
+|<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>|在 Debug 的状态下，选中对象，可快速查看该输入内容的调试结果 `（必备）` |
 |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd>|向上开始新的一行 `（必备）` |
 |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>|格式化代码 `（必备）` |
 |<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd>|优化导入的类 `（必备）` |
