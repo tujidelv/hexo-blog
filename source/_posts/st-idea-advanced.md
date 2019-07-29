@@ -128,6 +128,7 @@ tags:
 
 |快捷键|介绍|
 |:---------|:---------|
+|<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Up/Down</kbd>|递进式(取消)选择代码块。可选中光标所在的单词或段落，连续按会在原有选中的基础上再扩展(取消)选中范围`（必备）` |
 |<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>|生成构造器/get/set/toString `（必备）` |
 |<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>|生成 try-catch 等 `（必备）` |
 |<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>C/X</kbd>|收起/打开所有的方法 `（必备）` |
