@@ -186,7 +186,8 @@ tags:
     $ echo 'git' | passwd --stdin git &> /dev/null
 	```
 3. 创建 Git 仓库
-    1. 先选定一个目录作为 Git 仓库，假定是/home/data/git/sample.git/，在/home/data/git/目录下输入如下命令,Git 就会创建一个裸仓库，裸仓库没有工作区。
+    1. 先选定一个目录作为 Git 仓库，假定是/www/wwwroot/hexo.lvzhiqiang.top/hexo-blog.git/，在/www/wwwroot/hexo.lvzhiqiang.top/目录下输入如下命令,Git 
+    就会创建一个裸仓库，裸仓库没有工作区。
         ```shell
         $ git init --bare sample.git
         ```
@@ -194,7 +195,19 @@ tags:
         ```shell
         $ chown -R git:git sample.git
         ```
-4. Git 打开 RSA 认证
+        注：如果执行了第4步,可再执行这个命令。
+4. 配置 git hooks 来生成对应的工作区(**非必须**)
+    - 这里要使用的是 `post-receive` 的 hook，这个 hook 会在整个 git 操作过程完结以后被运行。
+    1. 在/home/data/git/sample.git/hooks目录下创建hook钩子函数，可新建`post-receive`文件,填入如下内容
+        ```shell
+        #!/bin/sh
+        git --work-tree=/www/wwwroot/hexo.lvzhiqiang.top/hexo-blog --git-dir=/www/wwwroot/hexo.lvzhiqiang.top/hexo-blog.git checkout -f
+        ```
+    2. 为文件添加可执行权限
+        ```shell
+        $ chmod +x post-receive
+        ```
+5. Git 打开 RSA 认证
 	1. 进入/etc/ssh目录，编辑 sshd_config，打开以下三个配置的注释，然后重启 sshd 服务
         ```shell
         $ vim sshd_config
@@ -210,11 +223,15 @@ tags:
 	    $ mkdir .ssh
 	    $ chown -R git:git .ssh
 	    ```
-5. 创建证书登录(添加客户端公钥到服务器)
+6. 创建证书登录(添加客户端公钥到服务器)
 	1. 收集所有需要登录的用户的公钥，就是他们自己的 id_rsa.pub 文件，把所有公钥导入到/home/git/.ssh/authorized_keys 文件里，一行一个
 	    ```shell
 	    $ ssh git@server 'cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 	    ``` 
+	    或者
+	    ```shell
+	    $ ssh-copy-id -i ~/.ssh/id_rsa.pub git@服务器IP -p 端口号(默认22时可不用此参数)
+	    ```
 	    Tips：需要输入服务器端 git 用户的密码
 	2. 查看服务器端 .ssh 下是否存在 authorized_keys 文件
         ```shell
@@ -225,23 +242,23 @@ tags:
 	    $ chmod 700 .ssh
 	    $ chmod 600 authorized_keys
 		```
-6. 禁止 git 用户 ssh 登录服务器
+7. 禁止 git 用户 ssh 登录服务器
 	- 出于安全考虑，第二步创建的 git 用户不允许登录 shell，这可以通过编辑/etc/passwd 文件完成。将 bash 修改为 git-shell,找到类似下面的一行：
 	    ```
 	    git:x:1001:1001:,,,:/home/git:/bin/bash改为：git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
 	    ```
 	- 这样，git 用户可以正常通过 ssh 使用 git，但无法登录 shell，因为我们为 git 用户指定的 git-shell 每次一登录就自动退出。
-7. 客户端克隆远程仓库
+8. 客户端克隆远程仓库
     ```shell
-    $ git clone git@server:/home/data/git/sample.git
+    $ git clone git@server:/www/wwwroot/hexo.lvzhiqiang.top/hexo-blog.git
     ```
 	Tips：如果 SSH 用的不是默认的 22 端口，则需要使用以下的命令（假设 SSH 端口号是 7700）
 	```shell
-	$ git clone ssh://git@server:7700/home/data/git/sample.git
+	$ git clone ssh://git@server:7700/www/wwwroot/hexo.lvzhiqiang.top/hexo-blog.git
 	```
-8. 管理公钥
+9. 管理公钥
 	- 如果团队很小，把每个人的公钥收集起来放到服务器的/home/git/.ssh/authorized_keys文件里就是可行的。如果团队有几百号人，就没法这么玩了，这时，可以用 Gitosis 来管理公钥。
-9. 管理权限
+10. 管理权限
 	- 因为 Git 是为 Linux 源代码托管而开发的，所以 Git 也继承了开源社区的精神，不支持权限控制。
 	- 不过，因为 Git 支持钩子（hook），所以，可以在服务器端编写一系列脚本来控制提交等操作，达到权限控制的目的，Gitolite 就是这个工具。
 
