@@ -242,6 +242,10 @@ tags:
 	    $ chmod 700 .ssh
 	    $ chmod 600 authorized_keys
 		```
+    4. 测试能否登录，此时的 ssh 登录 git 用户不需要密码！否则就有错,可尝试重启`sshd`服务
+        ```shell
+        $ ssh git@server_ip -p 端口号(默认22时可不用此参数)
+        ```
 7. 禁止 git 用户 ssh 登录服务器
 	- 出于安全考虑，第二步创建的 git 用户不允许登录 shell，这可以通过编辑/etc/passwd 文件完成。将 bash 修改为 git-shell,找到类似下面的一行：
 	    ```
@@ -274,3 +278,12 @@ tags:
 ## 结束语
 
 - 未完待续...
+- update by 20190801
+    ```
+    1.如果在github pushr的过程中提示"Connection reset by 13.250.177.223 port 22 fatal: Could not read from remote repository."
+    2.可尝试"ping github.com"看是否能Ping通,超时则应该是本地DNS无法解析导致的
+    3.可修改"C:\Windows\System32\drivers\etc\hosts"添加
+        192.30.255.112  github.com git 
+        185.31.16.184 github.global.ssl.fastly.net
+    4.可继续2步骤测试
+    ```

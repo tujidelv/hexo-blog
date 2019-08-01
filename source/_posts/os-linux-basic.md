@@ -318,7 +318,7 @@ tags:
             ~]# service iptables stop
             ~]# chkconfig iptables off
     ---
-    连接：ssh root@172.16.249.74
+    连接：ssh root@172.16.249.74 -p端口号
     ```
 
 ### 文件系统

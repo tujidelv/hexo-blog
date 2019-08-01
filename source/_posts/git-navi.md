@@ -23,6 +23,7 @@ tags:
 
 ### 精华帖...
 
+- [戒毒十年慢慢说](http://doudoubbs.yxsyj.com/forum.php?mod=viewthread&tid=17838&page=1&authorid=5429)
 - [通过淘宝“买家秀”，我花8000块睡到了喜欢的coser](http://www.sohu.com/a/270138940_115207)
 - [中国2018社会热点大事记-月光博客](https://www.williamlong.info/archives/5567.html)
 - [罗振宇2018“时间的朋友”跨年演讲精华版全文|罗振宇|时间的朋友|演讲_新浪科技_新浪网](http://tech.sina.com.cn/i/2019-01-01/doc-ihqhqcis2043090.shtml)
@@ -139,6 +140,8 @@ tags:
     - [ZIAxNOA](https://www.pornhub.com/model/ziaxnoa)
     - [BLOWJOB SKILL](https://www.pornhub.com/view_video.php?viewkey=ph5c1b804ad3492)
     - [Y GIRLFRIEND IS HARD ON ME IN BED, AND MY GIRLFRIEND IS EXCITED](https://www.pornhub.com/view_video.php?viewkey=ph5ab787f0f0bc7)
+    - [qiezishipin's Profile](https://www.pornhub.com/users/qiezishipin)
+    - [Wmaf](https://cn.pornhub.com/video/search?search=wmaf)
 - Twitter
     - [森罗万象](https://twitter.com/287076147/)
 
