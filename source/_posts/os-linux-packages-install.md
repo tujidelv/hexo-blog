@@ -68,6 +68,50 @@ tags:
     # java -version
     ```
     
+### `TOMCAT的安装和配置`
+
+1. 下载 TOMCAT 程序包,rpm或者tar.gz格式的都可以
+    ```
+    方法1：
+        1. 去jdk官网找到指定版本的jdk,并复制其链接地址
+        2. wget -P /opt/setups/ http://apache.fayea.com/tomcat/tomcat-8/v8.5.43/bin/apache-tomcat-8.5.43.tar.gz
+        3. 重命名即可
+    方法2：
+        1. 去tomcat官网找到指定版本的tomcat,下载到本地
+        2. 通过rz等上传工具将程序包上传到/opt/setups目录中去
+    ```
+2. 解压到指定目录
+    ```
+    # mkdir -pv /usr/program
+    # tar -zxf apache-tomcat-8.5.34.tar.gz -C /usr/program
+    ```
+3. 设置 iptables 规则
+
+    - 一种是关闭iptables,另一种是在iptables中添加允许规则(Tomcat默认端口是8080)
+    - CentOS 6系统
+        ```
+        # iptables -I INPUT -p tcp -m tcp --dport 8080 -j ACCEPT
+        # service iptables save
+        # service iptables restart
+        ```
+    - CentOS 7系统
+        ```
+        # firewall-cmd --zone=public --add-port=8080/tcp --permanent 
+        # firewall-cmd --reload
+        ```
+4. 测试安装好后的 Tomcat
+    - 启动 Tomcat
+        ```
+        # sh /usr/program/apache-tomcat-8.5.34/bin/startup.sh
+        # tail -200f /usr/program/apache-tomcat-8.5.34/logs/catalina.out
+        ```
+    - 访问 `http://服务器 IP 地址:8080/`
+    - 停止 Tomcat
+        ```
+        # sh /usr/program/apache-tomcat-8.5.34/bin/shutdown.sh
+        ```
+5. 优化(待更新)
+
 ### `RocketMQ的集群部署`
 
 详见"消息中间件之 RocketMQ"章节
