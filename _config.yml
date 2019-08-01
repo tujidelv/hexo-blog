@@ -97,7 +97,11 @@ theme: 3-hexo # 当前主题名称。值为false时禁用主题
 ## 需要注意的是这里的 repo 采用的是 ssh 的地址，而不是 https 的。分支我们默认采用 master 分支。
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
+- type: git
   repo: git@github.com:tujidelv/tujidelv.github.io.git
+  branch: master
+  message: "Site updateed: {{ now('YYYY-MM-DD HH:mm:ss') }}"
+- type: git
+  repo: ssh://git@144.34.207.84:26376/www/wwwroot/hexo.lvzhiqiang.top/hexo-blog.git
   branch: master
   message: "Site updateed: {{ now('YYYY-MM-DD HH:mm:ss') }}"
