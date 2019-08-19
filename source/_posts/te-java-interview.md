@@ -193,9 +193,76 @@ tags:
 
 ### 性能调优专题
 
+- 零拷贝
+    ```
+    概念：
+        零拷贝技术是指计算机执行操作时,CPU不需要先将数据从某处内存复制到另一个特定区域.这种技术通常用于通过网络传输文件节省CPU周期和网络带宽.
+    场景：
+        kafaka,netty,rocketmq,nginx,apache中都用到了零拷贝。
+    好处：
+        Linux IO流程：先通过DMA拷贝将磁盘数据读入内核空间缓冲区,然后通过CPU拷贝从内核向用户进程空间缓冲区复制数据.
+        减少传输数据在存储器之间不必要的中间拷贝次数,从而有效提高数据传输效率
+        减少了用户进程空间和内核空间之间因为上下文切换而带来的开销
+    实现：
+        1.java NIO - MappedByteBuffer,适合比较大的文件
+            FileChannel fileChannel = new RandomAcessFile(new File("data.zip"),"rw").getChannel();
+            MappedByteBuffer buffer = fileChannel.map(FileChannel.MapMode.READ_ONLY,0,fileChannel.size());
+        2.java NIO - FileChannel.transferTo,直接将当前通道内容传输到另一个通道,没有涉及到Buffer的任务操作,底层通过系统调用sendfile()
+            FileChannel fileChannel = new RandomAcessFile(new File("data.zip"),"rw").getChannel();
+            SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("",1234));
+            fileChannel.transferTo(0,fileChannel.size(),socketChannel);
+    ```
+
 ### 数据结构与算法专题
 
 ### 设计模式专题
+
+- 如何高效实现单例设计模式
+    ```
+    核心思想：
+        保证系统中一个类仅有一个实例,并且提供一个访问该实例的全局访问方法
+    常见应用场景：
+        windows任务管理器,数据库连接池,java中的runtime,spring中bean的默认生命周期
+    优点：
+        避免对象的频繁创建和销毁,提高性能
+    实现：
+        饿汉式：
+            优点是访问性能高,线程安全;缺点是加载时就初始化,可能会造成资源浪费.
+        懒汉式：
+            优点是访问性能高,延迟初始化,提高了资源利用率;缺点是非线程安全
+        懒汉式 + synchronized：
+            优点是线程安全,延迟初始化,提高了资源利用率;缺点是getInstance()访问需要同步,并发访问性能低.
+        懒汉式 + double check + volatile：
+            优点是线程安全,延迟初始化,提高了资源利用率,getInstance()访问性能高.
+            public static Singleton getInstance(){
+                if(instance == null){
+                    synchronized(Singleton.class){
+                        if(instance == null){
+                            instance = new Singleton();
+                        }
+                    }
+                }
+                return instance;
+            }
+        内部内Holder：
+            优点是线程安全,延迟初始化,提高了资源利用率,getInstance()访问性能高.
+            public final class Singleton{
+                private Singleton(){}
+                private static class Holder{
+                    private static Singleton INSTANCE = new Singleton();
+                }
+                public static Singleton getInstance(){
+                    return Holder.INSTANCE;
+                }
+            }
+        枚举(Enum)：
+            优点是线程安全,getInstance()访问性能高;缺点是不能延迟初始化
+            防止通过反射调用私有构造器来创建多个实例;提供了自动序列化机制,防止反序列化的时候创建新的对象.
+            public enum Singleon{
+                INSTANCE;
+                void otherMethod(){...}
+            }
+    ```
 
 ### 互联网工具专题
 
@@ -203,6 +270,33 @@ tags:
 
 ### 分布式框架专题
 
+- 分布式事务解决方案
+    ```
+    本地事务：
+    分布式事务：
+        单JVM跨库事务：
+            XA/JTA两阶段提交方案：
+                开源框架实现有atomikos,外加补偿机制.在CAP理论当中强调的是一致性,由于可用性较低,实际应用的并不多.
+        多JVM微服务：
+            CAP理论：
+                开发大规模分布式系统会遇到一致性,可用性,分区容错性3个特性,而一个分布式系统最多只能满足其中的2项.而分区容错性是分布式系统
+                必然要面对和解决的问题,因此我们要根据业务特点在一致性和可用性之间寻求平衡.
+            BASE理论：
+                基本可用：指分布式系统在出现不可预知故障的时候,允许损失部分可用性.
+                软状态：允许系统中的数据存在中间状态,即允许数据同步的过程中存在延时.
+                最终一致：本质是需要系统保证最终数据能够达到一致,而不需要实时保证系统数据的强一致性.
+            柔性事务：
+                最大努力通知方案： 
+                TCC两阶段补偿性方案：
+                    try：完成所有业务检查(一致性),预留业务资源(准隔离性)
+                    confrim：确认执行业务操作,不做任务业务检查,只使用try阶段预留的业务资源
+                    cancel：取消try阶段预留的业务资源
+                    开源框架实现：atomikos商业版,tcc-transaction,spring-cloud-rest-tcc,支付宝tcc
+        TCC与XA对比：
+            XA是资源(数据库)层面的分布式事务,强一致性,在两阶段提交的整个过程中,一直会持有资源的锁.
+            TCC是业务层面的分布式事务,最终一致性,不会一直持有资源的锁.针对整个系统提升了性能.
+                    
+    ```
 
 
 ## 参考链接
