@@ -24,15 +24,51 @@ tags:
 
 ### 家娃基础专题
 
+- 对Java平台的理解
+    ```
+    Java是一种面向对象的编程语言，最显著的特性有两个方面
+        一个是“书写一次，到处运行”（Write once, run anywhere），能够非常容易地获得跨平台能力；
+        另一个是垃圾收集（GC, Garbage Collection），Java 通过垃圾收集器（Garbage Collector）回收内存，大部分情况下，程序员不需要自己操心内存的分配和回收。
+    对于“Java是解释执行”这句话，这个说法不太准确
+        我们开发的Java 的源代码，首先通过Javac编译成为字节码，然后在运行时，JVM 会通过类加载器（Class-Loader）加载字节码，并通过内嵌的解释器将其转换成为最终的机器码。
+        但是常见的JVM，比如我们大多数情况使用的 Oracle JDK 提供的 Hotspot JVM，都提供了JIT（Just-In-Time）编译器，也就是通常所说的动态编译器，
+        它能够在运行时将热点代码编译成机器码，这种情况下部分热点代码就属于编译执行，而不是解释执行了。
+     在JDK 8 实际是解释和编译混合的一种模式，即所谓的混合模式（-Xmixed）
+        Oracle Hotspot JVM 内置了两个不同的 JIT compiler，C1对应前面说的client模式，适用于对于启动速度敏感的应用，比如普通 Java 桌面应用；
+        C2对应server模式，它的优化是为长时间运行的服务器端应用设计的。默认是采用所谓的分层编译（TieredCompilation）。
+    ```
+
 - Exception、Error的区别
     ```
-    首先,Exception和Error都继承自Throwable类
-    Error类一般是指与虚拟机相关的错误，对于这类错误导致的应用程序中断无法捕获处理，如OutofMemoryError、StackOverflowError等。
-    Exception类表示程序可以处理的异常，对于这类异常，应该尽可能处理异常，使程序恢复，分为运行时异常和编译时异常。
-        运行时异常：RuntimeException及其子类,可以不处理(可以修改代码更严谨),也可以处理
-            NullPointerException、ClassCastException、ClassNotFoundException、IllegalArgumentException
-        编译时异常：非RuntimeException,必须要处理,否则编译不通过
-            IOException、SQLException
+    Exception和Error都继承自Throwable类
+        只有Throwable类型的实例才可以被抛出（throw）或者捕获（catch），它是异常处理机制的基本组成类型。
+        Exception和Error体现了Java平台设计者对不同异常情况的分类。
+    Error是指在正常情况下，不大可能出现的情况，绝大部分的Error都会导致程序（比如 JVM 自身）处于非正常的、不可恢复状态。
+        既然是非正常情况，所以不便于也不需要捕获，常见的比如 OutOfMemoryError、StackOverflowError等都是Error的子类。
+    Exception是程序正常运行中，可以预料的意外情况，对于这类异常，应该尽可能处理异常，使程序恢复，分为检查型（checked）异常和非检查型（unchecked）异常。
+        检查型异常：在源代码里必须显式地进行捕获处理，否则编译不通过;非RuntimeException都是此类异常.
+            IOException、SQLException、ClassNotFoundException等
+        非检查型异常：在源代码里可以不处理(可以修改代码更严谨),也可以处理;RuntimeException及其子类都是此类异常,Error类也可归为此类.
+            NullPointerException、IndexOutOfBoundsException、ClassCastException、IllegalArgumentException等
+    ```
+- ClassNotFoundException与NoClassDefFoundError区别
+    ```
+    前者的根本原因是.class文件找不到,例如少引了某个jar。
+        解决方法是通常需要检查一下classpath下能不能找到包含缺失.class文件的jar。
+    后者是类加载器试图加载类的定义，但是找不到这个类的定义，而实际上这个.class文件是存在的。
+        解决方法是需要检查这个类定义中的初始化部分（如类属性定义、static 块等）的代码是否有抛异常的可能，如果是 static 块，可以考虑在其中
+        将异常捕获并打印堆栈等，或者直接在对类进行初始化调用（如 new Foobar()）时作 try  catch。
+    ```
+- 异常处理原则
+    ```
+    尽量不要捕获通用异常,而应该捕获特定异常
+        这样能让自己的代码能够直观地体现出尽量多的信息,方便快速定位问题。
+    不要生吞异常,即捕获后不要什么都不做
+        这样程序可能在后续代码以不可控的方式结束,没人能够轻易判断究竟是哪里抛出了异常，以及是什么原因产生了异常。
+    只捕获有必要的代码段,尽量不要一个大的try包住整段的代码
+        try-catch代码段会产生额外的性能开销，它往往会影响JVM对代码进行优化。
+    不要使用异常处理块控制代码流程
+        Java每实例化一个Exception，都会对当时的栈进行快照，这是一个相对比较重的操作。如果发生的非常频繁，这个开销可就不能被忽略了。
     ```
 - throw、throws的区别
     ```
@@ -51,16 +87,9 @@ tags:
         一般来说,代码肯定会执行,特殊情况,例如在执行finally之前jvm退出了
     finalize：是Object类的一个方法,会在垃圾回收对象前调用,来释放资源,每个对象的finalize方法只会被GC调用一次
         GC根据GCroot算法进行来分析对象的可达性来判断对象是否存活,如果不可达被判定为垃圾对象后,会先判断该对象是否覆盖finalize方法,
-        如果没有覆盖说明对象不需要经过特殊处理,可以直接回收,否则会将该对象放入一个F-Queue队列中,会被一个低优先级的对列调用,再次进行
+        如果没有覆盖说明对象不需要经过特殊处理,可以直接回收,否则会将该对象放入一个F-Queue队列中,会被一个低优先级的线程调用,再次进行
         可达性分析,来判断是否复活还是回收.不建议使用,容易引起挂起和死锁.
         
-    ```
-- 异常处理原则
-    ```
-    尽量捕获特定异常,来快速定位问题,而不是捕获通用异常
-    不要生吞异常,而不是捕获后什么都不做
-    只捕获有必要的代码段,捕获会耗资源
-    不要使用异常处理块控制代码流程
     ```
 - string、sringbuffer、stringbuilder的区别
     ```
@@ -125,7 +154,6 @@ tags:
     ==：是一个比较运算符,基本类型比较的是值,引用类型比较的是地址值(是否为同一个对象的引用).
     equals：是Object类的一个方法,只能比较引用类型,重写前比较的是地址值,重写后一般是比较对象的属性.
     ```
-
 
 ### 并发编程专题
 
@@ -239,7 +267,7 @@ tags:
     B树与B+树的出现是为了减少磁盘IO的次数,基本思想就是
         降低树的深度,每个节点存储多个元素
         摒弃二叉树结构,采用多叉树
-    B树：也平衡多路查找树
+    B树：也叫平衡多路查找树
         每个节点都存储key和data,所有节点组成这颗树,并且叶子节点指针为null.
     B+树：
         只有叶子节点存储data,叶子节点包含了这棵树的所有键值,叶子节点不存储指针.

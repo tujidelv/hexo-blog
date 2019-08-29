@@ -23,6 +23,7 @@ tags:
 
 ### 精华帖...
 
+- [重庆魔楼红鼎国际六天五夜奇幻游记]https://mp.weixin.qq.com/s/uuzvPpcYoNO5zZc_3pNsiA
 - [戒毒十年慢慢说](http://doudoubbs.yxsyj.com/forum.php?mod=viewthread&tid=17838&page=1&authorid=5429)
 - [通过淘宝“买家秀”，我花8000块睡到了喜欢的coser](http://www.sohu.com/a/270138940_115207)
 - [中国2018社会热点大事记-月光博客](https://www.williamlong.info/archives/5567.html)
@@ -40,6 +41,8 @@ tags:
 - [知乎封神榜 - 您的知乎之旅从此开始](http://www.zhihufans.com/index.php)
 - [煎蛋 - 地球上没有新鲜事](http://jandan.net/new "煎蛋以译介方式传播网络新鲜资讯")
 ---
+- [你听说过哪些连小说中都不敢写的狗血真实事件](https://www.douban.com/gallery/topic/50680/)
+- [说说你见过的知道的最乱的事](https://www.douban.com/group/topic/149586712/)
 - [在去和男友约会路上与滴滴司机C震！性开放时代C轨C震有错？](https://www.douban.com/note/715956852/)
 - [豆瓣2018年度电影榜单・携程冠名](https://movie.douban.com/annual/2018)
 - [豆瓣2017年度电影榜单](https://movie.douban.com/annual/2017)
