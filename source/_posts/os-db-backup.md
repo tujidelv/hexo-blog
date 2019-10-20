@@ -2,7 +2,7 @@
 title: Mysql 数据库自动备份脚本
 date: 2019-03-09 15:23:53
 categories:
-- 经典示例
+- 操作系统
 tags:
 - linux
 ---

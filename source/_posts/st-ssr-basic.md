@@ -1,15 +1,15 @@
 ---
-title: SSR 搭建：基础
+title: SSR科学上网：基础
 date: 2018-12-09 13:14:25
 categories:
-- 科学上网
+- 软件工具
 tags:
 - ssr
 - vps
 - shadowsocks
 ---
 
-# SSR 搭建：基础
+# SSR科学上网：基础
 
 ## 目录
 
@@ -57,7 +57,7 @@ tags:
 - 如果你有一台国外服务器不在 `GFW` 的黑名单内，天朝局域网的机器就可以跟这一台机器通讯。
 - 那么一个番茄的方案就出来了：境内设备与境外机器通讯，境内想看什么网页，就告诉境外的机器，让境外机器代理抓取，然后送回来，我们要做的就是保证境内设备与境外设备通讯时不被 GFW 怀疑和窃听。
 
-![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-001.png "ssr 原理图")
+![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-001.png "ssr 原理图")
 
 ### 必备简易命令，查错方法
 
@@ -160,7 +160,7 @@ tags:
         https://www.ipip.net/product/client.html
     然后打开软件，点击右侧的路由跟踪按钮，打开路由跟踪界面，输入vps的ip，点击开始，就可以得到vps与你本地的路线走向图了。
     ```
-    ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-008.png "路由追踪")
+    ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-008.png "路由追踪")
     
 ### 地域总结
 
@@ -187,17 +187,17 @@ tags:
     - 即便我们购买低配置方案之后，以后也可以升级到其他方案的。
 2. 核对方案配置以及选择时间期限和机房
     - 核对我们选择方案的价格，没有问题后点击CHECKOUT结账。
-    ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-002.png)
-    ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-003.png)
+    ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-002.png)
+    ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-003.png)
 3. 登录或者新注册搬瓦工账户
     - 如果我们有过账户，可以直接点击"Click here to login"登录以及付款就可以，如果还没有账户则需要注册账户。
     - 个人信息不要真实的，但也不能太离谱和乱写字符出来，好歹也要稍微用点拼音。
     - 我们不能用代理IP登录注册账户，国家需要真实，不要乱选择。
-    ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-004.png)
+    ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-004.png)
 4. 付款成功以及使用
-    ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-005.png)
-    ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-006.png)
-    ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-007.png)
+    ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-005.png)
+    ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-006.png)
+    ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-007.png)
 5. 申请退款政策和方法
     - 申请退款需要账户注册 30 天之内，不是 VPS 主机 30 天内，如果我们是老账户是不支持退款的。
     - 申请地址：<https://bwh8.net/refund.php>
@@ -207,19 +207,19 @@ tags:
 - 方法1
     1. 打开端口扫描工具 <http://tool.chinaz.com/port/>
     2. 输入 VPS 的 IP 和 SSH 端口号并点击 `开始扫描` 进行扫描
-        ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-009.png)
+        ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-009.png)
     3. 一般来说，如果被封了，会显示端口是关闭状态。如果没被封，那么这里显示的都是打开状态，恭喜，你的 IP 一切正常。
     4. 然后找一个国外的提供类似测试的网站例如 <https://www.yougetsignal.com/tools/open-ports/>
     5. 输入 VPS 的 IP 和 SSH 端口号并点击 `Check` 进行检查
-        ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-010.png)
+        ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-010.png)
     6. 如果此时显示端口是 `open` 的，那么你的 IP 地址就是被封了。如果这时候也显示 `closed`，那么你可能还有救，尝试一下重启或者重装 VPS 吧。
 - 方法2
     1. 首先登陆我们被封了 IP 的 VPS 的 KiwiVM 面板
     2. 登陆之后，打开 <https://kiwivm.64clouds.com/main-exec.php?mode=blacklistcheck>
     3. 打开之后，点击 `Test Main IP` 进行测试，会检查你的 IP 地址是否已经被封
-        ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-011.png)
+        ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-011.png)
     4. 如果没有被封，会显示 `IP NOT BLOCKED`，如果被封了，会红色加粗显示`IP BLOCKED`。这时候我们只需点击下面的 `Replace Main IP`，进行更换 IP 的操作。
-        ![抱歉,图片休息了](si-ssr-basic/si-ssr-basic-012.png)
+        ![抱歉,图片休息了](st-ssr-basic/si-ssr-basic-012.png)
 
 ### 搬瓦工 IP/端口被封的原因及解决办法
 

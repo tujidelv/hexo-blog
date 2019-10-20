@@ -1,5 +1,5 @@
 ---
-title: 分布式缓存框架之 Redis&Ehcache
+title: 分布式系列之 Redis&Ehcache
 date: 2019-04-13 16:56:23
 categories:
 - 应用框架
@@ -7,7 +7,7 @@ tags:
 - 分布式
 ---
 
-# 分布式缓存框架之 Redis&Ehcache
+# 分布式系列之 Redis&Ehcache
 
 ## 目录
 

@@ -1,5 +1,5 @@
 ---
-title: Java8新特性
+title: Java 新特性：8
 date: 2019-03-30 15:04:29
 categories:
 - 开发语言
@@ -7,7 +7,7 @@ tags:
 - java
 ---
 
-# Java8 新特性
+# JJava 新特性：8
 
 ## 目录
 

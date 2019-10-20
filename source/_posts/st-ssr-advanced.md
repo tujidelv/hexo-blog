@@ -1,15 +1,15 @@
 ---
-title: SSR 搭建：进阶
-date: 2018-12-09 15:50:16
+title: SSR科学上网：进阶
+date: 2018-12-09 15:50:16f
 categories:
-- 科学上网
+- 软件工具
 tags:
 - ssr
 - vps
 - shadowsocks
 ---
 
-# SSR 搭建：进阶
+# SSR科学上网：进阶
 
 ## 目录
 
@@ -26,7 +26,7 @@ tags:
 ## SSR的部署及使用
 
 整套SSR 分为 SSR 服务端（部署在 VPS，也就是海外主机），SSR 客户端（部署在本机或者本地路由器或本地手机上）。
-![抱歉,图片休息了](si-ssr-advanced/si-ssr-advanced-001.png "ssr 部署")
+![抱歉,图片休息了](st-ssr-advanced/si-ssr-advanced-001.png "ssr 部署")
 
 ### 服务端的部署
 
@@ -187,8 +187,8 @@ tags:
     [信息] 开始安装/配置 ShadowsocksR依赖...
     ```
 8. 最后会输出账号信息，从上往下依次为 SSR 帐号的IP、端口、密码、加密方式、协议插件和混淆插件等。
-    ![抱歉,图片休息了](si-ssr-advanced/si-ssr-advanced-002.png "ssr 帐号信息")
-    ![抱歉,图片休息了](si-ssr-advanced/si-ssr-advanced-004.png)
+    ![抱歉,图片休息了](st-ssr-advanced/si-ssr-advanced-002.png "ssr 帐号信息")
+    ![抱歉,图片休息了](st-ssr-advanced/si-ssr-advanced-004.png)
 
 ### 客户端的部署
 
@@ -296,7 +296,7 @@ tags:
     wget --no-check-certificate -O C72.sh https://raw.githubusercontent.com/tujidelv/CBBR/master/C72.sh && chmod +x C72.sh && bash C72.sh
     ```
 - 结束后，显示 Finish 表示正常，或者执行 `lsmod |grep 'bbr_powered'` 结果不为空，则加载模块成功。
-    ![抱歉,图片休息了](si-ssr-advanced/si-ssr-advanced-003.png)
+    ![抱歉,图片休息了](st-ssr-advanced/si-ssr-advanced-003.png)
 
 ## 参考链接
 

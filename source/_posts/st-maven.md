@@ -1,5 +1,5 @@
 ---
-title: 项目管理工具之Maven
+title: Maven 札记：基础
 date: 2019-03-14 17:44:01
 categories:
 - 软件工具
@@ -7,7 +7,7 @@ tags:
 - maven
 ---
 
-# 项目管理工具之Maven
+# Maven 札记：基础
 
 ## 目录
 
