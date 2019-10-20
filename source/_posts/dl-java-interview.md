@@ -2,7 +2,7 @@
 title: Java常见面试题
 date: 2019-08-18 16:46:58
 categories:
-- 经典示例
+- 开发语言
 tags:
 - java
 ---
