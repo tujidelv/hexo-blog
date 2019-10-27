@@ -1,5 +1,5 @@
 ---
-title: CentOS7 添加开机启动服务/脚本
+title: Linux 系统应用：添加开机启动服务/脚本
 date: 2019-03-09 15:27:42
 categories:
 - 操作系统
@@ -7,7 +7,7 @@ tags:
 - linux
 ---
 
-# CentOS7 添加开机启动服务/脚本
+# Linux 系统应用：添加开机启动服务/脚本
 
 ## 目录
 

@@ -1,7 +1,9 @@
 - **Operating System**
-    - [Mysql数据库自动备份脚本](source/_posts/os-db-backup.md)
-    - [CentOS7添加开机启动服务/脚本](source/_posts/os-script-powerboot.md)
-    - [Linux常用程序包的安装与配置](source/_posts/os-linux-packages-install.md)
+    - [MacOS系统入门：常用软件](source/_posts/os-mac-software.md)
+    - [MacOS系统入门：系统使用](source/_posts/os-mac-basic.md)
+    - [Linux系统应用：Mysql数据库自动备份脚本](source/_posts/os-linux-db-backup.md)
+    - [Linux系统应用：添加开机启动服务/脚本](source/_posts/os-linux-script-powerboot.md)
+    - [Linux系统应用：常用程序包的安装与配置](source/_posts/os-linux-packages-install.md)
     - [Linux系统管理：磁盘、文件系统、RAID、LVM2、程序包](source/_posts/os-linux-sysadmin-first.md)
     - [Linux系统入门：Shell 脚本](source/_posts/os-linux-shell.md)
     - [Linux系统入门：常用命令](source/_posts/os-linux-command.md)
