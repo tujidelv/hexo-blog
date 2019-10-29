@@ -53,26 +53,29 @@ PS：不同搜索引擎搜索结果也是不同的，搜索盗版软件可优先
 
 | 软件名称 | 官网 | 类型 | 是否中文 | 是否付费 | 备注 |
 |:---------|:---------|:---------|:---------:|:---------:|:---------|
-| [推土机](https://dozermac.com) |  | <font color="#00876b">系统工具</font> | <font color="#dd0081">✖ </font> | <font color="#e9a800">✖</font> | 菜单栏图标隐藏 |
+| [Dozer](https://dozermac.com) |  | <font color="#00876b">系统工具</font> | <font color="#dd0081">✖ </font> | <font color="#e9a800">✖</font> | 菜单栏图标隐藏 |
 | [Itsycal](https://www.mowglii.com/itsycal) |  | <font color="#00876b">系统工具</font> | <font color="#dd0081">✖ </font> | <font color="#e9a800">✖</font> | 菜单栏日历功能增强 |
+| [万年历 - 日历以及天气预报工具](https://apps.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E6%97%A5%E5%8E%86%E4%BB%A5%E5%8F%8A%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%E5%B7%A5%E5%85%B7/id1185943818) | App Store | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 菜单栏日历功能增强 |
 | [iterm2](https://www.iterm2.com) |  | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 优雅的命令行工具 |
 | [One Switch](https://fireball.studio/oneswitch) |  | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 菜单栏管理工具 |
 | [pock](https://pock.dev) |  | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | Touch Bar增强工具 |
-| [万年历 - 日历以及天气预报工具](https://apps.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E6%97%A5%E5%8E%86%E4%BB%A5%E5%8F%8A%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%E5%B7%A5%E5%85%B7/id1185943818) | App Store | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 菜单栏日历功能增强 |
+| [Backtrack](https://apps.apple.com/cn/app/backtrack-record-past-audio/id1477089520) | App Store | <font color="#00876b">系统工具</font> | <font color="#dd0081">✖ </font> | <font color="#e9a800">✖</font> | 菜单栏录音工具 |
+| [Lemon Cleaner](https://lemon.qq.com) |  | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 腾讯出品垃圾清理工具 |
+| [CleanMyMac](http://www.mycleanmymac.com) | | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 强大的mac系统清理工具 |
+| [Path Finder](https://cocoatech.com) | | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 系统文件管理器 |
 | [IINA](https://iina.io) |  | <font color="#f55d00">影音视听</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | mac最好的视频软件 |
 | [Mob](https://github.com/zenghongtu/Mob) |  | <font color="#f55d00">影音视听</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 喜马拉雅Mac版（非官） |
 | [LyricsX](https://github.com/ddddxxx/LyricsX) |  | <font color="#f55d00">影音视听</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | Spotify、Apple Music歌词工具 |
 | [listen1](https://github.com/listen1/listen1_desktop) |  | <font color="#f55d00">影音视听</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 网易、QQ、虾米聚合播放器  |
-| [Keka](https://www.keka.io/zh-cn) |  | <font color="#dd0081">解压工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 免费解压缩工具 |
-| [ezip](https://ezip.awehunt.com ) | | <font color="#dd0081">解压工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 免费解压缩工具 |
-| [motrix](https://motrix.app/zh-CN) |  | <font color="#0078df">下载工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 下载工具支持BT、迅雷等 |
-| [free download](https://www.freedownloadmanager.org/zh) |  | <font color="#0078df">下载工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 国外下载工具 |
-| [NetNewsWire](https://ranchero.com/netnewswire) |  | <font color="#e9a800">资讯工具</font> | <font color="#dd0081">✖ </font> | <font color="#e9a800">✖</font> | 开源RSS阅读工具 |
-| [Maipo for 微博](https://apps.apple.com/cn/app/maipo-for-weibo/id789066512) | App Store | <font color="#e9a800">资讯工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 新浪微博mac版（非官） |
-| [柠檬清理](https://lemon.qq.com) |  | <font color="#8c2e00">清理工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 腾讯出品垃圾清理工具 |
-| [Backtrack](https://apps.apple.com/cn/app/backtrack-record-past-audio/id1477089520) | App Store | <font color="#ff001a">其他工具</font> | <font color="#dd0081">✖ </font> | <font color="#e9a800">✖</font> | 菜单栏录音工具 |
-| [Spark](https://apps.apple.com/cn/app/spark-email-app-by-readdle/id1176895641) | App Store | <font color="#ff001a">其他工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 邮箱收发信工具 |
-| [Tampermonkey](https://apps.apple.com/cn/app/tampermonkey/id1482490089) | App Store | <font color="#ff001a">其他工具</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 油猴（Safari）官方插件 |
+| [motrix](https://motrix.app/zh-CN) |  | <font color="#0078df">网络工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 下载工具支持BT、迅雷等 |
+| [free download](https://www.freedownloadmanager.org/zh) |  | <font color="#0078df">网络工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 国外下载工具 |
+| [Downie](https://partner.lizhi.io/xclient/downie) | | <font color="#0078df">网络工具</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 优秀视频下载软件 |
+| [ezip](https://ezip.awehunt.com ) | | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 免费解压缩工具 |
+| [Keka](https://www.keka.io/zh-cn) |  | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 免费解压缩工具 |
+| [NetNewsWire](https://ranchero.com/netnewswire) |  | <font color="#e9a800">应用软件</font> | <font color="#dd0081">✖ </font> | <font color="#e9a800">✖</font> | 开源RSS阅读工具 |
+| [Maipo for 微博](https://apps.apple.com/cn/app/maipo-for-weibo/id789066512) | App Store | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 新浪微博mac版（非官） |
+| [Spark](https://apps.apple.com/cn/app/spark-email-app-by-readdle/id1176895641) | App Store | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 邮箱收发信工具 |
+| [IDEA]() |  | <font color="#dd0081">软件开发</font> | <font color="#dd0081">✖ </font> | <font color="#cecdca">✔</font> | java集成IDE |
 
 ## 参考链接
 
