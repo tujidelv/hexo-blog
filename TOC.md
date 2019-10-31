@@ -36,5 +36,6 @@
     - [Eclipse札记](source/_posts/st-eclipse.md)
     - <del>[最强屏幕录像软件Camtasia Studio](source/_posts/st-camtasia-studio.md)</del>
 - **Typical Example**
+    - [个人发展战略：基础](source/_posts/te-personal-development.md)
     - [投资理财：基础](source/_posts/te-investment-financing.md)
     - [可输入可选择可模糊查询的 select 下拉](source/_posts/te-select.md)
