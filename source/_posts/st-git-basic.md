@@ -91,6 +91,7 @@ tags:
     - git commit -m "wrote a readme file"      //告诉git把文件提交到仓库的分支（-m 后面输入的是本次提交的说明），一次可提交多个文件
         - 实际上就是一次性把暂存区的所有修改提交到分支（master）
     - git status      //查看工作区/暂存区的状态
+        - git status -s    //返回一个简单版的 git status。我设置这个命令为默认 git status 来减少噪音。
     - git diff [FILE]      //如果git status提示有文件被修改，可以用此命令查看指定文件修改了哪些内容，显示的格式是Unix通用的diff格式
         - 比较的是版本库（暂存区和分支中的任意一个）与工作区同名文件相比是否相同，而git diff --cached比较的是暂存区有无内容
         - git diff HEAD [FILE]      //将工作区中的文件和本地库历史记录比较 
@@ -100,6 +101,7 @@ tags:
     - git reset HEAD <FILE>...      //撤销此文件在暂存区的修改，回退到工作区
         - git reset HEAD *      //撤销暂存区所有的修改
     - git rm FILE      //当想从版本库中删除文件时，可先在工作区删除，然后调用此命令，再commit
+        - git rm –cached FILE    //只删除远程文件，但是不影响本地文件。这对删除已经推送过的忽略文件记录而且不影响本地文件是非常的方便的。
     - git log      //显示从最近到最远的提交日志。其中commit(快照) id是用SHA1算出的16进制数字
         - 后面加上--pretty=oneline可以精简信息
         - 后面加上--graph可以看到分支合并情况
@@ -115,6 +117,11 @@ tags:
         - 当手头工作没有完成时(工作区/暂存区有变动时),先把工作现场git stash隐藏一下,这样git status查看工作区是干净的,然后去修复bug,修复后,再git stash pop,回到份工作现场
         - git stash list      //查看隐藏的工作现场									
         - git stash pop      //恢复隐藏的工作现场,同时删除stash内容	
+    ```
+- 其他命令
+    ```
+    - git shortlog -sn    //显示提交记录的参与者列表。和GitHub的参与者列表相同。
+    - git reflog    //显示你在本地已完成的操作列表。
     ```
     
 ## 分支管理
