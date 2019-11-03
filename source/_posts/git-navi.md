@@ -23,7 +23,11 @@ tags:
 
 ### 精华帖...
 
-- [重庆魔楼红鼎国际六天五夜奇幻游记]https://mp.weixin.qq.com/s/uuzvPpcYoNO5zZc_3pNsiA
+- [我的工作，是帮女孩们找出卧室里的针孔摄像头](<https://mp.weixin.qq.com/s/OKzKpgw8diN7WV2PdC9BgA>)
+
+- [亲子鉴定师：入行16年，亲眼看见上万男人戴上绿帽子](<https://new.qq.com/rain/a/20191031A0QD7M>) 	
+
+- [重庆魔楼红鼎国际六天五夜奇幻游记](https://mp.weixin.qq.com/s/uuzvPpcYoNO5zZc_3pNsiA)
 - [戒毒十年慢慢说](http://doudoubbs.yxsyj.com/forum.php?mod=viewthread&tid=17838&page=1&authorid=5429)
 - [通过淘宝“买家秀”，我花8000块睡到了喜欢的coser](http://www.sohu.com/a/270138940_115207)
 - [中国2018社会热点大事记-月光博客](https://www.williamlong.info/archives/5567.html)

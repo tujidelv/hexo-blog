@@ -75,7 +75,9 @@ PS：不同搜索引擎搜索结果也是不同的，搜索盗版软件可优先
 | [NetNewsWire](https://ranchero.com/netnewswire) |  | <font color="#e9a800">应用软件</font> | <font color="#dd0081">✖ </font> | <font color="#e9a800">✖</font> | 开源RSS阅读工具 |
 | [Maipo for 微博](https://apps.apple.com/cn/app/maipo-for-weibo/id789066512) | App Store | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 新浪微博mac版（非官） |
 | [Spark](https://apps.apple.com/cn/app/spark-email-app-by-readdle/id1176895641) | App Store | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 邮箱收发信工具 |
-| [IDEA]() |  | <font color="#dd0081">软件开发</font> | <font color="#dd0081">✖ </font> | <font color="#cecdca">✔</font> | java集成IDE |
+| [Tuxera](http://www.ntfsformac.cc) |  | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 快速读写NTFS格式磁盘工具 |
+| [Office](https://www.office.com) |  | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 办公软件 |
+| [IDEA](https://www.jetbrains.com/idea/) |  | <font color="#dd0081">软件开发</font> | <font color="#dd0081">✖ </font> | <font color="#cecdca">✔</font> | java集成IDE |
 
 ## 参考链接
 
