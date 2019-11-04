@@ -115,8 +115,8 @@ tags:
         - --mix      //不会让当前工作区的修改撤销,会让暂存区的修改撤销,上次的提交由本地仓库回到暂存区
     - git stash      //隐藏工作现场
         - 当手头工作没有完成时(工作区/暂存区有变动时),先把工作现场git stash隐藏一下,这样git status查看工作区是干净的,然后去修复bug,修复后,再git stash pop,回到份工作现场
-        - git stash list      //查看隐藏的工作现场									
-        - git stash pop      //恢复隐藏的工作现场,同时删除stash内容	
+        - git stash list      //查看隐藏的工作现场
+        - git stash pop      //恢复隐藏的工作现场,同时删除stash内容
     ```
 - 其他命令
     ```

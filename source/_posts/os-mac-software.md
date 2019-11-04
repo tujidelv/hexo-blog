@@ -63,6 +63,7 @@ PS：不同搜索引擎搜索结果也是不同的，搜索盗版软件可优先
 | [Lemon Cleaner](https://lemon.qq.com) |  | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 腾讯出品垃圾清理工具 |
 | [CleanMyMac](http://www.mycleanmymac.com) | | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 强大的mac系统清理工具 |
 | [Path Finder](https://cocoatech.com) | | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 系统文件管理器 |
+| [Amphetamine](https://amphetamine.en.softonic.com/mac) | | <font color="#00876b">系统工具</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 防休眠工具 |
 | [IINA](https://iina.io) |  | <font color="#f55d00">影音视听</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | mac最好的视频软件 |
 | [Mob](https://github.com/zenghongtu/Mob) |  | <font color="#f55d00">影音视听</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 喜马拉雅Mac版（非官） |
 | [LyricsX](https://github.com/ddddxxx/LyricsX) |  | <font color="#f55d00">影音视听</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | Spotify、Apple Music歌词工具 |
@@ -77,6 +78,7 @@ PS：不同搜索引擎搜索结果也是不同的，搜索盗版软件可优先
 | [Spark](https://apps.apple.com/cn/app/spark-email-app-by-readdle/id1176895641) | App Store | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 邮箱收发信工具 |
 | [Tuxera](http://www.ntfsformac.cc) |  | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 快速读写NTFS格式磁盘工具 |
 | [Office](https://www.office.com) |  | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#cecdca">✔</font> | 办公软件 |
+| [欧路词典](http://dict.eudic.net) |  | <font color="#e9a800">应用软件</font> | <font color="#cecdca">✔ </font> | <font color="#e9a800">✖</font> | 词典软件 |
 | [IDEA](https://www.jetbrains.com/idea/) |  | <font color="#dd0081">软件开发</font> | <font color="#dd0081">✖ </font> | <font color="#cecdca">✔</font> | java集成IDE |
 
 ## 参考链接
