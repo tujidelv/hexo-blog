@@ -1,4 +1,5 @@
 - **Operating System**
+    - [MacOS系统进阶：包管理工具](source/_posts/os-mac-package.md)
     - [MacOS系统入门：常用软件](source/_posts/os-mac-software.md)
     - [MacOS系统入门：系统使用](source/_posts/os-mac-basic.md)
     - [Linux系统应用：Mysql数据库自动备份脚本](source/_posts/os-linux-db-backup.md)
