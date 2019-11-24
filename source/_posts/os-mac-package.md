@@ -7,8 +7,6 @@ tags:
 - mac
 ---
 
-# MacOS 系统进阶：包管理工具
-
 ## 目录
 
 - [简介](#简介)
@@ -20,7 +18,6 @@ tags:
 
 - Mac与Linux都是基于Unix的系统，因此继承了很多Unix的特性，包括软件的编译，安装等。
 - 有些操作，命令行或者说脚本的方式效率是远高于GUI界面操作的，这个概念需要用过Unix/Linux做过开发的人会懂，特别是搞运维的。
-- Ubuntu下有快捷命令apt-get install来快速安装软件，Centos下有yum install来快速安装。而Mac下也有这种方式，例如使用brew。
 
 ## 正篇
 

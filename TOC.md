@@ -1,4 +1,6 @@
 - **Operating System**
+    - [MacOS系统进阶：开发环境Java + Node + Docker](source/_posts/os-mac-ide.md)
+    - [MacOS系统进阶：终端方案iTerm2 + Zsh + Vim](source/_posts/os-mac-terminal.md)
     - [MacOS系统进阶：包管理工具](source/_posts/os-mac-package.md)
     - [MacOS系统入门：常用软件](source/_posts/os-mac-software.md)
     - [MacOS系统入门：系统使用](source/_posts/os-mac-basic.md)
