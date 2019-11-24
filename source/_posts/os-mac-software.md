@@ -18,6 +18,9 @@ tags:
 
 整理一些常用的Mac软件下载站以及MAC精品软件。
 
+>为了你的隐私安全，PC/移动端的浏览器选用，不建议使用国内套壳浏览器（360/QQ/搜狗等）推荐使用chrome、[Firefox国际版](https://www.mozilla.org/en-US/firefox/new/)；
+输入法方面电脑端推荐使用自带输入法，如需使用第三方输入法，建议选择知名软件博主制作的去广告、绿色版的输入法程序，此类软件的绿色版只是去掉了多余的权限但依然无法避免隐私泄露的问题。移动端与电脑端同理，不建议使用国内输入法，容易被输入法记录打字习惯，打字数据等。
+
 ## 正篇
 
 ### **Mac软件搜索技巧**
@@ -32,6 +35,7 @@ PS：不同搜索引擎搜索结果也是不同的，搜索盗版软件可优先
 
 | 网站名称 | 地址 | 语言 | 良心程度 | 备注 |
 |:---------|:---------|:---------:|:---------:|:---------|
+| 风云社区 | https://www.scoee.com | <font color="#6724de">中文</font> | <font color="#f55d00">优</font> |  |
 | Cmacapps | https://cmacapps.com | <font color="#00876b">英文</font> | <font color="#f55d00">优</font> | 非常强悍 |
 | 马可菠萝 | https://www.macbl.com | <font color="#6724de">中文</font> | <font color="#f55d00">优</font> |  |
 | FuckMakeding | https://www.fxxkmakeding.xyz | <font color="#6724de">中文</font> | <font color="#f55d00">优</font> | 反思杰马克丁热心人士 |
