@@ -23,6 +23,10 @@ tags:
 
 ### 精华帖...
 
+- [【特写】一位脑瘫女孩和一款特殊输入法的“奇遇人生”](<https://www.jiemian.com/article/3696848.html>)
+
+- [不敢上厕所，不敢住酒店，你永远不知道韩国的偷拍有多变态…](<https://user.guancha.cn/main/content?id=193740&page=0>)
+
 - [我的工作，是帮女孩们找出卧室里的针孔摄像头](<https://mp.weixin.qq.com/s/OKzKpgw8diN7WV2PdC9BgA>)
 
 - [亲子鉴定师：入行16年，亲眼看见上万男人戴上绿帽子](<https://new.qq.com/rain/a/20191031A0QD7M>) 	
