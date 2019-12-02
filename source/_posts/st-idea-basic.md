@@ -21,7 +21,7 @@ tags:
 
 ## 简介
 
-- JetBrains 公司介绍
+- `JetBrains 公司介绍`
     - 维基百科：
         >JetBrains 是一家**捷克**的软件开发公司，该公司位于捷克的布拉格，并在俄罗斯的圣彼得堡及美国麻州波士顿都设有办公室，该公司最为人所熟知的产品是 Java 编程语言开发撰写时所用的集成开发环境：IntelliJ IDEA。
          
@@ -41,7 +41,7 @@ tags:
         GoLand：主要用于开发Go(区块链等)
         Android Studio：主要用于开发Android（Google基于IntelliJ IDEA社区版进行迭代所以也姑且算上）
         ```
-- Intellij IDEA 介绍
+- `Intellij IDEA 介绍`
     - 官网：<https://www.jetbrains.com/idea/>					
     - 新特性列表：<https://www.jetbrains.com/idea/whatsnew>
     - 详细使用文档：<https://www.jetbrains.com/help/idea/meet-intellij-idea.html>
@@ -51,7 +51,7 @@ tags:
         >简明翻译：IntelliJ IDEA主要用于支持Java、Scala、Groovy 等语言的开发工具，同时具备支持目前主流的技术和框架，擅长于企业应用、移动应用和Web应用的开发。
         
     - 如果用一句话来形容 IntelliJ IDEA，我会说：***IntelliJ IDEA 是目前所有 IDE 中最具备沉浸式的 JVM IDE，没有之一。***
-- IDEA 主要功能介绍
+- `IDEA 主要功能介绍`
 
 | 安装插件后支持 | SQL 类 | 基本JVM |
 |:------:|:------:|:------:|
@@ -75,7 +75,7 @@ tags:
 |Hibernate|||
 |Flex|||
 
-- IDEA 主要优势(相较于 Eclipse 而言)
+- `IDEA 主要优势(相较于 Eclipse 而言)`
     - 强大的整合能力，例如 Git、Maven、Spring 等工具和框架。
     - 提示功能的快速、便捷	。
     - 提示功能的范围广。
@@ -84,7 +84,7 @@ tags:
 
 ## 安装、基础环境介绍
 
-- Windows 下安装
+- `Windows 下安装`
     - 首次安装
         - IDEA 的安装是非常简单的，不需要做过多的选择，可以说简单到都是 Next 即可。
         - 中间会有个创建快捷图标，建议勾上，方便定位 IDEA 的安装目录；确让是否与 java,groovy,kt 文件关联,建议不勾选。
@@ -97,7 +97,7 @@ tags:
         - 从安装上来看，IDEA 对硬件的要求看上去不是很高，可是实际在开发中其实并不是这样的，因为 IDEA 执行时会有大量的缓存、索引文件。
         - 如果你正在使用 Eclipse/MyEclipse，想通过 IDEA 来解决计算机的卡、慢等问题，这基本上是不可能的，本质上你应该对自己的硬件设备进行升级。
         - 安迪-比尔定律：IT界三大定律之一(摩尔定律、反摩尔定律、安迪-比尔定律)。
-- 安装目录介绍
+- `安装目录介绍`
     ```
     bin：执行文件和启动参数等
       idea.exe：32位IDEA的启动文件，IDEA安装完默认发送到桌面的也就是这个执行文件的快捷方式
@@ -124,7 +124,7 @@ tags:
         idea.cycle.buffer.size=1024：该属性主要用于控制控制台输出缓存。有遇到一些项目开启很多输出，控制台很快就被刷满了没办法再自动输出后面内容，这种项目建议增大该值或是直接禁用掉，禁用语句(=disabled) 
     ```
     Tips：***强烈推荐使用 IDEA 菜单中的 `Help->Edit Custom VM Options`和`Help->Edit Custom Properties` 进行参数个性化配置；而不是直接修改安装目录中的该文件,因为 IDEA 升级/重装后可能会导致修改完全失效！***。
-- 设置目录介绍
+- `设置目录介绍`
     - IDEA 各种配置的保存目录。这个设置目录有一个特性，就是你**删除掉整个目录之后，重新启动 IDEA 会再自动帮你生成一个全新的默认配置**，所以很多时候如果你把 IDEA 配置改坏了，没关系，删掉该目录，一切都会还原到默认。
     - config
         - IDEA 的个性化化配置目录，或者说是整个 IDE 设置目录，此目录可看成是最重要的目录，没有之一。安装新版本的 IDEA会 自动扫描硬盘上的旧配置目录，指的就是该目录。
@@ -132,7 +132,7 @@ tags:
     - system   
         - IDEA 的系统文件目录，是 IDEA 与开发项目之间的一个桥梁目录。
         - 这个目录主要记录了：**缓存、索引、容器文件输出等等**，虽然不是最重要目录，但是也是最不可或缺目录之一。
-- 首次运行向导
+- `首次运行向导`
     1. 是否导入已有设置
         - 首次启动后，会弹出对话框，选择不导入已有的设置。
     2. 激活
@@ -143,15 +143,15 @@ tags:
         
 ## 开始使用
 
-- 首次打开
-    - Create New Project：创建一个新的工程	。
-    - Import Project：导入一个现有的工程。
-    - Open：打开一个已有工程，比如：可以打开 Eclipse 项目，但是由于两者 IDE 下的项目配置不一样，所以项目还是需要配置的。
+- `首次打开`
+    - Create New Project：创建一个新的工程。
+    - Import Project：导入一个现有的工程。**适合导入本身不是idea工程**(包括Eclipse工程，Maven项目，Gradle项目或者直接从源代码创建工程)。
+    - Open：打开一个已有工程。**适合打开本身是idea工程**。
     - Check out from Version Control：可以通过服务器上的项目地址 Checkout GitHub 上面项目或其他 Git 托管服务器上的项目。
-- 设置显示常见的视图
-    - `View->TooBar`，勾选工具条。
-    - `View->Tool Buttons`，勾选按钮组。
-- 创建工程
+- `设置显示常见的视图`
+    - View->Toolbar或**View-Appearance>Toolbar**，勾选工具条。
+    - View->Tool Buttons或**View-Appearance>Tool Window Bars**，勾选按钮组。
+- `创建工程`
     - 创建 Java Project/Module
         1. 选择指定目录下的 JDK 作为 Project/Module SDK。
         2. 可以勾选 `Create project from template` 根据模板快速创建项目，也可以不勾选手动创建。
@@ -181,16 +181,16 @@ tags:
             e.Code coverage
             f.Startup/Connection
             ```
-- 工程界面展示
+- `工程界面展示`
     - 工程下的 src 类似于 Eclipse 下的 src 目录，用于存放代码。
     - 工程下的 .idea(Project 的配置文件目录)和 .iml(Module 的配置文件)都是 IDEA 工程特有的，类似于 Eclipse 工程下的 .settings、.classpath、.project 等。
-- 创建 package 和 class
+- `创建 package 和 class`
     - 在 src 目录下创建一个 package，接着在包下 new-class，可以直接创建 `Class、Interface、Enum、Annotation` 等常见类型文件。
     - 然后在下拉框中选择创建的结构的类型，接着在类 HelloWorld 里声明主方法，输出 helloworld，完成测试。
     
     Tips1：**在没有文件的情况下包目录默认是连在一起的，不方便看目录层级关系,可点击 Project 窗口的齿轮处，在弹出的菜单中去掉 `Compact Empty Middle Packages`**。
     Tips2：**IDEA 是一个没有 Ctrl + S 的 IDE，所以每次修改完代码只要管着运行或者调试即可，无需担心保存或者丢失代码。**
-- 创建模块
+- `创建模块`
     - 在 Eclipse 中有 Workspace(工作空间)和 Project(工程)的概念,在 IDEA 中只有 Project(工程)和 Module(模块)的概念。
         - <https://www.jetbrains.com/help/idea/migrating-from-eclipse-to-intellij-idea.html>
         ```
@@ -206,10 +206,10 @@ tags:
         - 目前主流的大型项目都是分布式部署的，结构都是类似这种多 Module 结构。这类项目一般是这样划分的，比如：core Module、web Module、plugin Module、solr Module 等等，模块之间彼此可以相互依赖。
         - 通过这些 Module 的命名也可以看出，他们之间都是处于同一个项目业务下的模块，彼此之间是有不可分割的业务关系的。
     - 相比较于多 Module 项目，小项目就无需搞得这么复杂。只有一个 Module 的结构 IDEA 也是支持的，并且 IDEA 创建项目的时候，默认就是单 Module 的结构的,此时 Project 目录和 Module 目录是同一个。
-- 删除模块
+- `删除模块`
     1. 选中相应的模块右键 `Open Module Setting`，点击减号，逻辑删除模块。
     2. 再次选中相应的模块右键 `Delete`，物理删除模块。
-- 查看/修改项目配置(`File->Project Structure`)
+- `查看/修改项目配置(File->Project Structure)`
     - Project
         ```
         Project name：项目名称
@@ -255,7 +255,7 @@ tags:
         
 ## 常用设置介绍
 通过 `File->Settings` 或者 `Ctrl+Alt+S` 进入。
-- Appearance & Behavior(外观和行为)
+- `Appearance & Behavior(外观和行为)`
     - **设置主题**
         ```
         Appearance,在'UI Options'中选择'Theme'的值
@@ -285,13 +285,13 @@ tags:
         ```
         System Settings->Updates,去掉'Automatically check updates for'选中
         ```
-- Keymap(快捷键)
+- `Keymap(快捷键)`
     - ***详见高级篇***
     - **设置基础代码提示、补充快捷键生效**
         ```
         搜索Basic,将Ctrl+空格改为Ctrl+,
         ```
-- Editor(编辑器)
+- `Editor(编辑器)`
     - **设置鼠标滚轮控制代码字体大小**
         ```
         General,在'Mouse'中勾选'Change font size with Ctrl+Mouse Wheel'
@@ -305,6 +305,10 @@ tags:
     - **设置显示行数及方法间的分隔线**
         ```
         General->Apperance,勾选'Show method separators'和'Show line numbers'
+        ```
+    - **设置显示空格和Tab**
+        ```
+        General->Apperance,勾选'Show whitespaces'
         ```
     - **设置忽略代码提示区分大小写**
         ```
@@ -372,11 +376,11 @@ tags:
         ```
         File and Code Templates,在'Includes'中选择'File Header'修改
         ```
-- Plugins(插件)
+- `Plugins(插件)`
     - ***详见高级篇***
-- Version Control(版本控制)
+- `Version Control(版本控制)`
     - ***详见高级篇***
-- Build,Execution,Deployment(构建,执行,部署)
+- `Build,Execution,Deployment(构建,执行,部署)`
     - **设置自动编译(不建议,太耗资源)**
         ```
         Compiler,勾选'Build project automatically'和'Compile indepent modules in parallel'
@@ -386,7 +390,7 @@ tags:
         ------------------------------------------
         编译方式介绍(3种)：
             Recompile：对选定的目标（Java类文件），进行强制性编译，不管目标是否是被修改过。
-            Rebuild：对选定的目标（Project），进行强制性编译，不管目标是否是被修改过，由于Rebuild的目标只有Project，所以Rebuild每次花的时间会比较长。
+            Rebuild：对选定的目标（Project），进行强制性编译，不管目标是否是被修改过，由于Rebuild的目标是整个Project，所以Rebuild每次花的时间会比较长。
             Build(使用最多的编译操作)：对选定的目标（Project或Module）进行编译，但只编译有修改过的文件，没有修改过的文件不会编译，这样平时开发大型项目才不会浪费时间在编译过程中。	
         ------------------------------------------
         编译器的设置和选择：			
@@ -412,8 +416,8 @@ tags:
             在远程终端中,找到对应的fatjar,执行"java -jar xxx.jar",便完成了整个部署流程。
         可考虑别一种方案：阿里Cloud Toolkit插件            
         ```
-- Languages & Frameworks(语言和框架)
-- Tools(工具集)
+- `Languages & Frameworks(语言和框架)`
+- `Tools(工具集)`
     - 设置默认浏览器
         ```
         Web Browsers,在'Default Browser'中选择'Custom path'并选择程序路径
@@ -430,12 +434,12 @@ tags:
 
 ## 其他设置介绍
 
-- 设置为省电模式
+- `设置为省电模式`
     ```
     File->Power Save Mode
         开启这种模式之后IDEA会关掉代码检查和代码提示等功能。所以一般也可认为这是一种阅读模式，如果你在开发过程中遇到突然代码文件不能进行检查和提示，可以来看看这里是否有开启该功能。
     ```
-- 清除缓存和索引
+- `清除缓存和索引`
     ```
     File->Invalidate Caches/Restart,一般建议点击'Invalidate and Restart',这样会比较干净,本质也就是去删除C盘下的system目录下的对应的文件而已
     -------------------------------------                          
@@ -444,27 +448,27 @@ tags:
     -------------------------------------    
     IDEA首次加载项目的时候，都会创建索引，而创建索引的时间跟项目的文件多少成正比;IDEA的缓存和索引主要是用来加快文件查询，从而加快各种查找、代码提示等操作的速度
     ```
-- 设置 Project 项目的一些配置为模板
+- `设置 Project 项目的一些配置为模板`
     ```
     File->Other Settings->Setting for New Projects...
         对于默认编码、编译版本、Maven 本地库路径等等,可以被当做一个标准的IDE设置模板保存起来,下次打开新的Projec 就会以这个IDE设置进行
     ```
-- 自带模拟请求工具 Rest Client
+- `自带模拟请求工具 Rest Client`
     ```
     Tools->HTTP Client->Test RESTful web service,在开发时用来模拟请求是非常好用的
     ```
-- 生成 javadoc
+- `生成 javadoc`
     ```
     Tools->Generate JavaDoc,支持对project,module,file
         Locale(输入语言类型)：zh_CN
         Other command line arguments：-encoding UTF-8 -charset UTF-8
     ```
-- 设置代码水平或垂直显示
+- `设置代码水平或垂直显示`
     ```
     文件tab页上,右键选择Split Vertically(垂直分屏)和Split Horizontally(水平分屏),可设置快捷键
         一般在对大文件进行修改的时候，有些修改内容在文件上面，有些内容在文件下面，如果来回操作可能效率会很低，用此方法就可以好很多
     ```
-- 设置代码检查等级
+- `设置代码检查等级`
     ```
     右下角图标。IDEA对于编辑大文件并没有太大优势，很卡，原因就是它有各种检查，这样是非常耗内存和CPU的，所以在编辑大文件的时候为了能加快大文件的读写，我一般会暂时性设置为None
         Inspections：为最高等级检查，可以检查单词拼写，语法错误，变量使用，方法之间调用等
