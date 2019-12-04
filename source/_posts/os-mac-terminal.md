@@ -84,7 +84,7 @@ tags:
     Mac和一般的Linux发行版默认采用的shell是bash，并不是很好用。
     Zsh是Shell中的一种，由于Zsh配置门槛有点高(需要专门花时间去了解Zsh)，因为这样，用户也就相对少了。
     直到有一天oh-my-Zsh的作者诞生，他想要整理出一个配置框架出来，让大家直接使用他的这个公认最好的Zsh配置，省去繁琐的配置过程。
-    所以，oh-my-Zsh 就诞生了，它只是会了让你减少Zsh的配置，然后又可以好好享受Zsh这个Shell。
+    所以，oh-my-Zsh 就诞生了，它只是为了让你减少Zsh的配置，然后又可以好好享受Zsh这个Shell。
     ```
 - 修改终端配置就变成了：vim ~/.zshrc，而不是：vim ~/.bash_profile，同时更新修改后的配置文件也从：变成了：source ~/.zshrc。
 

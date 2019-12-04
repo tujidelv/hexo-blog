@@ -103,15 +103,15 @@ $ rm -rf /usr/local/Homebrew
     修改之后，以后要用 proxychains4 执行穿墙命令的话，那就可以这样写：proxy wget google.com
 ```
 
-### **介绍brew cask**
+### **简介brew cask**
 
-- brew cask 官网：[https://buyinstagramlikes.io/caskroom](https://buyinstagramlikes.io/caskroom)
+- brew cask 官网：<https://buyinstagramlikes.io/caskroom>
     ```
     brew cask 是在brew 的基础上一个增强的工具，用来安装Mac上的Gui程序应用包（.dmg/.pkg）, 比如qq、chrome、xun lei等。
     它先下载解压到统一的目录中（/opt/homebrew-cask/Caskroom），省掉了自己去下载、解压、拖拽（安装）等蛋疼步骤，同样，卸载相当容易与干净。
     然后再软链到~/Applications/目录下，这样就能在应用程序里找到它，非常方便。而且还包含很多在 AppStore 里没有的常用软件。
     ```
-- brew cask Github：[https://github.com/caskroom/homebrew-cask]([https://github.com/caskroom/homebrew-cask])
+- brew cask Github：<https://github.com/caskroom/homebrew-cask>
 
 ### **安装brew cask**
 
