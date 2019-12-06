@@ -24,17 +24,22 @@ tags:
 
 - iTerm2官网：<https://iterm2.com>
 - Mac的默认终端Terminal太难用了，需要一个新的终端来代替它，iTerm2 + Zsh就是其中一种方案。
-- iTerm2作为后端开发者必须学会的一个技能，不管是为了简化安装一些软件或是处理一些事情，还有工作中的后端程序的软件部署，都会跟 shell 打交道。
+- iTerm2是Terminal的替代品，是iTerm的后继产品。iTerm2将终端带入了您从未想过一直想要的功能，使其进入了现代时代。
 
 ### **安装iTerm2**
 
-1. 官网下载下来是一个zip压缩包，解压出来有一个.app文件，双击运行即可安装，或是拖到应用程序里面。
-2. 更改配色方案：Preferences->Profiles->Colors。
+- 方法1：官网下载下来是一个zip压缩包，解压出来有一个.app文件(特殊的文件夹)，双击运行即可安装，或是拖到应用程序里面。
+- 方法2：直接使用Homebrew进行安装，命令参考`brew cask install iterm2`。
+---
+- 更改配色方案：Preferences->Profiles->Colors->Color Presets->Import。
     ```
     例如设置配色方案为solarized，iTerm2默认是有带的，如果没有则访问：https://github.com/altercation/solarized，
     在项目中找到solarized/iterm2-colors-solarized 目录，下面有两个文件：Solarized Dark.itermcolors和Solarized Light.itermcolors，
     双击这两个文件就可以把配置文件导入到 iTerm 里了，同时还要再切换到Text标签，把Draw bold text in bold font的勾去掉。
     ```
+- 设置背景图片：Preferences->Profiles->Window->Background Image。
+- 设置字体：Preferences->Profiles->Text->Font->Chanage Font。
+- 将iTerm2设为默认终端。
 
 ### **使用iTerm2**
 
@@ -78,30 +83,40 @@ tags:
 ### **简介Zsh**
 
 - Zsh官网：<https://www.zsh.org>
-- oh-my-Zsh官网：<http://ohmyz.sh>
-- Zsh和oh-my-Zsh的关系
     ```
     Mac和一般的Linux发行版默认采用的shell是bash，并不是很好用。
     Zsh是Shell中的一种，由于Zsh配置门槛有点高(需要专门花时间去了解Zsh)，因为这样，用户也就相对少了。
-    直到有一天oh-my-Zsh的作者诞生，他想要整理出一个配置框架出来，让大家直接使用他的这个公认最好的Zsh配置，省去繁琐的配置过程。
-    所以，oh-my-Zsh 就诞生了，它只是为了让你减少Zsh的配置，然后又可以好好享受Zsh这个Shell。
     ```
-- 修改终端配置就变成了：vim ~/.zshrc，而不是：vim ~/.bash_profile，同时更新修改后的配置文件也从：变成了：source ~/.zshrc。
+- oh-my-Zsh官网：<http://ohmyz.sh>
+    ```
+    直到有一天oh-my-Zsh的作者诞生，他想要整理出一个配置框架出来，让大家直接使用他的这个公认最好的Zsh配置，省去繁琐的配置过程。
+    所以，oh-my-Zsh就诞生了，它只是为了让你减少Zsh的配置，然后又可以好好的享受Zsh这个Shell。
+    oh-my-Zsh是基于zsh一个扩展工具集，提供了丰富的扩展功能，包括主题配置，插件机制，已经内置的便捷操作。
+    ```
+- 修改终端配置就变成了：vim ~/.zshrc，而不是：vim ~/.bash_profile。
 
 ### **安装Zsh**
 
-1. 安装Git
-    > $ brew install git
-2. 安装wget
-    > $ brew install wget
-3. 安装Zsh
-    > $ brew install Zsh
-4. 安装oh-my-Zsh
-    > $ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-Zsh/master/tools/install.sh -O -)"
-    
-    > 下载完后，会提示你输入当前登录系统的用户密码，输入完成之后就会从 bash 切换到 Zsh，如果你没有输入密码直接跳过了，
-    可以运行该命令进行手动切换：chsh -s /bin/Zsh gitnavi(你当前系统用户名),切换完成之后，关掉终端，重新打开终端即可。
-5. 修改oh-my-Zsh主题、安装Zsh插件(可选)
+1. 安装Zsh
+    ```
+    $ brew install zsh
+    ```
+2. 安装oh-my-Zsh
+    ```
+    $ sh -c "$(wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ```
+    或者
+    ```
+    $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ```
+    下载完后，会提示你输入当前登录系统的用户密码，输入完成之后就会从bash切换到zsh，如果你没有输入密码直接跳过了，
+    可以运行该命令进行手动切换：chsh -s /bin/zsh gitnav(系统用户名),切换完成之后，关掉终端，重新打开终端即可。
+3. 设置oh-my-Zsh主题(可选)
+    - 主题列表：<https://github.com/ohmyzsh/ohmyzsh/wiki/Themes>
+    - oh-my-Zsh自带了一些默认主题，存放在 ~/.oh-my-zsh/themes 目录中。
+    - 固定主题：例如在.zshrc文件中修改(或添加)`ZSH_THEME="agnoster"`。
+    - 随机主题：`ZSH_THEME="random"`。
+4. 安装Zsh插件(可选)
 
 ### **使用Zsh**
 

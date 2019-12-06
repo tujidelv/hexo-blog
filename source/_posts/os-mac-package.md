@@ -17,39 +17,48 @@ tags:
 ## 简介
 
 - Mac与Linux都是基于Unix的系统，因此继承了很多Unix的特性，包括软件的编译，安装等。
-- 有些操作，命令行或者说脚本的方式效率是远高于GUI界面操作的，这个概念需要用过Unix/Linux做过开发的人会懂，特别是搞运维的。
+- 有些操作，命令行或者说脚本的方式效率是远高于GUI界面操作的，这个概念用过Unix/Linux做过开发的人会懂，特别是搞运维的。
 
 ## 正篇
 
 ### **简介Homebrew**
 
 - Homebrew官网：[https://brew.sh/index_zh-cn.html](https://brew.sh/index_zh-cn.html)
-    > **1.使用Homebrew安装Apple（或您的Linux系统）没有预装但你需要的东西。**  
+    > **1.使用Homebrew安装MacOS（或Linux）系统中没有预装但你需要的东西。**  
 **2.Homebrew会将软件包安装到独立目录(/usr/local/Cellar和/usr/local/opt/)，并将其文件软链接至/usr/local/bin。**  
-3.Homebrew不会将文件安装到它本身目录之外，所以您可将Homebrew安装到任意位置。  
-4.轻松创建你自己的Homebrew 包。  
-5.完全基于Git和Ruby，所以自由修改的同时你仍可以轻松撤销你的变更或与上游更新合并。  
-6.Homebrew的配方都是简单的Ruby脚本。  
-7.Homebrew 使 macOS（或您的 Linux 系统）更完整。使用 gem 来安装 RubyGems、用 brew 来安装那些依赖包。  
-**8.“要安装，请拖动此图标......”不会再出现了。使用 brew cask 安装 macOS 应用程序、字体和插件以及其他非开源软件。**  
+**3.Homebrew不会将文件安装到它本身目录之外，默认位于/usr/local/Homebrew，所以您可将Homebrew安装到任意位置。**  
+**4.不会再出现“要安装，请拖动此图标......”，使用brew cask安装macOS应用程序、字体和插件以及其他非开源软件。**  
+5.轻松创建你自己的Homebrew包。  
+6.完全基于Git和Ruby，所以自由修改的同时你仍可以轻松撤销你的变更或与上游更新合并。  
+7.Homebrew的配方都是简单的Ruby脚本。  
+8.Homebrew 使 macOS（或您的 Linux 系统）更完整。使用 gem 来安装 RubyGems、用 brew 来安装那些依赖包。  
 9.制作一个 cask 就像创建一个配方一样简单。
         
 - 同类技术比较：[Homebrew 和 Fink、MacPort 相比有什么优势？](http://www.zhihu.com/question/19862108)
+- 应用列表：<https://formulae.brew.sh/formula>
 - Homebrew是Mac下的一个包管理工具，类似于Ubuntu的apt-get，CentOS的yum。
-    > 它会帮我们下载好源码解压，并且编译执行安装，还会下载各种依赖包，设置好各种配置和参数。  
+    > 它会帮我们依次下载源码->解压->编译->安装，同时还包括相关依赖包，并自动设置好各种环境变量和参数。  
     这个对程序员来说简直是福音，简单的指令，就能快速安装和升级本地的各种开发环境。
 
 ### **安装Homebrew**
 
 1. 将以下命令粘贴至终端安装Xcode command line tools，如果提示已经安装过了那就不用管了。
-    > $ xcode-select --install
+   ```
+   $ xcode-select --install
+   ```
 2. 将以下命令粘贴至终端
-    > $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   ```
+   $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   ```
 3. 测试安装是否成功
-    > $ brew doctor
+    ```
+   $ brew doctor
+   ```
 4. 卸载
-    > $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"  
-$ rm -rf /usr/local/Homebrew
+   ```
+   $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"  
+   $ rm -rf /usr/local/Homebrew
+   ```
 
 ### **使用Homebrew**
 
@@ -64,28 +73,48 @@ $ rm -rf /usr/local/Homebrew
 | brew update | 更新brew软件自身 |
 | brew cleanup | 清除下载的各种缓存 |
 
+组合命令：brew update && brew upgrade && brew cleanup 
+
 ### **更换brew源为国内源(可选)**
 
-1. 替换brew.git
-    > $ cd "$(brew --repo)"  
-      $ git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
-2. 替换homebrew-core.git
-    > $ cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-      $ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
-3. 替换Homebrew Bottles源
-    > $ echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.bash_profile  
-      $ source ~/.bash_profile
-      
-    > 上面是针对bash用户，对于zsh用户是~/.zshrc文件。
+1. 替换homebrew默认源（源代码仓库）
+    ```
+    $ cd /usr/local/Homebrew  
+    $ git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
+    ```
+2. 替换homebrew-core源（核心软件仓库）
+    ```
+    $ cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
+    $ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
+    $ brew update
+    ```
+    ```
+    $ cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
+    $ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
+    $ brew update
+    ```
+3. 替换homebrew-bottles源（预编译二进制软件包）
+    ```
+    $ echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.bash_profile
+    $ echo 'export HOMEBREW_NO_AUTO_UPDATE=true' >> ~/.bash_profile
+    $ source ~/.bash_profile
+    ```
+    上面是针对bash用户，对于zsh用户是~/.zshrc文件。
+    上面第二行是禁用掉每次安装前的更新，防止Homebrew在安装软件的过程中可能会长时间卡在Updating Homebrew这个步骤。
 4. 重置为官方源
-    > $ cd "$(brew --repo)"  
-      $ git remote set-url origin https://github.com/Homebrew/brew.git  
-      $ cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"  
-      $ git remote set-url origin https://github.com/Homebrew/homebrew-core
-      
-    > 另外，如果Homebrew Bottles源也被替换了的话，只要在~/.bash_profile配置文件里删除掉对应的命令所在行，并source一下即可。
+    ```
+    $ cd /usr/local/Homebrew  
+    $ git remote set-url origin https://github.com/Homebrew/brew.git  
+    $ cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
+    $ git remote set-url origin https://github.com/Homebrew/homebrew-core.git
+    $ cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
+    $ git remote set-url origin https://github.com/Homebrew/homebrew-cask.git
+    $ brew update
+    ```  
+    如果Homebrew Bottles源也被替换了的话，只要在~/.bash_profile配置文件里删除掉对应的命令所在行，并source一下即可。
 
----  
+--- 
+附上国内其他镜像源： 
 <https://mirror.tuna.tsinghua.edu.cn/help/homebrew/>  
 <https://mirror.tuna.tsinghua.edu.cn/help/homebrew-bottles/>
 
@@ -106,20 +135,28 @@ $ rm -rf /usr/local/Homebrew
 ### **简介brew cask**
 
 - brew cask 官网：<https://buyinstagramlikes.io/caskroom>
-    ```
-    brew cask 是在brew 的基础上一个增强的工具，用来安装Mac上的Gui程序应用包（.dmg/.pkg）, 比如qq、chrome、xun lei等。
-    它先下载解压到统一的目录中（/opt/homebrew-cask/Caskroom），省掉了自己去下载、解压、拖拽（安装）等蛋疼步骤，同样，卸载相当容易与干净。
-    然后再软链到~/Applications/目录下，这样就能在应用程序里找到它，非常方便。而且还包含很多在 AppStore 里没有的常用软件。
-    ```
+    > Homebrew Cask扩展了Homebrew，并为MacOS上的图形界面程序（.dmg/.pkg）的安装和管理带来了优雅，简单，快速等。  
+它先下载解压到统一的目录中（/usr/local/Caskroom），省掉了自己去下载、解压、拖拽（安装）等蛋疼步骤。  
+然后再软链到~/Applications/目录下，这样就能在应用程序里找到它，非常方便。而且还包含很多在 AppStore 里没有的常用软件。
+
 - brew cask Github：<https://github.com/caskroom/homebrew-cask>
+- 应用列表：<https://formulae.brew.sh/cask>
 
 ### **安装brew cask**
 
 1. 将以下命令粘贴至终端
-    > $ brew install caskroom/cask/brew-cask
-3. 测试安装是否成功
-    > $ brew cask
-
+    ```
+    $ brew tap caskroom/cask
+    ```
+   或者
+    ```
+    $ brew tap homebrew/completions
+    $ brew install brew-cask-completion
+    ```
+2. 测试安装是否成功
+    ```
+    $ brew cask
+    ```
 ### **使用brew cask**
 
 | 命令 | 备注 |
@@ -131,6 +168,8 @@ $ rm -rf /usr/local/Homebrew
 | brew cask list | 列出本机按照过的软件列表 |
 | brew update && brew upgrade brew-cask | 更新cask自身 |
 | brew cask cleanup | 清除下载的缓存以及各种链接信息 |
+
+组合命令：brew update && brew upgrade brew-cask && brew cleanup 
 
 ## 参考链接
 
