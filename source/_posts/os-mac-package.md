@@ -33,12 +33,13 @@ tags:
 7.Homebrew的配方都是简单的Ruby脚本。  
 8.Homebrew 使 macOS（或您的 Linux 系统）更完整。使用 gem 来安装 RubyGems、用 brew 来安装那些依赖包。  
 9.制作一个 cask 就像创建一个配方一样简单。
-        
-- 同类技术比较：[Homebrew 和 Fink、MacPort 相比有什么优势？](http://www.zhihu.com/question/19862108)
-- 应用列表：<https://formulae.brew.sh/formula>
+
 - Homebrew是Mac下的一个包管理工具，类似于Ubuntu的apt-get，CentOS的yum。
     > 它会帮我们依次下载源码->解压->编译->安装，同时还包括相关依赖包，并自动设置好各种环境变量和参数。  
     这个对程序员来说简直是福音，简单的指令，就能快速安装和升级本地的各种开发环境。
+
+- 同类技术比较：[Homebrew 和 Fink、MacPort 相比有什么优势？](http://www.zhihu.com/question/19862108)
+- `应用列表`：<https://formulae.brew.sh/formula>
 
 ### **安装Homebrew**
 
@@ -52,12 +53,11 @@ tags:
    ```
 3. 测试安装是否成功
     ```
-   $ brew doctor
+   $ brew
    ```
 4. 卸载
    ```
    $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"  
-   $ rm -rf /usr/local/Homebrew
    ```
 
 ### **使用Homebrew**
@@ -86,12 +86,8 @@ tags:
     ```
     $ cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
     $ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
-    $ brew update
-    ```
-    ```
     $ cd /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
     $ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
-    $ brew update
     ```
 3. 替换homebrew-bottles源（预编译二进制软件包）
     ```
@@ -136,22 +132,18 @@ tags:
 
 - brew cask 官网：<https://buyinstagramlikes.io/caskroom>
     > Homebrew Cask扩展了Homebrew，并为MacOS上的图形界面程序（.dmg/.pkg）的安装和管理带来了优雅，简单，快速等。  
-它先下载解压到统一的目录中（/usr/local/Caskroom），省掉了自己去下载、解压、拖拽（安装）等蛋疼步骤。  
-然后再软链到~/Applications/目录下，这样就能在应用程序里找到它，非常方便。而且还包含很多在 AppStore 里没有的常用软件。
+它先将程序下载解压到统一的目录中（/usr/local/Caskroom），省掉了自己去下载、解压、拖拽（安装）等蛋疼步骤。  
+然后再移动到~/Applications/目录下，并在原目录中留下软链接，这样非常方便的在应用程序里找到它。
+Homebrew Cask包含很多在AppStore里没有的常用软件。
 
 - brew cask Github：<https://github.com/caskroom/homebrew-cask>
-- 应用列表：<https://formulae.brew.sh/cask>
+- `应用列表`：<https://formulae.brew.sh/cask>
 
 ### **安装brew cask**
 
-1. 将以下命令粘贴至终端
+1. 将以下命令粘贴至终端(最好先将brew换为国内源)
     ```
-    $ brew tap caskroom/cask
-    ```
-   或者
-    ```
-    $ brew tap homebrew/completions
-    $ brew install brew-cask-completion
+    $ brew cask
     ```
 2. 测试安装是否成功
     ```
