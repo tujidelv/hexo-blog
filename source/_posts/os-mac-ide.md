@@ -34,20 +34,16 @@ tags:
 - 安装过程和 Windows 没啥区别，都是下一步下一步，只是比 Windows 简单，连安装路径都不需要改而已。
     ```
     # JDK 1.8
-    JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home
-    JRE_HOME=$JAVA_HOME/jre
-    PATH=$PATH:$JAVA_HOME/bin
-    CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-    export JAVA_HOME
-    export JRE_HOME
-    export PATH
-    export CLASSPATH
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home
+    export JRE_HOME=$JAVA_HOME/jre
+    export PATH=$JAVA_HOME/bin:$PATH
+    export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
     ```
 - 卸载
     ```
     sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
     sudo rm -rf /Library/PreferencePanes/JavaControlPanel.prefPane
-    sudo rm -rf /Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk
+    sudo rm -rf /Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk
     ```
     
 ### **IDEA**
@@ -80,10 +76,8 @@ tags:
     ```
     ```
     # Maven
-    MAVEN_HOME=/Users/你的用户名/my_software/work_software/maven3.3.9
-    PATH=$PATH:$MAVEN_HOME/bin
-    export MAVEN_HOME
-    export PATH
+    export MAVEN_HOME=/Users/你的用户名/my_software/work_software/maven3.3.9
+    export PATH=$MAVEN_HOME/bin:$PATH
     ```
 
 ### **Gradle**
