@@ -4,7 +4,7 @@ date: 2018-12-01 17:17:42
 categories:
 - 软件工具
 tags:
-- idea
+- jetbrains
 ---
 
 # IDEA 札记：进阶

@@ -26,6 +26,7 @@
     - [Hexo札记](source/_posts/af-hexo.md)
     - [NodeJS札记](source/_posts/af-nodejs.md)
 - **Software Tool**
+    - [DataGrip札记：基础](source/_posts/st-datagrip-basic.md)
     - [SSR科学上网：进阶](source/_posts/st-ssr-advanced.md)
     - [SSR科学上网：基础](source/_posts/st-ssr-basic.md)
     - [超强SSH客户端FinalShell](source/_posts/st-finalshell.md)
