@@ -65,14 +65,14 @@ tags:
 2.关联远程库并创建别名
     $ git remote add <远程仓库别名> git@github.com:GitHub账户名/learngit.git
     注：如果在使用命令git remote add时报错(fatal: remote origin already exists.),说明本地库已经关联了一个名叫origin的远程库，有如下2种处理方案。
-        1.删除已有的远程仓库origin,再关联
+        1.删除已有的远程仓库origin关联,再重新关联
             - $ git remote rm origin
         2.因为git是分布布,支持同步到多个远程库,远程仓库的名字不能一样
             - $ git remote add gitee git@gitee.com:xxx/xxx.git
             - $ git remote add github git@github.com:xxx/xxx.git
 3.将本地库的内容(指定分支)推送到远程库对应的远程分支上(不存在时会自动新建)
     $ git push <远程仓库别名> 分支名
-    注：-u 参数，第一次推送时需要,会把本地master分支和远程master分支关联起来，在以后的推送或拉取可以简化命令。
+    注：-u 参数，第一次推送时需要,会把本地分支和远程分支关联起来，在以后的推送或拉取可以简化命令。
 注：IDEA中可以通过"Share Project on GitHub"将项目直接分享到GitHub上。
 ```
 - 从远程仓库克隆

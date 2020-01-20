@@ -60,6 +60,78 @@ tags:
 ## 内部原理
 
 ![抱歉,图片休息了](st-git-basic/st-git-basic-002.png "add/commit图解")
+- ### 概述
+    - Git存储对象(hashmap)
+        ```
+        Git是一个内容寻址文件系统，其核心部分是一个简单的键值对数据库（key-value data store），你可以向数据库中插入任意内容，它会返回一个用于取回该值的hash键。
+      
+        # git键值库中插入数据
+        # 写入版本1
+        $ echo 'version1' > README.MF; git hash-object -w README.MF;
+        # 写入版本2
+        $ echo 'version2' > README.MF; git hash-object -w README.MF;
+        # 写入版本3
+        $ echo 'version3' > README.MF; git hash-object -w README.MF;
+        79362d07cf264f8078b489a47132afbc73f87b9a
+      
+        # 查找所有的git对像
+        $ find .git/objects/ -type f
+        
+        # 基于键获取指定内容(git基于该功能把每个文件的版本中内容都保存在数据库中，当要进行版本回滚的时候就通过其中一个键将其取回并替换)
+        $ git cat-file -p 79362d07cf264f8078b489a47132afbc73f87b9a
+      
+        # 回滚指定版本
+        $ git cat-file -p c11e96db44f7f3bc4c608aa7d7cd9ba4ab25066e > README.MF
+      
+        所以我们平常用的git add其实就是把修改之后的内容插入到键值库中。当我们执行git add README.MF就包括了执行git hash-object -w README.MF把文件写到数据库中。
+        我们解决了存储的问题，但其只能存储内容并没有存储文件名，如果要进行回滚,怎么知道哪个内容对应哪个文件呢？接下要讲的就是树对象，它解决了文件名存储的问题。
+        ```
+    - Git树对象
+        ```
+        树对象解决了文件名的问题，它的目的将多个文件名组织在一起，其内包含多个文件名称与其对应的Key和其它树对象的引用，可以理解成操作系统当中的文件夹，一个文件夹包含多个文件和多个其它文件夹。
+        每一个分支当中都关联了一个树对象，他存储了当前分支下所有的文件名及对应的 key。
+      
+        #查看分支树对象或者其他树对象
+        $ git cat-file -p <master^{tree} | tree_id> 
+        $ git cat-file -p a1183ea74b0cd7b5cec6b9bf8b758e03f8c5ba94
+        100644 blob 46ad03092238f6c2ee203ef8bb14dc88faa5203b    .gitignore
+        100644 blob 6a96454c48ac077474c118f5ed26c02c0f05e762    README.md
+        100644 blob d8033580327bba5b2480e16fbbb1dc5fea61e2b4    TOC.md
+        100644 blob e1ec5e0c6b69f3371d730926d6d4d2b52faf44f5    _config.yml
+        100644 blob 36eaa9c9d2243211556e6e517e5545bbdb62677d    hd.sh
+        100644 blob 6a8ed3965ab82e1b73bb7dcc94c575bc85f4317e    hs.sh
+        100644 blob 911639e0e486bc709ac7813e2a52082ad9e115e9    package-lock.json
+        100644 blob d457fbae7bcb0ef328e13b7fc12a9aeba55597ea    package.json
+        040000 tree a99672782f26a13f14589febab3fe407e64170ae    scaffolds
+        040000 tree 2ff7dd52dc20edb978226c298967bf33800d26d3    source
+        ```
+    - Git提交对象
+        ```
+        一次提交即为当前版本的一个快照，该快照就是通过提交对象保存，其存储的内容为：一个顶级树对象、上一次提交的对象啥希、提交者用户名及邮箱、提交时间戳、提交评论。
+        
+        $ git cat-file -p a33ef4e
+        tree a1183ea74b0cd7b5cec6b9bf8b758e03f8c5ba94
+        parent 96bcdd27b47641809d42b2417985a44aa8d25960
+        author lvzhiqiang <zhiqiang.lv@riskraider.com> 1579428368 +0800
+        committer lvzhiqiang <zhiqiang.lv@riskraider.com> 1579428368 +0800
+        pushcode
+        
+        通过上面的知识，我们可以推测出从修改一个文件到提交的过程总共生成了三个对象：
+        一个内容对象 ==> 存储了文件内容
+        一个树对象 ==> 存储了文件名及内容对象的key
+        一个提交对象 ==> 存储了树对象的key及提交评论。 
+        ```
+    - Git引用
+        ```
+        当我们执行git branch {branchName}时创建了一个分支，其本质就是在git基于指定提交创建了一个引用文件，保存在.git\refs\heads\下。
+        
+        # 演示分支的创建
+        $ git branch dev 
+        $ cat.git\refs\heads\dev
+      
+        git总共有三种类型的引用：分支引用、远程分支引用、标签引用
+        ```
+
 - ### git add
     - 保存二进制对象：`$ git hash-object -w test.txt`  
         ```
@@ -67,7 +139,7 @@ tags:
         - .git/objects下面的一个个子目录名是该哈希值的前2个字符，该子目录下面有一个文件，文件名是哈希值的后38个字符。
         - 用cat命令查看该文件都是一些二进制字符(包括元数据),可用如下命令查看文件原始的文本内容:$ git cat-file -p e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
         ```
-    - 更新暂存区：`$ git update-index --add --cacheinfo 100644 \ 3b18e512dba79e4c8300dd08aeb37f8e728b8dad test.txt`
+    - 更新暂存区：`$ git update-index --add --cacheinfo 100644 3b18e512dba79e4c8300dd08aeb37f8e728b8dad test.txt`
         ```
         - 用于在暂存区记录一个发生变动的文件
         - 向暂存区(stage)写入文件名test.txt、二进制对象名（哈希值）和文件权限(100代表regular file[普通文件],644代表rw-r--r--)
@@ -85,8 +157,12 @@ tags:
         - 用git cat-file -p命令能看到本次快照对应的目录树对象（tree），作者和提交人信息，以及提交说明
         - 用如下命令也可以用来查看某个快照信息:$ git log --stat c9053865e9dff393fd2f7a92a18f9bd7f2caa7fa
         ```
-        
-    Tips：**Git提供了git commit命令简化上面2步操作。**
+    - 更新HEAD的值向我们的commit对象：`$ git update-ref refs/heads/master 4ad659c50196f780b19b1ab6c338205815a4d74a`
+        ```
+        如果当前不在master分支而在其他分支上，则需要指定为其他分支
+        ```
+    
+    Tips：**Git提供了git commit命令简化上面3步操作。**
         
 ## 本地库常用操作
 - 常用命令
@@ -103,10 +179,12 @@ tags:
     - git diff [FILE]      //如果git status提示有文件被修改，可以用此命令查看指定文件修改了哪些内容，显示的格式是Unix通用的diff格式
         - 比较的是版本库（暂存区和分支中的任意一个）与工作区同名文件相比是否相同，而git diff --cached比较的是暂存区有无内容
         - git diff HEAD [FILE]      //将工作区中的文件和本地库历史记录比较
-    - git log      //显示从最近到最远的提交日志。其中commit(快照) id是用SHA1算出的16进制数字
+    - git log [branch-name]     //显示从最近到最远的提交日志。其中commit(快照) id是用SHA1算出的16进制数字
         - 后面加上--pretty=oneline可以精简信息
         - 后面加上--graph可以看到分支合并情况
         - 后面加上--abbrev-commit可以精简快照id
+        - 后面加上dev..master可以查看master分支还有多少修改没有同步到dev分支
+    - git show [branch-name]    //显示最近一次提交的内容详细改变
     - git reflog      //查看命令历史，当找不到新版本的id时可以用此来确定要回到未来的哪个版本
         - HEAD@{移动到当前版本需要多少步}
     ```
@@ -170,7 +248,7 @@ tags:
 - Git 标签虽然是版本库的快照,但其实是指向某个 commit 的死指针(与分支类似,但分支可以移动,标签不能移动),所以，创建和删除标签都是瞬间完成的。
 - 创建标签
     ```
-    $ git tag <tagname>      //新建一个标签,默认是打在当前分支下的最新commit上的
+    $ git tag <tagname> [branch-name]      //新建一个标签,默认是打在当前分支下的最新commit上的
         - $ git tag <tagname> [commitid]      //打在某次指定(commit id)提交上
         - $ git tag -a <tagname> -m "" [commitid]      //创建带有说明的标签,-a指定标签名,-m指定说明信息
             - $ git tag -a v0.1 -m "version 0.1 released" 3628164
@@ -248,3 +326,6 @@ tags:
 ## 结束语
 
 - 未完待续...
+- update by 20200120
+<img src='st-git-basic/st-git-basic-004.png' alt='抱歉,图片休息了' title='git push流程' width="600" height="160" align="center">
+<img src='st-git-basic/st-git-basic-005.png' alt='抱歉,图片休息了' title='git的帮助文档' width="600" height="160" align="center">
