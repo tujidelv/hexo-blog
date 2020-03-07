@@ -23,6 +23,18 @@ tags:
 
 ### 精华帖...
 
+- [P站上，一个华人AV厂牌正在冉冉升起](https://mp.weixin.qq.com/s/hnwABWOmd3q77Nb6_Qvgww)
+
+- [P站华人第一女星刘玥采访记录](https://fulibus.net/liuyue.html)
+
+- [今日分析：美国为何炸死伊朗将军的全方位解读（万字分析）美国这么做背后有更深的缘由](<https://mp.weixin.qq.com/s?__biz=MzI5NzU0NjIxMQ==&mid=2247483999&idx=1&sn=ef00be257ea70d9c4f4ece882369582d>)
+
+- [关于这一个月刀网停更说明](<https://www.x6d.com/i-wz-8375.html>)
+
+- [男性的「高潮」是啥样？](<https://mp.weixin.qq.com/s/iMr8wHPBFcQxij2jre0_ow>)
+
+- [第一次下片儿，是每个男孩的成人礼](https://mp.weixin.qq.com/s/X4esFde5wgIhRp71UeK6tQ)
+
 - [【特写】一位脑瘫女孩和一款特殊输入法的“奇遇人生”](<https://www.jiemian.com/article/3696848.html>)
 
 - [不敢上厕所，不敢住酒店，你永远不知道韩国的偷拍有多变态…](<https://user.guancha.cn/main/content?id=193740&page=0>)
@@ -52,6 +64,9 @@ tags:
 - [你听说过哪些连小说中都不敢写的狗血真实事件](https://www.douban.com/gallery/topic/50680/)
 - [说说你见过的知道的最乱的事](https://www.douban.com/group/topic/149586712/)
 - [在去和男友约会路上与滴滴司机C震！性开放时代C轨C震有错？](https://www.douban.com/note/715956852/)
+- [豆瓣2019年度音乐榜单](<https://music.douban.com/annual/2019>)
+- [豆瓣2019年度读书榜单](<https://book.douban.com/annual/2019>)
+- [豆瓣2019年度电影榜单](<https://movie.douban.com/annual/2019>)
 - [豆瓣2018年度电影榜单・携程冠名](https://movie.douban.com/annual/2018)
 - [豆瓣2017年度电影榜单](https://movie.douban.com/annual/2017)
 - [豆瓣2016年度电影榜单](https://movie.douban.com/annual2016)
@@ -164,4 +179,3 @@ tags:
 ## 结束语
 
 - 未完待续...
-

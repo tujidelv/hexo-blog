@@ -4,9 +4,7 @@ date: 2018-12-09 15:50:16
 categories:
 - 软件工具
 tags:
-- ssr
-- vps
-- shadowsocks
+- fq
 ---
 
 # SSR科学上网：进阶
@@ -23,14 +21,14 @@ tags:
 
 - 在了解了番茄的相关知识后正式搭建科学上网环境。
 
-## SSR的部署及使用
+## 部署
 
 整套SSR 分为 SSR 服务端（部署在 VPS，也就是海外主机），SSR 客户端（部署在本机或者本地路由器或本地手机上）。
 ![抱歉,图片休息了](st-ssr-advanced/si-ssr-advanced-001.png "ssr 部署")
 
-### 服务端的部署
+### `服务端1`
 
-1. 执行一键安装代码
+1. 下载并执行ssr脚本
     - 支持限制用户速度、`限制端口设备数`、`切换管理单/多端口`、显示当前连接 IP 等
     ```bash
     [root@host ssr]# wget -N --no-check-certificate https://raw.githubusercontent.com/tujidelv/doubi/master/ssr.sh && chmod +x ssr.sh && bash ssr.sh 
@@ -39,10 +37,9 @@ tags:
     ```
     [root@host ssr]# wget -N --no-check-certificate https://raw.githubusercontent.com/tujidelv/doubi/master/ssrmu.sh && chmod +x ssrmu.sh && bash ssrmu.sh
     ```
-    - 如果在一开始出现 `-bash: wget: command not found` 错误，那多数是你的系统比较精简，连 wget 都没有安装。
-    ```bash
-    [root@host ssr]# yum -y install wget
-    ```
+    
+![抱歉,图片休息了](st-ssr-advanced/si-ssr-advanced-006.png "ssr脚本主界面")
+
 2. 选择 `4` ，安装 libsodium(chacha20)，如果选择 `chacha20` 加密方式需要用到
     ```bash
     请输入数字 [1-15]：4
@@ -51,36 +48,7 @@ tags:
     [信息] libsodium 最新版本为 1.0.16 !
     ```
 3. 继续执行 `./ssr.sh`，选择 `1` ，安装 SSR
-    ```bash
-    2018-12-09 06:16:46 (62.0 MB/s) - ‘ssr.sh’ saved [61164/61164]
-    
-      ShadowsocksR 一键管理脚本 [v2.0.38]
-      ---- Toyo | doub.io/ss-jc42 ----
-    
-      1. 安装 ShadowsocksR
-      2. 更新 ShadowsocksR
-      3. 卸载 ShadowsocksR
-      4. 安装 libsodium(chacha20)
-    ————————————
-      5. 查看 账号信息
-      6. 显示 连接信息
-      7. 设置 用户配置
-      8. 手动 修改配置
-      9. 切换 端口模式
-    ————————————
-     10. 启动 ShadowsocksR
-     11. 停止 ShadowsocksR
-     12. 重启 ShadowsocksR
-     13. 查看 ShadowsocksR 日志
-    ————————————
-     14. 其他功能
-     15. 升级脚本
-     
-     当前状态: 未安装
-    
-    请输入数字 [1-15]：1
-    ```
-4. 然后设置端口 & 密码 & 协议，速度方面 `chacha20 > RC4-MD5 > AES`，但 `chacha20` 对 VPS 内存要求比较高，至少 1G
+4. 设置端口 & 密码 & 协议，速度方面 `chacha20 > RC4-MD5 > AES`，但 `chacha20` 对 VPS 内存要求比较高，至少 1G
     ```bash
     [信息] 开始设置 ShadowsocksR账号配置...
     请输入要设置的ShadowsocksR账号 端口
@@ -129,14 +97,14 @@ tags:
             加密 : chacha20
     ——————————————————————————————
     ```
-5. 选择协议插件，默认是 `auth_sha1_v4`，回车即可，有些脚本默认是 `origin`，支持SS客户端
+5. 选择协议插件，默认是 `auth_sha1_v4或者origin`，推荐`auth_sha1_v4和auth_aes128_md5和auth_aes128_sha1`
     ```bash
     请选择要设置的ShadowsocksR账号 协议插件
             
-     1. origin
-     2. auth_sha1_v4
-     3. auth_aes128_md5
-     4. auth_aes128_sha1
+     1. origin                           原版协议，为了兼容
+     2. auth_sha1_v4                     较高安全性，有宽松的时间校对要求，混淆强度大
+     3. auth_aes128_md5                  最高安全性，有宽松的时间校对要求，计算量相对高一些，混淆强度较大
+     4. auth_aes128_sha1                 最高安全性，有宽松的时间校对要求，计算量相对高一些，混淆强度较大
      5. auth_chain_a
      6. auth_chain_b
      [注意] 如果使用 auth_chain_a 协议，请加密方式选择 none，混淆随意(建议 plain)
@@ -147,7 +115,7 @@ tags:
             协议 : auth_sha1_v4
     ——————————————————————————————
     ```
-6. 选择混淆插件，默认是 `plain`，支持SS客户端，这里选择 `tls1.2_ticket_auth`
+6. 选择混淆插件，默认是 `plain`，支持SS客户端，推荐 `plain,http_simple,http_post,tls1.2_ticket_auth`
     ```bash
     是否设置 协议插件兼容原版(_compatible)？[Y/n]y
     
@@ -161,6 +129,7 @@ tags:
      [注意] 如果使用 ShadowsocksR 加速游戏，请选择 混淆兼容原版或 plain 混淆，然后客户端选择 plain，否则会增加延迟 !
      另外, 如果你选择了 tls1.2_ticket_auth，那么客户端可以选择 tls1.2_ticket_fastauth，这样即能伪装又不会增加延迟 !
      如果你是在日本、美国等热门地区搭建，那么选择 plain 混淆可能被墙几率更低 !
+     [注意]不要奇怪为什么推荐plain，因为混淆不总是有效果，要看各地区的策略的，有时候不混淆让其看起来像随机数据更好。
     
     (默认: 1. plain):5
     
@@ -190,7 +159,81 @@ tags:
     ![抱歉,图片休息了](st-ssr-advanced/si-ssr-advanced-002.png "ssr 帐号信息")
     ![抱歉,图片休息了](st-ssr-advanced/si-ssr-advanced-004.png)
 
-### 客户端的部署
+### `服务端2`
+
+1. 脚本说明
+    ```
+    本脚本适用环境：
+        系统支持：CentOS，Debian，Ubuntu
+        内存要求：≥128M
+        作者：秋水逸冰
+    关于本脚本：
+        一键安装 ShadowsocksR 服务端
+        请下载与之配套的客户端程序来连接
+    配置说明：
+        服务器端口：自己设定（如不设定，默认为 8989）
+        密码：自己设定（如不设定，默认为 teddysun.com）
+        加密方式：自己设定（如不设定，默认为 aes-256-cfb）
+        协议（Protocol）：自己设定（如不设定，默认为 origin）
+        混淆（obfs）：自己设定（如不设定，默认为 plain）
+    配置方法：
+        使用root用户登录，执行以下命令：
+    ```
+2. 下载并执行脚本
+    ```
+    [root@host ssr]# wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+    [root@host ssr]# chmod +x shadowsocksR.sh
+    [root@host ssr]# ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
+    ```
+3. 安装完成
+    ```
+    Congratulations, ShadowsocksR server install completed!
+    Your Server IP        :your_server_ip
+    Your Server Port      :your_server_port
+    Your Password         :your_password
+    Your Protocol         :your_protocol
+    Your obfs             :your_obfs
+    Your Encryption Method:your_encryption_method
+    Welcome to visit:https://shadowsocks.be/9.html
+    Enjoy it!
+    ```
+4. 常用命令
+    ```
+    卸载：./shadowsocksR.sh uninstall
+    启动：/etc/init.d/shadowsocks start
+    停止：/etc/init.d/shadowsocks stop
+    重启：/etc/init.d/shadowsocks restart
+    状态：/etc/init.d/shadowsocks status
+    配置文件路径：/etc/shadowsocks.json
+    日志文件路径：/var/log/shadowsocks.log
+    代码安装目录：/usr/local/shadowsocks
+    ```
+5. 多用户配置示例
+    ```
+    {
+    "server":"0.0.0.0",
+    "server_ipv6": "[::]",
+    "local_address":"127.0.0.1",
+    "local_port":1080,
+    "port_password":{
+        "8989":"password1",
+        "8990":"password2"，
+        "8991":"password3"
+    },
+    "timeout":300,
+    "method":"aes-256-cfb",
+    "protocol": "origin",
+    "protocol_param": "",
+    "obfs": "plain",
+    "obfs_param": "",
+    "redirect": "",
+    "dns_ipv6": false,
+    "fast_open": false,
+    "workers": 1
+    }
+    ```
+
+### `客户端`
 
 - 下载
     ```
@@ -274,20 +317,20 @@ tags:
     https://ssray.club/
     ```
 
-## SSR的进阶使用
+## 进阶
 
-### 一键魔改 BBR 加速搬瓦工 SSR
+### 魔改BBR加速SSR
 
 - 注意点
-    1. kvm 优化的话，只能 bbr、魔改 bbr、锐速三选一，速度从高到低大概是 `魔改BBR > 锐速 > BBR`。
-    2. 重装系统那里，后缀带 bbr 的表示重装后自带 bbr 并且默认开启了，但是没有经过魔改的 bbr 速度远不及锐速。
-    3. 同时 bbr 只支持 4.9 以上 4.13 以下的内核，锐速不支持 4.9 以上的内核，所以不能共存。但他们都可以和 kcptun 共存。
-    3. 锐速技术成熟，已经停止更新；而 BBR 是 2016 年才出现的新技术，未来的发展性很强。所以从短期看，锐速或者 BBR 视情况都可以，从长期来说，BBR 终究是主流。 
+    1. kvm优化的话，只能bbr、魔改bbr、锐速三选一，速度从高到低大概是 `魔改BBR > 锐速 > BBR`。
+    2. 重装系统那里，后缀带`bbr`的表示重装后自带bbr并且默认开启了，但是没有经过魔改的bbr速度远不及锐速。
+    3. 同时bbr只支持4.9以上4.13以下的内核，锐速不支持4.9以上的内核，所以不能共存。但他们都可以和kcptun共存。
+    3. 锐速技术成熟，已经停止更新；而BBR是2016年才出现的新技术，未来的发展性很强。所以从短期看，锐速或者BBR视情况都可以，从长期来说，BBR终究是主流。 
 - 重装系统
-    - 在 main-controls 那里 stop 机器，然后 install new os，安装 CentOS7_86x64。复制密码准备登录主机。密码和端口也会发到你的邮箱。
+    - 在main-controls那里stop机器，然后install new os，安装CentOS7_86x64。复制密码准备登录主机。密码和端口也会发到你的邮箱。
 - 安装最合适的内核
-    - 可以使用 `uanme -a` 查看内核信息，BBR 算法的部署，需要注意内核版本，如果过低会造成崩溃。
-    - 安装新内核后，输入 Y，系统会自动断开 shell，重启一次，重新登录后将启用新的内核。
+    - 可以使用 `uanme -a` 查看内核信息，BBR算法的部署，需要注意内核版本，如果过低会造成崩溃。
+    - 安装新内核后，输入Y，系统会自动断开shell，重启一次，重新登录后将启用新的内核。
     ```bash
     wget --no-check-certificate -O C71.sh https://raw.githubusercontent.com/tujidelv/CBBR/master/C71.sh && chmod +x C71.sh && bash C71.sh
     ```
@@ -297,8 +340,21 @@ tags:
     ```
 - 结束后，显示 Finish 表示正常，或者执行 `lsmod |grep 'bbr_powered'` 结果不为空，则加载模块成功。
     ![抱歉,图片休息了](st-ssr-advanced/si-ssr-advanced-003.png)
+    
+### BBRplus加速SSR
+
+- 下载加速脚本,支持`CentOS 6+、Debian 8+、Ubuntu 14+`
+    ```
+    wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+    ```
+- 打开脚本,根据自己需求安装对应的内核和加速
+    ![抱歉,图片休息了](st-ssr-advanced/si-ssr-advanced-005.png)
 
 ## 参考链接
+
+- [BBR+BBR魔改+Lotsever(锐速)一键脚本 for Centos/Debian/Ubuntu](https://www.moerats.com/archives/387)
+- [安装libsodium库解决libsodium not found问题](https://www.debugnode.com/ubuntul_ibsodium)
+- [ShadowsocksR(SSR)一键安装脚本 By 秋水逸冰](http://www.wangchao.info/1549.html)
 
 ## 结束语
 
