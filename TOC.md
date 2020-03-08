@@ -26,6 +26,7 @@
     - [Hexo札记](source/_posts/af-hexo.md)
     - [NodeJS札记](source/_posts/af-nodejs.md)
 - **Software Tool**
+    - [Trojan科学上网：基础](source/_posts/st-trojan-basic.md)
     - [IDEA热部署插件JRebel](source/_posts/st-jrebel-activate.md)
     - [DataGrip札记：基础](source/_posts/st-datagrip-basic.md)
     - [SSR科学上网：进阶](source/_posts/st-ssr-advanced.md)
