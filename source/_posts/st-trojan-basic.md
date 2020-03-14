@@ -12,6 +12,7 @@ tags:
 ## 目录
 
 - [简介](#简介)
+- [部署](#部署)
 - [参考链接](#参考链接)
 - [结束语](#结束语)
 
@@ -52,14 +53,69 @@ tags:
 ![抱歉,图片休息了](st-trojan-basic/st-trojan-basic-001.png "trojan脚本主界面")
 
 2. 选择安装trojan，然后输入解析到VPS的域名并回车（不要带http://），开始安装，然后等待安装完成即可。
-    - **注：脚本中有关于Nginx的相关文件/目录需替换成自己服务器对应的文件/目录,否则可能启动Trojan失败。**
 ![抱歉,图片休息了](st-trojan-basic/st-trojan-basic-002.png "trojan安装完成")
-3. 安装完成后，会展示一条下载地址，复制地址，并下载下来即可。
+
+---
+对于有安装宝塔面板的前提下,一般会事先安装好Nginx,而且已搭建Https的网站,如何已Trojan共存
+```
+方法一：让自己所有搭建的网站取消SSL证书,这样Nginx就能只启动80端口,而不会与Trojan的443端口冲突.只是不能用Https方式访问自己搭建的网站了.
+方法二：可更改Trojan运行在非443端口上,修改相关配置文件(服务端和客户端)即可;然后通过Nginx反向代理Trojan域名到该非443端口上.
+```
+
+---
 
 ### `客户端`
 
+- **Windows系统**
+    ```
+    服务端安装完成后，会展示一条下载地址，复制地址，并下载下来运行即可。
+    如果你真的忘记下载了，那么进入/usr/share/nginx/html/目录下，找到一个乱码文件夹，进入会看到客户端文件，使用sftp下载下来即可。
+    解压缩下载的trojan-cli.zip的压缩包，进入文件夹并开启Trojan服务，Trojan会监听本地1080端口。
+    ```
+![抱歉,图片休息了](st-trojan-basic/st-trojan-basic-003.png "trojan客户端")
+    ```
+    1.如果软件支持配置socks5,直接指向127.0.0.1:1080即可.如Firefox,IDM等.
+    2.如果软件不支持配置socks5,可选择v2rayN/sstap/sockscap64/supercap等软件曲线实现代理.
+    3.浏览器插件:谷歌浏览器--SwitchyOmega
+    ```
+![抱歉,图片休息了](st-trojan-basic/st-trojan-basic-004.png "SwitchyOmega设置")    
+---
+►V2rayN客户端：<https://github.com/2dust/v2rayN/releases>
+►SocksCap64：<https://www.sockscap64.com/sockscap-64-free-download-zh-hans>
+►SSTap：<https://www.sockscap64.com/changelog-of-sstap>
+►SwitchyOmega情景模式：<img src="st-trojan-basic/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1nN60uMMsit4XNYS90eASaw) `提取码8cp7`
+►SwitchyOmega规则GFWList：<https://github.com/gfwlist/gfwlist>
 
+---
+
+- **Mac系统**
+    ```
+    1.如果软件支持配置socks5,直接指向127.0.0.1:1080即可.如Firefox,IDM等.
+    2.如果软件不支持配置socks5,可选择v2rayU/mellow等软件曲线实现代理.
+    3.浏览器插件:谷歌浏览器--SwitchyOmega
+    ```
+---
+►Trojan Mac客户端：<https://github.com/trojan-gfw/trojan/releases>
+►V2rayU客户端：<https://github.com/yanue/V2rayU/releases>
+
+---
+- **Android系统**
+![抱歉,图片休息了](st-trojan-basic/st-trojan-basic-005.png "Igniter客户端")
+---
+►Android客户端（选择app-release.apk）：<https://github.com/trojan-gfw/igniter/releases>
+►Trojan项目地址：<https://github.com/trojan-gfw/trojan>
+
+---
+
+- **IOS系统**
+
+需下载Shadowrocket软件
 
 ## 参考链接
 
+<https://www.youtube.com/watch?v=eiI2e4gnO4w&t=610s>
+<https://www.youtube.com/watch?v=0_b34pfmhzA>
+
 ## 结束语
+
+- 未完待续...
