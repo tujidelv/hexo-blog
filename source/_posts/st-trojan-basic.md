@@ -13,6 +13,7 @@ tags:
 
 - [简介](#简介)
 - [部署](#部署)
+- [常见问题总结](#常见问题总结)
 - [参考链接](#参考链接)
 - [结束语](#结束语)
 
@@ -62,7 +63,7 @@ tags:
 方法二：可更改Trojan运行在非443端口上,修改相关配置文件(服务端和客户端)即可;然后通过Nginx反向代理Trojan域名到该非443端口上.
 ```
 
----
+---1
 
 ### `客户端`
 
@@ -110,6 +111,36 @@ tags:
 - **IOS系统**
 
 需下载Shadowrocket软件
+
+## 常见问题总结
+
+1. Trojan客户端打开无法运行，提示缺少找不到vcruntime140.dll或找不到msvcp140.dll。
+    ```
+    原因缺少运行库，下载链接中的两个软件，一个是32位一个是64位，请全部安装即可：
+    https://www.microsoft.com/en-us/download/details.aspx?id=48145
+    ```
+2. 如果遇到vcruntime140_1的错误，下载下面的文件放到C:\windows\system32目录下即可
+    ```
+    下载140_1.dll：https://github.com/atrandys/trojan/raw/master/vcruntime140_1.dll
+    ```
+3. trojan服务端怎么修改密码
+    ```
+    trojan服务端配置文件路径如下，如需修改内容，修改以下文件即可。
+    /usr/src/trojan/server.conf
+    修改完成后，重启trojan服务端即可，同时客户端的密码也要同步修改哦。
+    systemctl restart trojan
+    ```
+4. chrome插件switchyomega无法安装
+    ```
+    参考这篇文章，离线安装chrome插件方法：https://www.atrandys.com/2019/2149.html
+    ```
+5. 关于申请证书没有成果的处理
+    ```
+    可能的原因1：
+        一些原因导致使用nginx申请证书时出错，要么防火墙端口没开放，要么nginx未正常。建议用最纯净的系统安装。
+    可能的原因2:
+        出现这个问题最可能的原因之一是你的同一个域名多次申请证书，导致let’s encrypt官方的限制，同一域名每周最多5次申请。
+    ```
 
 ## 参考链接
 
