@@ -26,6 +26,7 @@
     - [Hexo札记](source/_posts/af-hexo.md)
     - [NodeJS札记](source/_posts/af-nodejs.md)
 - **Software Tool**
+    - [Trojan科学上网：进阶](source/_posts/st-trojan-advanced.md)
     - [VPS离线BT下载利器](source/_posts/st-vps-bt.md)
     - [命令行下载神器youtube-dl](source/_posts/st-youtube-dl.md)
     - [Trojan科学上网：基础](source/_posts/st-trojan-basic.md)
