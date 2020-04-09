@@ -26,7 +26,7 @@ JRebel是一款JVM插件，它使得代码片段/配置文件修改后不用重�
 
 1. 搭建反向代理服务器
     - 下载OS相对应的工具包：<https://github.com/ilanyu/ReverseProxy/releases>
-    - 执行Shell命令：【nohup ./ReverseProxy_linux_amd64 -l "0.0.0.0:9999" &】
+    - 执行Shell命令：`nohup ./ReverseProxy_linux_amd64 -l "0.0.0.0:9999" &`
     - Demo JRebel address：【http://127.0.0.1:9999/{GUID}】, with any email.
 2. 生成GUID 
     - 在线生成GUID地址：<https://www.guidgen.com>
