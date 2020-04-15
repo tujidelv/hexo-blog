@@ -51,8 +51,16 @@ tags:
     sudo chmod a+rx /usr/local/bin/youtube-dl
     ```
 - Windows用户
+    1. 从**[ffmpeg官网](https://ffmpeg.org)**下载[ffmpeg](https://ffmpeg.zeranoe.com/builds/)，注意选择Windows版本，解压后放到任意目录。
+    2. 从**[youtube-dl官网](http://ytdl-org.github.io/youtube-dl)**下载[youtube-dl.exe](https://ytdl-org.github.io/youtube-dl/download.html)，然后放在上一步得到ffmpeg的`bin`目录下。
+    3. 将ffmpeg的bin文件夹（D:\ffmpeg\bin）路径加入系统PATH里面。
+    4. 测试ffmpeg与youtube-dl，打开命令行，分别输入`ffmpeg -version;youtube-dl --version`，没报错就成功了。
+    ---
     ```
-    可以下载.exe文件并将其放置在PATH上的任何位置，除了%SYSTEMROOT%\System32（例如，不要放入C:\Windows\System32）。
+    Tips：
+    1. 升级ffmpeg，去官网按照系统下载最新版、替换即可。
+    2. 升级youtube-dl，只需要在命令行里面运行`youtube-dl --proxy  "http://127.0.0.1:1080"  -U`。
+    3. 设置环境变量时不要放入%SYSTEMROOT%\System32（例如，不要放入C:\Windows\System32）。
     ```
 - MacOS用户
     ```
@@ -219,5 +227,5 @@ youtube-dl [OPTIONS] URL [URL...]    程序自动选择一个最清晰的格式�
 - 未完待续...
 
 ```
-youtube-dl -F -i --cookies /opt/setups/cookies.txt --download-archive archive.txt --write-info-json --write-sub --all-subs  --write-all-thumbnails -o "%(upload_date)s_%(title)s_%(id)s_%(width)s*%(height)s.%(ext)s"
+youtube-dl -F -i --proxy "socks5://127.0.0.1:1080" --cookies /opt/setups/cookies.txt --download-archive archive.txt --write-info-json --all-subs --write-all-thumbnails -o "%(upload_date)s_%(title)s_%(id)s.%(ext)s"
 ```
