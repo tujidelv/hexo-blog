@@ -196,6 +196,9 @@ BaiduPCS-Go config set -max_parallel 400 -cache_size 65536
     >使用双引号扩起文件名，或者在空格, 小括号, 中括号, 特殊字符前加一个反斜杠"\"
 另外, 建议在命名文件时, 不要使用这些字符==
 
+3. 下载速度慢不靠谱方法
+    >加--locate或者--relocate
+大文件加--nocheck是必须的 
 
 ## 参考链接
 
