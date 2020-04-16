@@ -18,6 +18,7 @@ tags:
 ## 简介
 
 - **[BaiduPCS-Go](https://github.com/iikira/BaiduPCS-Go)**是一个开源跨平台的度盘命令行客户端, 为操作度盘提供实用功能。
+- 如果需要使用web界面操作，可以参考**[baidupcs-web](https://github.com/liuzhuoling2011/baidupcs-web)**。
 ---
 >1.多平台支持, 支持 Windows, MacOS, Linux, 移动设备等。
 2.百度帐号多用户支持。
@@ -199,6 +200,7 @@ BaiduPCS-Go config set -max_parallel 400 -cache_size 65536
 
 <https://github.com/iikira/BaiduPCS-Go>
 <https://www.moerats.com/archives/738>
+<https://github.com/liuzhuoling2011/baidupcs-web>
 
 ## 结束语
 
