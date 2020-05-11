@@ -170,6 +170,10 @@ tags:
     ```
     [root@144 bin]# kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9093 --topic test --from-beginning
     ```
+    ```
+    0.9版本之后就过时了，而且新版本也删除了这种启动方式
+    [root@144 bin]# kafka-console-consumer.sh --zookeeper 127.0.0.1:2181 --topic test --from-beginning
+    ```
        
 ## 架构深入
 
