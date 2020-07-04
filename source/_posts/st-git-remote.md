@@ -24,9 +24,9 @@ tags:
 内网环境：Gitlab,GitBucket 等等
 ```
 
-## 分类
+## 外网
 
-### GitHub(外网环境)
+### `GitHub`
    
 ```
 - 既是一个免费托管开源代码的远程仓库，可将个人的开源项目放上去；
@@ -121,13 +121,15 @@ tags:
     - 没问题的点击'Merge pull request'合并代码以获取官方作者的最新代码。
 ```
       
-### 码云(外网环境)
+### `码云`
 
 - 同 GitHub 一样,提供免费的 Git 仓库;此外，还集成了代码质量检测、项目演示等功能。对于团队协作开发，码云还提供了项目管理、代码托管、文档管理的服务，5 人以下小团队免费。
     - 码云的免费版本也提供私有库功能，只是有 5人 的成员上限。
 - 使用方法同 GitHub。
 
-### GitLab(内网环境)
+## 内网
+
+### `GitLab`
 
 - 官网地址			
 	- 首页：<https://about.gitlab.com/> 
@@ -172,7 +174,7 @@ tags:
         ```
 	- 初次登录时需要为 gitlab 的 root 用户设置密码。
 
-### 原生搭建(内网环境)
+### `原生搭建`
 
 1. 安装 Git												
     ```
@@ -266,9 +268,72 @@ tags:
 	- 因为 Git 是为 Linux 源代码托管而开发的，所以 Git 也继承了开源社区的精神，不支持权限控制。
 	- 不过，因为 Git 支持钩子（hook），所以，可以在服务器端编写一系列脚本来控制提交等操作，达到权限控制的目的，Gitolite 就是这个工具。
 
-### GitBucket(内网环境)
+### `GitBucket`
 
 - 待更新...
+
+### `Gogs`
+
+- 官⽹：<https://gogs.io>
+- 介绍：Gogs是⼀款开源的轻量级Git web服务，其特点是简单易用、文档齐全、国际化做的相当不错。
+    ```
+    其主要功能如下: 
+    1. 提供Http与ssh两种协议访问源码服务。
+    2. 提供可WEB界⾯可查看修改源码代码 。
+    3. 提供较完善的权限管理功能，其中包括组织、团队、个⼈等仓库权限 。
+    4. 提供简单的项⽬viki功能。 
+    5. 提供⼯单管理与⾥程碑管理。
+    ```
+- 安装
+    1. 下载 [Gogs](https://gogs.io/docs/installation)，选择Linux amd64
+        ```
+        $ wget -P /opt/setups/ https://dl.gogs.io/0.11.91/gogs_0.11.91_linux_amd64.zip
+        ``` 
+    2. 解压到指定目录
+        ```
+        # mkdir -pv /usr/program
+        # unzip gogs_0.11.91_linux_amd64.zip -d /usr/program/
+        ```
+    3. 启动
+        ```
+        $ nohup ./gogs web > log.out &
+        ```
+    4. 访问http://0.0.0.0:3000
+- 定时备份与恢复
+    - 备份与恢复
+        ```bash
+        # 查看备份相关参数
+        ./gogs backup -h
+        # 默认备份,备份在当前目录
+        ./gogs backup
+        # 参数化备份  --target 输出目录 --database-only 只备份db
+        ./gogs backup --target=./backupes --database-only --exclude-repos
+        # 恢复 执行该命令前要先删除custom.bak
+        ./gogs restore --from=gogs-backup-20180411062712.zip
+        ```  
+    - ⾃动备份脚本
+        ```bash
+        #!/bin/sh -e
+        gogs_home="/usr/program/gogs"
+        backup_dir="$gogs_home/backups"
+        
+        cd `dirname $0`
+        # 执行备份命令
+        ./gogs backup --target=$backup_dir
+        
+        echo 'backup sucess'
+        day=7
+        #查找并删除 7天前的备份  
+        find $backup_dir -name '*.zip' -mtime +7 -type f |xargs rm -f;
+        echo 'delete expire back data!'
+        ```
+    - 添加定时任务
+        ```
+        # 打开任务编辑器
+        crontab -e
+        # 输入如下命令 00 04 * * * 每天凌晨4点执行 do-backup.sh 并输出日志至 #backup.log
+        00 04 * * * /usr/program/gogs/do-backup.sh >> /usr/program/gogs/log/backup.log 2>&1
+        ```
 
 ## 参考链接
 
