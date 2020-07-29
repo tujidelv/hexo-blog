@@ -17,6 +17,7 @@
     - [Java新特性：8](source/_posts/dl-java-8.md)
     - [Markdown札记](source/_posts/dl-markdown.md)
 - **Application Framework**
+    - [NoSQL数据库之HBase](source/_posts/af-nosql-hbase.md)
     - [消息中间件之Kafka](source/_posts/af-mq-kafka.md)
     - [分布式系列之Redis&Ehcache](source/_posts/af-redis.md)
     - [分布式系列之Zookeeper](source/_posts/af-zookeeper.md)
