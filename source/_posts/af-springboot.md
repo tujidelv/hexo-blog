@@ -47,17 +47,30 @@ SpringMVC：
 ## 快速入门
 
 1. 创建一个普通 maven 工程,packaging类型为jar(可省略)
-2. pom文件中引入SpringBoot相关依赖
+2. pom文件配置
     ```
+    <!-- 引入SpringBoot parent依赖 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.0.RELEASE</version>
     </parent>
+    <!-- 设置资源属性 -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+    <!-- 引入dependency -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
     ```
@@ -67,9 +80,30 @@ SpringMVC：
     spring-boot-starter-web作用
         把传统方式的SpringMVC依赖的所有jar全部给下载下来,
     spring-boot-maven-plugin作用
-        如果直接通过Main启动spring，那么以下plugin必须要添加，否则是无法启动的。如果使用maven 的spring-boot:run的话是不需要此配置的。
+        如果直接通过Main启动spring，那么以下plugin必须要添加，否则是无法启动的。如果使用 maven 的spring-boot:run的话是不需要此配置的。
     ```
-3. 编写helloworld服务
+3. 配置application.yml
+    ```
+    server:
+      tomcat:
+        accept-count: 1000
+        max-connections: 2000
+        max-threads: 300
+        min-spare-threads: 50
+        uri-encoding: UTF-8 # 指定tomcat的编码格式
+        max-http-post-size: 100MB
+        accesslog:
+          enabled: true
+      port: 8080 # 设定web访问端口号，也是http监听端口
+      connection-timeout: 60000
+      servlet:
+        context-path: /monitor # 2.0之后的配置，应用的上下文路径，也可以称为项目路径，是构成url地址的一部分
+      compression:
+        enabled: true # 是否开启压缩，默认为false
+      http2:
+        enabled: true # 应用支持http2
+    ```
+4. 编写helloworld服务
     ```
     package top.lvzhiqiang.controller;
     @RestController
@@ -100,7 +134,7 @@ SpringMVC：
         标注在方法上(返回某个实例的方法),相当于spring的xml配置文件中的<bean>
         用来注册bean对象(实例化bean,并交给spring管理)
     ```
-4. 启动应用
+5. 启动应用
     ```
     方法1：
         直接启动main方法,main方法中指定IndexController为启动入口,默认端口号为8080。
@@ -383,24 +417,55 @@ SpringMVC：
     
 ### 数据访问
 
-- `整合mybatis`
+- `整合mybatis和HikariCP`
     ```
-    1.pom文件引入mybatis相关的依赖包
+    1.pom文件中引入数据源驱动与mybatis依赖
+        <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.1.1</version>
         </dependency>
+        <!-- mysql驱动 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.21</version>
         </dependency>
-    2.修改application.properties
-        spring.datasource.jdbc-url=jdbc:mysql://localhost:3306/test
-        spring.datasource.username=root
-        spring.datasource.password=root
-        spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+    2.在application.yml中配置数据源和mybatis
+        ###########################################################
+        #
+        # 配置数据源信息
+        #
+        ###########################################################
+        spring:
+          datasource: # 数据源的相关配置
+            type: com.zaxxer.hikari.HikariDataSource # 数据源类型：HikariCP
+            driver-class-name: com.mysql.jdbc.Driver # mysql驱动
+            url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect
+            username: root
+            password: root
+          hikari: # Hikari连接池配置
+            connection-timeout: 30000 # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQ
+            minimum-idle: 5 # 最小空闲连接数
+            maximum-pool-size: 20 # 最大连接数，默认是10
+            auto-commit: true # 自动提交
+            idle-timeout: 600000 # 连接超时的最大时长（毫秒），超时则被释放（retired），默认:10分钟
+            pool-name: DateSourceHikariCP # 连接池名字
+            max-lifetime: 1800000 # 此属性控制池中连接的最长生命周期（毫秒），值0表示无限生命周期，超时而且没被使用则被释放（retired），默认:30分钟
+            connection-test-query: SELECT 1
+        ###########################################################
+        #
+        # mybatis配置
+        #
+        ###########################################################
+        mybatis:
+          type-aliases-package: com.riskraider.monitor.entity # 所有POJO类所在包路径，只能指定具体的包，多个配置可以使用英文逗号隔开
+          mapper-locations: classpath:mapper/**/*.xml # mapper映射文件的路径，支持Ant风格的通配符，多个配置可以使用英文逗号隔开
+          configuration:
+            # 开启驼峰命名转换，如：Table(create_time) -> Entity(createTime)。
+            # 不需要我们关心怎么进行字段匹配，mybatis会自动识别`大写字母与下划线`
+            map-underscore-to-camel-case: true
     3.Mapper代码
         public interface UserMapper {
         	@Select("SELECT * FROM USERS WHERE NAME = #{name}")
