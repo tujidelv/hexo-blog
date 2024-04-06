@@ -20,387 +20,64 @@ tags:
 
 ## 开始
 
-### `Trojan全平台客户端`
+## `Trojan全平台客户端`
 
-- 前言
-    - 解决了MAC或Windows系统上使用Trojan更方便的问题，不需要连接Scoks代理、启动trojan进程等这些步骤了。
-    - 新版本的Clash/ClashX支持SSR/Trojan/V2ray等协议，支持节点订阅，不得不说Trojan客户端的软件匹配速度是越来越快了。
-    - **Clash 不支持 SSR 节点的订阅，若是只有 SSR 的订阅地址，请自行更换 Clash 内核 （ClashR 支持 SSR）。**
-- Clash下载地址
-    - Clash项目地址：[点击访问](https://github.com/Dreamacro/clash)
-    - Windows平台项目开源地址：[点击访问](https://github.com/Fndroid/clash_for_windows_pkg)
-    - MacOS平台项目开源地址：[点击访问](https://github.com/yichengchen/clashX)
-    - 安卓平台项目开源地址：[点击访问](https://github.com/Kr328/ClashForAndroid)
-    - Clash Windows 0.10.4汉化包：[点击下载](https://t.me/bozaiweb/427566)（7月8日更新） （支持WIN和MAC的CLASH汉化，汉化说明在包内）
-- 标准Clash配置文件
-    ```
-    # Port of HTTP(S) proxy server on the local end
-    port: 7890
-     
-    # Port of SOCKS5 proxy server on the local end
-    socks-port: 7891
-     
-    # Transparent proxy server port for Linux and macOS
-    # redir-port: 7892
-     
-    # HTTP(S) and SOCKS5 server on the same port
-    # mixed-port: 7890
-     
-    # authentication of local SOCKS5/HTTP(S) server
-    # authentication:
-    #  - "user1:pass1"
-    #  - "user2:pass2"
-     
-    # Set to true to allow connections to local-end server from
-    # other LAN IP addresses
-    allow-lan: false
-     
-    # This is only applicable when `allow-lan` is `true`
-    # '*': bind all IP addresses
-    # 192.168.122.11: bind a single IPv4 address
-    # "[aaaa::a8aa:ff:fe09:57d8]": bind a single IPv6 address
-    bind-address: '*'
-     
-    # Clash router working mode
-    # rule: rule-based packet routing
-    # global: all packets will be forwarded to a single endpoint
-    # direct: directly forward the packets to the Internet
-    mode: rule
-     
-    # Clash by default prints logs to STDOUT
-    # info / warning / error / debug / silent
-    log-level: info
-     
-    # When set to false, resolver won't translate hostnames to IPv6 addresses
-    ipv6: true
-     
-    # RESTful web API listening address
-    external-controller: 127.0.0.1:9090
-     
-    # A relative path to the configuration directory or an absolute path to a
-    # directory in which you put some static web resource. Clash core will then
-    # serve it at `${API}/ui`.
-    # external-ui: folder
-     
-    # Secret for the RESTful API (optional)
-    # Authenticate by spedifying HTTP header `Authorization: Bearer ${secret}`
-    # ALWAYS set a secret if RESTful API is listening on 0.0.0.0
-    # secret: ""
-     
-    # Outbound interface name
-    interface-name: en0
-     
-    # Static hosts for DNS server and connection establishment, only works
-    # when `dns.enhanced-mode` is `redir-host`.
-    #
-    # Wildcard hostnames are supported (e.g. *.clash.dev, *.foo.*.example.com)
-    # Non-wildcard domain names has a higher priority than wildcard domain names
-    # e.g. foo.example.com > *.example.com > .example.com
-    # P.S. +.foo.com equals to .foo.com and foo.com
-    hosts:
-      'mtalk.google.com': 108.177.125.188
-      # '*.clash.dev': 127.0.0.1
-      # '.dev': 127.0.0.1
-      # 'alpha.clash.dev': '::1'
-     
-    # DNS server settings
-    # This section is optional. When not present, DNS server will be disabled.
-    dns:
-      enable: false
-      listen: 0.0.0.0:53
-      # ipv6: false # when false, response to AAAA questions will be empty
-     
-      # These nameservers are used to resolve the DNS nameserver hostnames below.
-      # Specify IP addresses only
-      default-nameserver:
-        - 114.114.114.114
-        - 8.8.8.8
-      enhanced-mode: redir-host # or fake-ip
-      fake-ip-range: 198.18.0.1/16 # Fake IP addresses pool CIDR
-      
-      # Hostnames in this list will not be resolved with fake IPs
-      # i.e. questions to these domain names will always be answered with their
-      # real IP addresses
-      # fake-ip-filter:
-      #   - '*.lan'
-      #   - localhost.ptlogin2.qq.com
-      
-      # Supports UDP, TCP, DoT, DoH. You can specify the port to connect to.
-      # All DNS questions are sent directly to the nameserver, without proxies
-      # involved. Clash answers the DNS question with the first result gathered.
-      nameserver:
-        - 114.114.114.114 # default value
-        - 8.8.8.8 # default value
-        - tls://dns.rubyfish.cn:853 # DNS over TLS
-        - https://1.1.1.1/dns-query # DNS over HTTPS
-     
-      # When `fallback` is present, the DNS server will send concurrent requests
-      # to the servers in this section along with servers in `nameservers`.
-      # The answers from fallback servers are used when the GEOIP country
-      # is not `CN`.
-      # fallback:
-      #   - tcp://1.1.1.1
-     
-      # If IP addresses resolved with servers in `nameservers` are in the specified
-      # subnets below, they are considered invalid and results from `fallback`
-      # servers are used instead.
-      #
-      # IP address resolved with servers in `nameserver` is used when
-      # `fallback-filter.geoip` is true and when GEOIP of the IP address is `CN`.
-      #
-      # If `fallback-filter.geoip` is false, results from `fallback` nameservers
-      # are always used, and answers from `nameservers` are discarded.
-      #
-      # This is a countermeasure against DNS pollution attacks.
-      fallback-filter:
-        geoip: true
-        ipcidr:
-          # - 240.0.0.0/4
-     
-    proxies:
-    # 支持的协议及加密算法示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/blob/master/README.md
-     
-     
-      # VMess(Websocket + TLS)
-      - name: "测试V2RAY"
-        type: vmess
-        server: test.bozai.us 
-        port: 443
-        uuid: 6d499645-649f-48c7-9841-424b3c955fa6
-        alterId: 22
-        cipher: auto
-        # udp: true
-        tls: true
-        # skip-cert-verify: true
-        network: ws
-        ws-path: /10e0521eb4/ 
-        # ws-headers:
-        #   Host: v2ray.com
-     
-      # Trojan
-      - name: "Trojan测试"
-        type: trojan
-        server: test1.bozai.us
-        port: 443
-        password: TRadayie
-        # udp: true
-        # sni: example.com # aka server name
-        # alpn:
-        #   - h2
-        #   - http/1.1
-        # skip-cert-verify: true
-     
-    # 服务器节点订阅
-    proxy-providers:
-      # name: # Provider 名称
-      #   type: http # http 或 file
-      #   path: # 文件路径
-      #   url: # 只有当类型为 HTTP 时才可用，您不需要在本地空间中创建新文件。
-      #   interval: # 自动更新间隔，仅在类型为 HTTP 时可用
-      #   health-check: # 健康检查选项从此处开始
-      #     enable:
-      #     url: 
-      #     interval: 
-     
-      #
-      # 「url」参数填写订阅链接
-      #
-      # 订阅链接可以使用 API 进行转换，如：https://sub.dler.io/
-      #
-      # 1.模式选择「进阶模式」 2.填写订阅链接 3.勾选「输出为 Node List」 4.「生成订阅链接」
-      #
-     
-     SuYing666-Sub: # 速鹰666 https://goii.cc/666  机场订阅链接
-        type: http
-        url: "https://api.dler.io/sub?target=clash&url=https%3A%2F%2Fdingyue.suying666.info%2Flink%2F1VQMsXdKlJ5E2jFV%3Fsub%3D3&emoji=false&list=true&udp=false&tfo=false&scv=false&fdn=false&sort=false"
-        interval: 3600
-        path: ./Proxy/ProxyList.yaml # 不同机场不同命名
-        health-check:
-          enable: true
-          interval: 600
-          url: http://www.gstatic.com/generate_204
-     
-     SuYing777-Sub: # 速鹰666 https://goii.cc/666  机场订阅链接
-        type: http
-        url: "https://api.dler.io/sub?target=clash&url=https%3A%2F%2Fdingyue.suying666.info%2Flink%2F1VQMsXdKlJ5E2jFV%3Fsub%3D3&emoji=false&list=true&udp=false&tfo=false&scv=false&fdn=false&sort=false"
-        interval: 3600
-        path: ./Proxy/ProxyList.yaml # 不同机场不同命名
-        health-check:
-          enable: true
-          interval: 600
-          url: http://www.gstatic.com/generate_204
-     
-    proxy-groups:
-    # 策略组示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/blob/master/README.md
-     
-    #
-    # 策略组说明
-    #
-    # 「MATCH」类似 Surge 的「Final」，此处用于选择白名单模式(PROXY 策略)和黑名单模式(DIRECT 策略)
-    #
-    # 「Streaming」和「StreamingSE」比较好理解，有专用于流媒体的节点就设置到其中，如果没有「StreamingSE」的需求可以连带 Rule 部分一起删掉，「Streaming」需至少保留 Rule，用「PROXY」即可。
-    #
-    # 「PROXY」是代理规则策略，它可以指定为某个节点或嵌套一个其他策略组，如：「自动测试」、「Fallback」或「负载均衡」的策略组，关于这 3 个策略组的具体示例可以看官方示例：https://github.com/Dreamacro/clash
-    #
-     
-      # Fallback 比较实用的策略组类型，用于测试服务器节点的可用性，当第一个节点不可用时切换到第二个，以此类推。
-      - name: "Fallback"
-        type: fallback
-        proxies:
-          - 测试V2RAY
-          - Trojan测试
-        url: 'http://www.gstatic.com/generate_204'
-        interval: 300
-     
-      # 代理节点选择
-      - name: "PROXY"
-        type: select
-        proxies:
-          - Fallback
-          - 测试V2RAY
-          - Trojan测试
-          - SuYing666
-          - SuYing777
-     
-      # 白名单模式 PROXY, 黑名单模式 DIRECT, 不知道别动
-      - name: "MATCH"
-        type: select
-        proxies:
-          - PROXY
-          - DIRECT
-     
-      # 国际流媒体服务
-      - name: "Streaming"
-        type: select
-        proxies:
-          - PROXY
-          - 测试V2RAY
-          - Trojan测试
-     
-      # 中国流媒体服务（面向海外版本）
-      - name: "StreamingSE"
-        type: select
-        proxies:
-          - DIRECT
-          - 测试V2RAY
-          - Trojan测试
-     
-      # 手动选择节点订阅
-      - name: "SuYing666"
-        type: select # 亦可使用 fallback 或 load-balance
-        use:
-          - SuYing666-Sub
-     
-      - name: "SuYing777"
-        type: select # 亦可使用 fallback 或 load-balance
-        use:
-          - SuYing777-Sub
-     
-    # 关于 Rule Provider 请查阅：https://lancellc.gitbook.io/clash/clash-config-file/rule-provider
-     
-    rule-providers:
-    # name: # Provider 名称
-    #   type: http # http 或 file
-    #   behavior: classical # 或 ipcidr、domain
-    #   path: # 文件路径
-    #   url: # 只有当类型为 HTTP 时才可用，您不需要在本地空间中创建新文件。
-    #   interval: # 自动更新间隔，仅在类型为 HTTP 时可用
-     
-      Unbreak:
-        type: http
-        behavior: classical
-        path: ./RuleSet/Unbreak.yaml
-        url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Unbreak.yaml
-        interval: 86400
-     
-      Streaming:
-        type: http
-        behavior: classical
-        path: ./RuleSet/StreamingMedia/Streaming.yaml
-        url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/StreamingMedia/Streaming.yaml
-        interval: 86400
-     
-      StreamingSE:
-        type: http
-        behavior: classical
-        path: ./RuleSet/StreamingMedia/StreamingSE.yaml
-        url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/StreamingMedia/StreamingSE.yaml
-        interval: 86400
-     
-      Global:
-        type: http
-        behavior: classical
-        path: ./RuleSet/Global.yaml
-        url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Global.yaml
-        interval: 86400
-     
-      China:
-        type: http
-        behavior: classical
-        path: ./RuleSet/China.yaml
-        url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/China.yaml
-        interval: 86400
-     
-      ChinaIP:
-        type: http
-        behavior: ipcidr
-        path: ./RuleSet/Extra/ChinaIP.yaml
-        url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Extra/ChinaIP.yaml
-        interval: 86400
-     
-    # 规则
-    rules:
-      # Unbreak
-      - RULE-SET,Unbreak,DIRECT
-     
-      # Global Area Network
-     
-      # (Streaming Media)
-      - RULE-SET,Streaming,Streaming
-     
-      # (StreamingSE)
-      - RULE-SET,StreamingSE,StreamingSE
-     
-      # (DNS Cache Pollution) / (IP Blackhole) / (Region-Restricted Access Denied) / (Network Jitter)
-      - RULE-SET,Global,PROXY
-     
-      # China Area Network
-      - RULE-SET,China,DIRECT
-     
-      # Local Area Network
-      - IP-CIDR,192.168.0.0/16,DIRECT
-      - IP-CIDR,10.0.0.0/8,DIRECT
-      - IP-CIDR,172.16.0.0/12,DIRECT
-      - IP-CIDR,127.0.0.0/8,DIRECT
-      - IP-CIDR,100.64.0.0/10,DIRECT
-      - IP-CIDR,224.0.0.0/4,DIRECT
-     
-      # （可选）使用来自 ipipdotnet 的 ChinaIP 以解决数据不准确的问题，使用 ChinaIP.yaml 时可禁用下列直至（包括）「GEOIP,CN」规则
-      # - RULE-SET,ChinaIP,DIRECT
-      # Tencent
-      - IP-CIDR,119.28.28.28/32,DIRECT
-      - IP-CIDR,182.254.116.0/24,DIRECT
-      # GeoIP China
-      - GEOIP,CN,DIRECT
-     
-      - MATCH,MATCH
-    ```
-- 老版Clash规则配置文件范例（.yaml 文件）
-    - 配置文件托管在 GitHub：[点击访问](https://raw.githubusercontent.com/V2RaySSR/Tools/master/clash.yaml)（不需富强）
-    - 配置文件托管在 GitHub：[点击访问](https://github.com/V2RaySSR/Tools/blob/master/clash.yaml)（需要富强）
-- 新版Clash规则配置文件范例（.yaml 文件）
-    - 配置文件托管在 GitHub：[点击访问](https://github.com/ConnersHua/Profiles/tree/master/Clash)（
+### Windows
 
+- v2rayN
+  1. Github下载<https://github.com/2dust/v2rayN/releases>；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1s5gDIPgvJN2TdHnp-YsC7A?pwd=8888) `提取码8888`。
+  2. 点击左上角服务器图标添加节点。支持剪贴板、二维码、添加[Trojan]等方式。
+  3. 选中节点按回车键或者右键选择设为活动服务器，然后主界面下方-》系统代理-》选择自动配置系统代理，软件图标变成红色即表示已经开启翻墙。
+  ```
+  1. 不能翻墙怎么解决？
+    1. 修改v2rayN的内核。设置-》参数设置-》Core类型设置，可以尝试对节点切换不同的内核。
+    2. 同步系统时间。
+    3. 打开浏览器无痕模式窗口。
+    4. 多切换节点。
+    5. 下载旧版本的v2rayN软件。
+  2. 能翻墙但是网速很慢怎么解决？
+    1. 设置-》路由设置-》绕过大陆，双击添加规则，在Domain中添加以下域名，一行一个域名，然后右击上移置顶。
+    2. `fonts.googleapis.com,translate.googleapis.com,gstatic.com`。
+  ```
+- Trojan-Qt5
+  1. Github下载<https://github.com/Trojan-Qt5/Trojan-Qt5/releases>；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1_CYwT6VDaZPBSHMrEvs3iQ?pwd=8888) `提取码8888`。
+  2. 菜单栏连接-》添加。支持剪贴板、二维码、手动添加[Trojan]、`config.json`等方式。
+  3. 选中节点点击连接，开启翻墙。
+  4. 右键图标可更改系统代理模式，包括直连模式、PAC模式、全局模式。
 
-### `Trojan面板`
+### Android
 
-待更新...
+- v2rayNG
+  1. Github下载<https://github.com/2dust/v2rayNG/releases>；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1R960U-r8URwrH9jMgrT_oQ?pwd=8888) `提取码8888`。
+  2. 点击右上角+号添加节点。支持剪贴板、二维码、手动输入[Trojan]等方式。
+  3. 点击右下角开关图标开启翻墙，然后点击下方灰色部分查看能不能使用及延迟大小；重新点击该图标即关闭翻墙。
+  4. 点击左上角图标进入设置选项，找到路由设置=》预定义规则，默认是全局代理，一般选择绕过局域网及大陆地址而后代理，这个会更节省流量。 
+- Igniter
+  1. Github下载<https://github.com/trojan-gfw/igniter/releases>；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1LKOjYQWgtGexbo6IO00WgA?pwd=8888) `提取码8888`。
+  2. 分别输入域名、端口、密码，可开启过滤大陆域名/IP，点击连接开启翻墙。
+
+### Mac
+
+- Shadowrocket
+  1. 打开 AppStore，登录美区 Apple ID 账号，美区 Apple ID 注册教程<https://youtu.be/hyopGvMVN1A>。
+  2. 搜索小火箭 Shadowrocket，需要购买后才能下载使用。注意不支持Intel芯片的电脑，支持M1-M3芯片的电脑。
+  3. 点击全局路由设置翻墙模式。默认是配置，指的是分流规则模式，就是国内网站走直连，国外网站走代理，这个模式会更节省流量；代理，指的是全局模式，就是所有的网站都走代理。
+- Quantumult X
+  1. 打开 AppStore，登录美区 Apple ID 账号，美区 Apple ID 注册教程同上。
+  2. 搜索圈X Quantumult X，需要购买后才能下载使用。
+  3. 右击右上角的小风车图标设置翻墙模式。3个图标分别是规则分流模式、全部直连、全部代理。
+  4. Quantumult X 新手入门教程：<https://github.com/kjfx/QuantumultX>
+- Trojan-Qt5
+  同Windows版。  
+
+### IOS
+
+- Shadowrocket
+  同MAC版。
 
 ## 参考链接
 
-<https://www.v2rayssr.com/clashxx.html>
-<https://github.com/DivineEngine/Profiles/issues/1>
-<https://acl4ssr.netlify.app>
+<https://naiyous.com/3717.html>
 
 ## 结束语
 
