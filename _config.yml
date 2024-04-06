@@ -16,8 +16,11 @@ timezone:
 ## 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，则请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。
 url: https://lvzhiqiang.top # 网址
 root: / # 网站根目录
-permalink: :year/:title.html # 文章的永久链接格式
+permalink: :year/:month/:day/:title.html # 文章的永久链接格式
 permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory，目录，这一块一般不需要修改
 source_dir: source # 资源文件夹，这个文件夹用来存放内容。
@@ -36,7 +39,10 @@ skip_render: # 跳过指定文件的渲染，您可使用 glob 表达式来匹�
 new_post_name: :title.md # Hexo 默认以标题做为文件名称，设为 :year-:month-:day-:title.md 可让您更方便的通过日期来管理文章
 default_layout: post # 预设布局，Hexo 有三种默认布局：post、page 和 draft，分别对应不同的路径：source/_posts、source和source/_drafts
 titlecase: false # 把标题转换为 title case
-external_link: true # 在新标签中打开链接
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
 filename_case: 0 # 把文件名称转换为 (1) 小写或 (2) 大写
 render_drafts: false # 显示草稿，草稿默认不会显示在页面中
 post_asset_folder: true # 启动 Asset 文件夹
@@ -46,8 +52,15 @@ highlight: # 代码块的设置
   enable: false
   line_number: true
   auto_detect: false
-  tab_replace:
-  
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
@@ -68,6 +81,11 @@ tag_map:
 ## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD # 日期格式
 time_format: HH:mm:ss # 时间格式
+## updated_option supports 'mtime', 'date', 'empty'
+updated_option: 'mtime'
+
+encrypt:
+  enable: true
 
 # Pagination，分页，这一块一般不需要修改
 ## Set per_page to 0 to disable pagination
@@ -89,7 +107,7 @@ type: atom
 path: atom.xml
 limit: 20
 ## Themes: https://hexo.io/themes/
-theme: 3-hexo # 当前主题名称。值为false时禁用主题
+theme: hexo-theme-3-hexo # 当前主题名称。值为false时禁用主题
 
 
 # Deployment，部署
@@ -101,7 +119,7 @@ deploy:
   repo: ssh://git@144.34.207.84:26376/www/wwwroot/hexo.lvzhiqiang.top/hexo-blog.git
   branch: master
   message: "Site updateed: {{ now('YYYY-MM-DD HH:mm:ss') }}"
-- type: git
-  repo: git@github.com:tujidelv/tujidelv.github.io.git
-  branch: master
-  message: "Site updateed: {{ now('YYYY-MM-DD HH:mm:ss') }}"
+#- type: git
+#  repo: git@github.com:tujidelv/tujidelv.github.io.git
+#  branch: master
+#  message: "Site updateed: {{ now('YYYY-MM-DD HH:mm:ss') }}"
