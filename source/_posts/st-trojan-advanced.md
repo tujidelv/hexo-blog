@@ -20,12 +20,12 @@ tags:
 
 ## 开始
 
-## `Trojan全平台客户端`
+## Trojan全平台客户端
 
-### Windows
+### `Windows`
 
 - v2rayN
-  1. Github下载<https://github.com/2dust/v2rayN/releases>；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1s5gDIPgvJN2TdHnp-YsC7A?pwd=8888) `提取码8888`。
+  1. Github下载[v2rayN](https://github.com/2dust/v2rayN/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1s5gDIPgvJN2TdHnp-YsC7A?pwd=8888) `提取码8888`。
   2. 点击左上角服务器图标添加节点。支持剪贴板、二维码、添加[Trojan]等方式。
   3. 选中节点按回车键或者右键选择设为活动服务器，然后主界面下方-》系统代理-》选择自动配置系统代理，软件图标变成红色即表示已经开启翻墙。
   ```
@@ -40,24 +40,36 @@ tags:
     2. `fonts.googleapis.com,translate.googleapis.com,gstatic.com`。
   ```
 - Trojan-Qt5
-  1. Github下载<https://github.com/Trojan-Qt5/Trojan-Qt5/releases>；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1_CYwT6VDaZPBSHMrEvs3iQ?pwd=8888) `提取码8888`。
+  1. Github下载[Trojan-Qt5](https://github.com/Trojan-Qt5/Trojan-Qt5/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1_CYwT6VDaZPBSHMrEvs3iQ?pwd=8888) `提取码8888`。
   2. 菜单栏连接-》添加。支持剪贴板、二维码、手动添加[Trojan]、`config.json`等方式。
   3. 选中节点点击连接，开启翻墙。
   4. 右键图标可更改系统代理模式，包括直连模式、PAC模式、全局模式。
+- Qv2ray
+  1. Github下载[Qv2ray](https://github.com/Qv2ray/Qv2ray/releases)、[v2ray-core](https://github.com/v2ray/v2ray-core/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1N5ZRDOYkZaH7oWg9cxziBQ?pwd=8888) `提取码8888`。
+  2. 同Mac版。
 
-### Android
+### `Android`
 
 - v2rayNG
-  1. Github下载<https://github.com/2dust/v2rayNG/releases>；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1R960U-r8URwrH9jMgrT_oQ?pwd=8888) `提取码8888`。
+  1. Github下载[v2rayNG](https://github.com/2dust/v2rayNG/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1R960U-r8URwrH9jMgrT_oQ?pwd=8888) `提取码8888`。
   2. 点击右上角+号添加节点。支持剪贴板、二维码、手动输入[Trojan]等方式。
   3. 点击右下角开关图标开启翻墙，然后点击下方灰色部分查看能不能使用及延迟大小；重新点击该图标即关闭翻墙。
   4. 点击左上角图标进入设置选项，找到路由设置=》预定义规则，默认是全局代理，一般选择绕过局域网及大陆地址而后代理，这个会更节省流量。 
 - Igniter
-  1. Github下载<https://github.com/trojan-gfw/igniter/releases>；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1LKOjYQWgtGexbo6IO00WgA?pwd=8888) `提取码8888`。
+  1. Github下载[igniter](https://github.com/trojan-gfw/igniter/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1LKOjYQWgtGexbo6IO00WgA?pwd=8888) `提取码8888`。
   2. 分别输入域名、端口、密码，可开启过滤大陆域名/IP，点击连接开启翻墙。
 
-### Mac
+### `Mac`
 
+- Qv2ray
+  1. Github下载[Qv2ray](https://github.com/Qv2ray/Qv2ray/releases)、[v2ray-core](https://github.com/v2ray/v2ray-core/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1N5ZRDOYkZaH7oWg9cxziBQ?pwd=8888) `提取码8888`。
+  2. 安装 Qv2ray主程序后，将附带的so文件插件放入`/Applications/qv2ray.app/Contents/Resources/plugins`，支持Vmess、Vless、Trojan、SSR等代理协议。
+  3. 将v2ray core解压后放入`/Applications/qv2ray.app/Contents/`，主界面首选项-》内核设置将v2ray可执行文件路径和资源目录设置成该目录，然后点击检查v2ray核心设置，成功会弹窗v2ray版本信息。
+  4. 添加节点后，可选中节点右键选择连接到此服务器开启翻墙。
+- Trojan-Qt5
+  1. Github下载[Trojan-Qt5](https://github.com/Trojan-Qt5/Trojan-Qt5/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1_CYwT6VDaZPBSHMrEvs3iQ?pwd=8888) `提取码8888`。
+  2. 同Windows版。
+---
 - Shadowrocket
   1. 打开 AppStore，登录美区 Apple ID 账号，美区 Apple ID 注册教程<https://youtu.be/hyopGvMVN1A>。
   2. 搜索小火箭 Shadowrocket，需要购买后才能下载使用。注意不支持Intel芯片的电脑，支持M1-M3芯片的电脑。
@@ -67,10 +79,8 @@ tags:
   2. 搜索圈X Quantumult X，需要购买后才能下载使用。
   3. 右击右上角的小风车图标设置翻墙模式。3个图标分别是规则分流模式、全部直连、全部代理。
   4. Quantumult X 新手入门教程：<https://github.com/kjfx/QuantumultX>
-- Trojan-Qt5
-  同Windows版。  
 
-### IOS
+### `IOS`
 
 - Shadowrocket
   同MAC版。
@@ -78,6 +88,7 @@ tags:
 ## 参考链接
 
 <https://naiyous.com/3717.html>
+<https://v2rayssr.com/trojancdn.html>
 
 ## 结束语
 
