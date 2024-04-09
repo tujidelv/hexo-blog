@@ -48,24 +48,19 @@ tags:
   1. Github下载[Qv2ray](https://github.com/Qv2ray/Qv2ray/releases)、[v2ray-core](https://github.com/v2ray/v2ray-core/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1N5ZRDOYkZaH7oWg9cxziBQ?pwd=8888) `提取码8888`。
   2. 同Mac版。
 
-### `Android`
-
-- v2rayNG
-  1. Github下载[v2rayNG](https://github.com/2dust/v2rayNG/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1R960U-r8URwrH9jMgrT_oQ?pwd=8888) `提取码8888`。
-  2. 点击右上角+号添加节点。支持剪贴板、二维码、手动输入[Trojan]等方式。
-  3. 点击右下角开关图标开启翻墙，然后点击下方灰色部分查看能不能使用及延迟大小；重新点击该图标即关闭翻墙。
-  4. 点击左上角图标进入设置选项，找到路由设置=》预定义规则，默认是全局代理，一般选择绕过局域网及大陆地址而后代理，这个会更节省流量。 
-- Igniter
-  1. Github下载[igniter](https://github.com/trojan-gfw/igniter/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1LKOjYQWgtGexbo6IO00WgA?pwd=8888) `提取码8888`。
-  2. 分别输入域名、端口、密码，可开启过滤大陆域名/IP，点击连接开启翻墙。
-
 ### `Mac`
 
 - Qv2ray
-  1. Github下载[Qv2ray](https://github.com/Qv2ray/Qv2ray/releases)、[v2ray-core](https://github.com/v2ray/v2ray-core/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1N5ZRDOYkZaH7oWg9cxziBQ?pwd=8888) `提取码8888`。
-  2. 安装 Qv2ray主程序后，将附带的so文件插件放入`/Applications/qv2ray.app/Contents/Resources/plugins`，支持Vmess、Vless、Trojan、SSR等代理协议。
-  3. 将v2ray core解压后放入`/Applications/qv2ray.app/Contents/`，主界面首选项-》内核设置将v2ray可执行文件路径和资源目录设置成该目录，然后点击检查v2ray核心设置，成功会弹窗v2ray版本信息。
-  4. 添加节点后，可选中节点右键选择连接到此服务器开启翻墙。
+  1. Github下载[Qv2ray](https://github.com/Qv2ray/Qv2ray/releases)、[v2ray-core](https://github.com/v2ray/v2ray-core/releases)、[trojan-go](https://github.com/p4gefau1t/trojan-go/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1N5ZRDOYkZaH7oWg9cxziBQ?pwd=8888) `提取码8888`。
+  2. 文件内容主要包括 Qv2ray客户端、Qv2ray v2ray核心、Qv2ray插件、Qv2ray Trojan-go插件核心（可选）。
+  3. 设置中文语言，点击首选项-》常规设置，语言选中 zh_CN，保存后重启即可切换为简体中文。
+  4. 设置v2ray核心，将下载好的v2ray核心解压后放入`/Applications/qv2ray.app/Contents/`，点击首选项-》内核设置，将v2ray可执行文件路径设置为解压好的核心文件夹下的V2ray可执行文件即可，资源目录设置成解压好的核心文件夹即可，然后点击一次"检查v2ray核心设置"，确认核心无误后会弹窗v2ray版本信息。
+  5. 安装协议插件，点击插件-》打开本地插件目录，将下载好的插件(后缀.so)拖入至弹出的文件夹内，重启Qv2ray再点击"插件"菜单即可看到已安装的插件。
+  6. 添加节点后，可选中节点右键选择连接到此服务器开启翻墙。
+  ```
+  1. (可选)设置Trojan-Go插件核心，在插件列表中找到Trojan-Go插件，并点击设定，点击选择并定位到解压好的核心文件路径下选择trojan-go可执行文件即可，点击"Test Run"弹窗版本信息即设置成功。
+  2. TODO
+  ```
 - Trojan-Qt5
   1. Github下载[Trojan-Qt5](https://github.com/Trojan-Qt5/Trojan-Qt5/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1_CYwT6VDaZPBSHMrEvs3iQ?pwd=8888) `提取码8888`。
   2. 同Windows版。
@@ -79,6 +74,17 @@ tags:
   2. 搜索圈X Quantumult X，需要购买后才能下载使用。
   3. 右击右上角的小风车图标设置翻墙模式。3个图标分别是规则分流模式、全部直连、全部代理。
   4. Quantumult X 新手入门教程：<https://github.com/kjfx/QuantumultX>
+
+### `Android`
+
+- v2rayNG
+  1. Github下载[v2rayNG](https://github.com/2dust/v2rayNG/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1R960U-r8URwrH9jMgrT_oQ?pwd=8888) `提取码8888`。
+  2. 点击右上角+号添加节点。支持剪贴板、二维码、手动输入[Trojan]等方式。
+  3. 点击右下角开关图标开启翻墙，然后点击下方灰色部分查看能不能使用及延迟大小；重新点击该图标即关闭翻墙。
+  4. 点击左上角图标进入设置选项，找到路由设置=》预定义规则，默认是全局代理，一般选择绕过局域网及大陆地址而后代理，这个会更节省流量。
+- Igniter
+  1. Github下载[igniter](https://github.com/trojan-gfw/igniter/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1LKOjYQWgtGexbo6IO00WgA?pwd=8888) `提取码8888`。
+  2. 分别输入域名、端口、密码，可开启过滤大陆域名/IP，点击连接开启翻墙。
 
 ### `IOS`
 
