@@ -2,7 +2,8 @@
 title: 度盘命令行下载利器BaiduPCS-Go
 date: 2020-04-16 14:32:42
 categories:
-- 软件工具
+- 软件
+- 资源下载
 tags:
 - fq
 ---

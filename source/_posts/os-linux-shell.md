@@ -2,7 +2,8 @@
 title: Linux 系统入门：Shell 脚本
 date: 2019-01-02 20:51:18
 categories:
-- 操作系统
+- 运维
+- Linux
 tags:
 - linux
 ---

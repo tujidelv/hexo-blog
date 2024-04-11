@@ -2,7 +2,8 @@
 title: MacOS 系统入门：系统使用
 date: 2019-10-27 16:01:06
 categories:
-- 操作系统
+- 运维
+- Mac
 tags:
 - mac
 ---

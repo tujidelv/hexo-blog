@@ -2,7 +2,8 @@
 title: 超强SSH客户端 FinalShell
 date: 2018-12-01 17:57:50
 categories:
-- 软件工具
+- 软件
+- 其他归档
 tags:
 - ssh
 ---

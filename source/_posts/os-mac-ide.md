@@ -2,7 +2,8 @@
 title: MacOS 系统进阶：开发环境Java + Node + Docker
 date: 2019-11-24 17:20:38
 categories:
-- 操作系统
+- 运维
+- Mac
 tags:
 - mac
 ---

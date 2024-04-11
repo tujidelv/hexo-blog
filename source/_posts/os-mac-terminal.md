@@ -2,7 +2,8 @@
 title: MacOS 系统进阶：终端方案iTerm2 + Zsh + Vim
 date: 2019-11-24 14:02:26
 categories:
-- 操作系统
+- 运维
+- Mac
 tags:
 - mac
 ---

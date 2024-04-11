@@ -2,7 +2,8 @@
 title: 消息中间件之 RocketMQ
 date: 2019-03-10 10:06:31
 categories:
-- 应用框架
+- 后端
+- Java
 tags:
 - 分布式
 ---

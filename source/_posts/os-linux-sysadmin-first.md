@@ -2,7 +2,8 @@
 title: Linux 系统管理：磁盘、文件系统、RAID、LVM2、程序包
 date: 2019-01-21 21:19:31
 categories:
-- 操作系统
+- 运维
+- Linux
 tags:
 - linux
 ---

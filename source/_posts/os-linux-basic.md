@@ -2,7 +2,8 @@
 title: Linux 系统入门：基础
 date: 2018-12-23 17:33:08
 categories:
-- 操作系统
+- 运维
+- Linux
 tags:
 - linux
 ---

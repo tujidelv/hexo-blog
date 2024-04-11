@@ -2,7 +2,8 @@
 title: Linux 系统应用：Mysql数据库自动备份脚本
 date: 2019-03-09 15:23:53
 categories:
-- 操作系统
+- 运维
+- Linux
 tags:
 - linux
 ---

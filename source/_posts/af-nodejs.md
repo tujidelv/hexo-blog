@@ -2,7 +2,8 @@
 title: NodeJS 札记
 date: 2018-12-01 16:28:22
 categories:
-- 应用框架
+- 前端
+- 开发语言
 tags:
 - nodejs
 ---

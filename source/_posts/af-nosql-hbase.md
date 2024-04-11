@@ -2,7 +2,8 @@
 title: NoSQL数据库之HBase
 date: 2020-05-26 15:19:46
 categories:
-- 应用框架
+- 后端
+- BigData
 tags:
 - BigData
 ---

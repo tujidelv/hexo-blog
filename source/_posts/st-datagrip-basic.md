@@ -2,7 +2,8 @@
 title: DataGrip札记：基础
 date: 2019-12-10 09:52:05
 categories:
-- 软件工具
+- 后端
+- Java
 tags:
 - jetbrains
 ---

@@ -2,7 +2,8 @@
 title: 阿香婆屏幕截图工具 Ashampoo Snap
 date: 2018-12-01 18:18:35
 categories:
-- 软件工具
+- 软件
+- 其他归档
 tags:
 - screenshot
 ---

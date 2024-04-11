@@ -2,7 +2,8 @@
 title: Trojan科学上网：基础
 date: 2020-03-08 13:40:47
 categories:
-- 软件工具
+- 软件
+- 科学上网
 tags:
 - fq
 ---

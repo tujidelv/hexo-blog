@@ -2,7 +2,8 @@
 title: Hexo 札记
 date: 2018-12-01 18:25:23
 categories:
-- 应用框架
+- 软件
+- 其他归档
 tags:
 - hexo
 - nodejs

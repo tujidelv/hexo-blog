@@ -2,7 +2,8 @@
 title: IDEA热部署插件JRebel
 date: 2020-01-13 16:26:33
 categories:
-- 软件工具
+- 后端
+- Java
 tags:
 - jetbrains
 ---

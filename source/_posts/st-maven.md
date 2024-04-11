@@ -2,7 +2,8 @@
 title: Maven 札记：基础
 date: 2019-03-14 17:44:01
 categories:
-- 软件工具
+- 后端
+- Java
 tags:
 - maven
 ---

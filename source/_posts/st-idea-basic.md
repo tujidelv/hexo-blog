@@ -2,7 +2,8 @@
 title: IDEA 札记：基础
 date: 2018-12-01 16:51:07
 categories:
-- 软件工具
+- 后端
+- Java
 tags:
 - jetbrains
 ---

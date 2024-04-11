@@ -2,7 +2,8 @@
 title: Linux 系统入门：常用命令
 date: 2018-12-31 15:10:20
 categories:
-- 操作系统
+- 运维
+- Linux
 tags:
 - linux
 ---

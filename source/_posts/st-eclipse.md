@@ -2,7 +2,8 @@
 title: Eclipse 札记
 date: 2018-12-01 16:45:09
 categories:
-- 软件工具
+- 后端
+- Java
 tags:
 - eclipse
 ---

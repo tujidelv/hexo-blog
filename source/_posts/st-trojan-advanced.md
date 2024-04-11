@@ -2,7 +2,8 @@
 title: Trojan科学上网：进阶
 date: 2020-04-06 18:28:31
 categories:
-- 软件工具
+- 软件
+- 科学上网
 tags:
 - fq
 ---
@@ -95,6 +96,7 @@ tags:
 
 <https://naiyous.com/3717.html>
 <https://v2rayssr.com/trojancdn.html>
+<https://github.com/Loyalsoldier/v2ray-rules-dat>
 
 ## 结束语
 

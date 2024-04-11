@@ -2,7 +2,8 @@
 title: Linux 系统应用：常用程序包的安装与配置
 date: 2019-03-09 17:07:04
 categories:
-- 操作系统
+- 运维
+- Linux
 tags:
 - linux
 ---

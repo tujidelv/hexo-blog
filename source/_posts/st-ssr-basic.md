@@ -2,7 +2,8 @@
 title: SSR科学上网：基础
 date: 2018-12-09 13:14:25
 categories:
-- 软件工具
+- 软件
+- 科学上网
 tags:
 - fq
 ---

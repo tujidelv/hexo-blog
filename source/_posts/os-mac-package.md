@@ -2,7 +2,8 @@
 title: MacOS 系统进阶：包管理工具
 date: 2019-11-22 15:07:31
 categories:
-- 操作系统
+- 运维
+- Mac
 tags:
 - mac
 ---

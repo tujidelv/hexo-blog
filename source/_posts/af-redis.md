@@ -2,7 +2,8 @@
 title: 分布式系列之 Redis&Ehcache
 date: 2019-04-13 16:56:23
 categories:
-- 应用框架
+- 后端
+- Java
 tags:
 - 分布式
 ---
