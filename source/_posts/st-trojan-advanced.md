@@ -97,6 +97,7 @@ tags:
 <https://naiyous.com/3717.html>
 <https://v2rayssr.com/trojancdn.html>
 <https://github.com/Loyalsoldier/v2ray-rules-dat>
+<https://johnshall.github.io/Shadowrocket-ADBlock-Rules-Forever>
 
 ## 结束语
 
