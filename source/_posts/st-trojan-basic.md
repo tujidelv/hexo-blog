@@ -1,5 +1,5 @@
 ---
-title: Trojan科学上网：基础
+title: Trojan科学上网：搭建
 date: 2020-03-08 13:40:47
 categories:
 - 软件
@@ -7,8 +7,6 @@ categories:
 tags:
 - fq
 ---
-
-# Trojan科学上网：基础
 
 ## 目录
 
@@ -30,121 +28,126 @@ tags:
     ```
     V2ray是Nginx侦听443,数据->Nginx->V2ray;Trojan是自己侦听443,都是伪装成网站.
     ```
-- 系统要求及脚本介绍
-    ```
-    1、系统支持centos7+/debian9+/ubuntu16+
-    2、域名需要解析到VPS并生效。
-    3、脚本自动续签https证书
-    4、自动配置伪装网站，位于/usr/share/nginx/html/目录下，可在脚本中自行替换其中内容
-    5、请不要在任何生产环境使用一键脚本，此条适用于本站所有脚本，专门用来科学上网的VPS可以随意使用。
-    6、trojan不能用CDN，不要开启CDN
-    7、如果你在用谷歌云、阿里云等产品的时候，需要在控制台开放80、443端口。
-    9、可参考ssr文章安装相关的BBR加速
-    ```
+- Trojan-Go访问原理
+  ```
+  当一个客户端试图连接Trojan-Go的监听端口时，会发生下面的事情：
+  如果TLS握手成功，检测到TLS的内容非Trojan协议（有可能是HTTP请求，或者来自GFW的主动探测）。Trojan-Go将TLS连接代理到本地127.0.0.1:80上的HTTP服务。这时在远端看来，Trojan-Go服务就是一个HTTPS网站。
+  如果TLS握手成功，并且被确认是Trojan协议头部，并且其中的密码正确，那么服务器将解析来自客户端的请求并进行代理，否则和上一步的处理方法相同。
+  如果TLS握手失败，说明对方使用的不是TLS协议进行连接。此时Trojan-Go将这个TCP连接代理到本地127.0.0.1:1234上运行的HTTPS服务（或者HTTP服务），返回一个展示400 Bad Reqeust的HTTP页面。fallback_port是一个可选选项，如果没有填写，Trojan-Go会直接终止连接。虽然是可选的，但是还是强烈建议填写。
+  ```
 
 ## 部署
 
-### `服务端`
+### `准备工作`
 
-1. 下载并执行脚本
+- ►更新系统安装环境
+  ```bash
+  # 更新系统
+  yum update -y  #CentOS
+  apt update -y  #Debian
+  # 安装curl｜wget
+  yum install -y curl  #CentOS
+  yum install -y wget  #CentOS
+  apt-get install wget  #Debian Ubuntu
+  apt-get install curl  #Debian Ubuntu
+  ```
+- ►安装开心版宝塔(免手机验证)
+  - 直接安装V7.7.0的版本，之后的版本都会验证userInfo.json，虽然网上有大把的开心版，但不敢用。
+    ```bash
+    # Centos/Ubuntu/Debian安装命令 独立运行环境（py3.7）
+    curl -sSO https://raw.githubusercontent.com/8838/btpanel-v7.7.0/main/install/install_panel.sh && bash install_panel.sh
+    # 备用安装链接，适用于不能访问GitHub的服务器。
+    curl -sSO http://d.moe.ms/AAAAA/btpanel-v7.7.0/install/install_panel.sh && bash install_panel.sh
     ```
-     [root@host ssr]# wget --no-check-certificate https://raw.githubusercontent.com/atrandys/trojan/master/trojan_mult.sh
-     [root@host ssr]# chmod +x trojan_mult.sh
-     [root@host ssr]# ./trojan_mult.sh 2>&1 | tee trojan_mult.log
+  - 屏蔽手机号
+    ```bash
+    sed -i "s|bind_user == 'True'|bind_user == 'XXXX'|" /www/server/panel/BTPanel/static/js/index.js
     ```
-![抱歉,图片休息了](st-trojan-basic/st-trojan-basic-001.png "trojan脚本主界面")
-
-2. 选择安装trojan，然后输入解析到VPS的域名并回车（不要带http://），开始安装，然后等待安装完成即可。
-![抱歉,图片休息了](st-trojan-basic/st-trojan-basic-002.png "trojan安装完成")
-
----
-对于有安装宝塔面板的前提下,一般会事先安装好Nginx,而且已搭建Https的网站,如何已Trojan共存
-```
-方法一：让自己所有搭建的网站取消SSL证书,这样Nginx就能只启动80端口,而不会与Trojan的443端口冲突.只是不能用Https方式访问自己搭建的网站了.
-方法二：可更改Trojan运行在非443端口上,修改相关配置文件(服务端和客户端)即可;然后通过Nginx反向代理Trojan域名到该非443端口上.
-```
-
-### `客户端`
-
-- **Windows系统**
+  - 删除强制绑定手机js文件
+    ```bash
+    rm -f /www/server/panel/data/bind.pl
     ```
-    服务端安装完成后，会展示一条下载地址，复制地址，并下载下来运行即可。
-    如果你真的忘记下载了，那么进入/usr/share/nginx/html/目录下，找到一个乱码文件夹，进入会看到客户端文件，使用sftp下载下来即可。
-    解压缩下载的trojan-cli.zip的压缩包，进入文件夹并开启Trojan服务，Trojan会监听本地1080端口。
+  - 手动解锁宝塔所有付费插件为永不过期
     ```
-![抱歉,图片休息了](st-trojan-basic/st-trojan-basic-003.png "trojan客户端")
+    文件路径：/www/server/panel/data/plugin.json，搜索字符串："endtime": -1全部替换为"endtime": 999999999999
+    给plugin.json文件上锁防止自动修复为免费版：chattr +i /www/server/panel/data/plugin.json
     ```
-    1.如果软件支持配置socks5,直接指向127.0.0.1:1080即可.如Firefox,IDM等.
-    2.如果软件不支持配置socks5,可选择v2rayN/sstap/sockscap64/supercap等软件曲线实现代理.
-    3.浏览器插件:谷歌浏览器--SwitchyOmega
+- ►开启 BBR 加速
+  - 开启Debian10自带的BBR加速
+    ```bash
+    # 本脚本只针对 Debian≥9 或是 CentOS≥8 以上的系统，可以开启系统自带BBR加速。
+    echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+    sysctl -p
+    lsmod | grep bbr
     ```
-![抱歉,图片休息了](st-trojan-basic/st-trojan-basic-004.png "SwitchyOmega设置")    
----
-►V2rayN客户端：<https://github.com/2dust/v2rayN/releases>
-►SocksCap64：<https://www.sockscap64.com/sockscap-64-free-download-zh-hans>
-►SSTap：<https://www.sockscap64.com/changelog-of-sstap>
-►SwitchyOmega情景模式：<img src="st-trojan-basic/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1nN60uMMsit4XNYS90eASaw) `提取码8cp7`
-►SwitchyOmega规则GFWList：<https://github.com/gfwlist/gfwlist>
-
----
-
-- **Mac系统**
+  - 四合一 BBR Plus / 原版BBR / 魔改BBR
+    ```bash
+    # Centos 7, Debian 8/9, Ubuntu 16/18 测试通过, 不支持 OVZ
+    wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
     ```
-    1.如果软件支持配置socks5,直接指向127.0.0.1:1080即可.如Firefox,IDM等.
-    2.如果软件不支持配置socks5,可选择v2rayU/mellow等软件曲线实现代理.
-    3.浏览器插件:谷歌浏览器--SwitchyOmega
-    ```
----
-►Trojan Mac客户端：<https://github.com/trojan-gfw/trojan/releases>
-►V2rayU客户端：<https://github.com/yanue/V2rayU/releases>
 
----
-- **Android系统**
-![抱歉,图片休息了](st-trojan-basic/st-trojan-basic-005.png "Igniter客户端")
----
-►Android客户端（选择app-release.apk）：<https://github.com/trojan-gfw/igniter/releases>
-►Trojan项目地址：<https://github.com/trojan-gfw/trojan>
+### `安装Trojan-go面板`
 
----
+> 提前准备好trojan-web面板域名和trojan服务域名
 
-- **IOS系统**
-
-需下载Shadowrocket软件
+1. Jrohy的一键Trojan面板脚本
+  ```bash
+  #安装/更新
+  source <(curl -sL https://git.io/trojan-install)
+  #卸载
+  source <(curl -sL https://git.io/trojan-install) --remove
+  ```
+2. 修改trojan-web端口
+  ```bash
+  /etc/systemd/system/trojan-web.service
+  在/usr/local/bin/trojan web 后面添加 -p port
+  systemctl daemon-reload
+  systemctl restart trojan-web
+  ```
+3. trojan设置
+  ```bash
+  # 修改端口
+    /usr/local/etc/trojan/config.json
+  # 申请证书报错
+    netstat -ntlp
+    采用命令 sudo fuser -k 80/tcp 强制 杀掉进程
+    nginx
+  # 连接被墙的外网就No route to host：
+    切换trojan-go版本解决
+  ```
+4. 更改Trojan-Go配置文件(可选)
+  ```
+  # 找到VPS目录文件 /usr/local/etc/trojan/config.json ，备份一份（若是把类型切换回来可以恢复使用Trojan）
+  # 需要增加WS等其他Trojan-Go所支持的模块，增加完成后保存并在面板重启Trojan-GO服务
+  "websocket": {
+      "enabled": true,
+      "path": "/DFE4545DFDED/",
+      "host": "你的域名"
+  },
+  "mux": {
+      "enabled": true,
+      "concurrency": 8,
+      "idle_timeout": 60
+  }
+  ```
 
 ## 常见问题总结
 
-1. Trojan客户端打开无法运行，提示缺少找不到vcruntime140.dll或找不到msvcp140.dll。
-    ```
-    原因缺少运行库，下载链接中的两个软件，一个是32位一个是64位，请全部安装即可：
-    https://www.microsoft.com/en-us/download/details.aspx?id=48145
-    ```
-2. 如果遇到vcruntime140_1的错误，下载下面的文件放到C:\windows\system32目录下即可
-    ```
-    下载140_1.dll：https://github.com/atrandys/trojan/raw/master/vcruntime140_1.dll
-    ```
-3. trojan服务端怎么修改密码
-    ```
-    trojan服务端配置文件路径如下，如需修改内容，修改以下文件即可。
-    /usr/src/trojan/server.conf
-    修改完成后，重启trojan服务端即可，同时客户端的密码也要同步修改哦。
-    systemctl restart trojan
-    ```
-4. chrome插件switchyomega无法安装
-    ```
-    参考这篇文章，离线安装chrome插件方法：https://www.atrandys.com/2019/2149.html
-    ```
-5. 关于申请证书没有成果的处理
-    ```
-    可能的原因1：
-        一些原因导致使用nginx申请证书时出错，要么防火墙端口没开放，要么nginx未正常。建议用最纯净的系统安装。
-    可能的原因2:
-        出现这个问题最可能的原因之一是你的同一个域名多次申请证书，导致let’s encrypt官方的限制，同一域名每周最多5次申请。
-    ```
+- Failed to set locale, defaulting to C.UTF-8解决方法
+  - https://blog.csdn.net/ba476/article/details/124448981
+- Invalid version. The only valid version for X509Req is 0.
+  - https://www.cnblogs.com/jscs/p/17484543.html
 
 ## 参考链接
 
-<https://www.youtube.com/watch?v=eiI2e4gnO4w&t=610s>
-<https://www.youtube.com/watch?v=0_b34pfmhzA>
+<https://ybfl.net/sites/158.html>
+<https://v2rayssr.com/bbr.html>
+<https://v2rayssr.com/trojancdn.html>
+<https://github.com/Jrohy/trojan>
+<https://www.youtube.com/watch?v=tC5bER5iHyE>
+<https://kejilion.blogspot.com/2023/10/vps.html>
+
 
 ## 结束语
 

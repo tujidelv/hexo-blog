@@ -18,25 +18,22 @@ tags:
 
 ## 简介
 
-- **[youtube-dl](https://github.com/ytdl-org/youtube-dl)**是一个开源跨平台的命令行下载神器，可以从YouTube.com和其他一些网站中下载视频。
+- [youtube-dl](https://github.com/ytdl-org/youtube-dl) 是一个开源跨平台的命令行下载神器，可以从YouTube.com和其他一些网站中下载视频。
 - 支持的网站列表：<https://ytdl-org.github.io/youtube-dl/supportedsites.html>
-- 如果需要使用图形化工具界面操作，可以下载**[youtube-dl-gui](https://github.com/MrS0m30n3/youtube-dl-gui)**。
-- 与之类似的还有**[you-get](https://github.com/soimort/you-get)**，这个工具对国内的网站支持的比较好一些。
+- 如果需要使用图形化工具界面操作，可以下载 [youtube-dl-gui](https://github.com/MrS0m30n3/youtube-dl-gui)。
+- 与之类似的还有 [you-get](https://github.com/soimort/you-get)，这个工具对国内的网站支持的比较好一些。
 - 如果需要下载的视频网站现在不能用youtube-dl下载的,可以试试You-Get，配合起来用。
 ---
-```
 下载油管视频的前提是能够科学上网，这里介绍几种下载视频/音频的思路。
-1.浏览器在线下载(简单快捷，上手最快)
-    可以通过一些网站提供的在线下载服务进行下载，比如下边这些网站，只需要将youtube视频网址粘贴一下，就可以下载。
-    https://en.savefrom.net/1-youtube-video-downloader-1/
-    http://www.youtube-video-downloader.xyz/
-    https://www.youtuhi.com/
-2.浏览器插件(上手稍慢，可以边看边下载)
-    方法1,先安装油猴Tampermonkey插件,再去搜索相应的视频下载脚本。
-    方法2,直接安装相应的视频下载插件。
-3.命令行下载程序(上手难度大，功能最强大)
-    这类的也有很多,例如上面提到的youtube-dl、you-get,有些还有相应的图形化工具。
-```
+1. 浏览器在线下载(简单快捷，上手最快)
+    - 可以通过一些网站提供的在线下载服务进行下载，比如下边这些网站，只需要将youtube视频网址粘贴一下，就可以下载。
+    - https://en.savefrom.net/1-youtube-video-downloader-1/
+    - https://www.youtuhi.com/
+2. 浏览器插件(上手稍慢，可以边看边下载)
+    - 方法1,先安装油猴Tampermonkey插件,再去搜索相应的视频下载脚本。
+    - 方法2,直接安装相应的视频下载插件。
+3. 命令行下载程序(上手难度大，功能最强大)
+    - 这类的也有很多,例如上面提到的youtube-dl、you-get,有些还有相应的图形化工具。
 
 ## 开始
 
@@ -52,8 +49,9 @@ tags:
     sudo chmod a+rx /usr/local/bin/youtube-dl
     ```
 - Windows用户
-    1. 从**[ffmpeg官网](https://ffmpeg.org)**下载[ffmpeg](https://ffmpeg.zeranoe.com/builds/)，注意选择Windows版本，解压后放到任意目录。
-    2. 从**[youtube-dl官网](http://ytdl-org.github.io/youtube-dl)**下载[youtube-dl.exe](https://ytdl-org.github.io/youtube-dl/download.html)，然后放在上一步得到ffmpeg的`bin`目录下。
+
+    1. 从 [ffmpeg官网](https://ffmpeg.org) 下载 [ffmpeg](https://ffmpeg.zeranoe.com/builds/)，注意选择Windows版本，解压后放到任意目录。
+    2. 从 [youtube-dl官网](http://ytdl-org.github.io/youtube-dl) 下载 [youtube-dl.exe](https://ytdl-org.github.io/youtube-dl/download.html)，然后放在上一步得到ffmpeg的`bin`目录下。
     3. 将ffmpeg的bin文件夹（D:\ffmpeg\bin）路径加入系统PATH里面。
     4. 测试ffmpeg与youtube-dl，打开命令行，分别输入`ffmpeg -version;youtube-dl --version`，没报错就成功了。
     ---
@@ -229,4 +227,14 @@ youtube-dl [OPTIONS] URL [URL...]    程序自动选择一个最清晰的格式�
 
 ```
 youtube-dl -F -i --proxy "socks5://127.0.0.1:1080" --cookies /opt/setups/cookies.txt --download-archive archive.txt --write-info-json --all-subs --write-all-thumbnails -o "%(upload_date)s_%(title)s_%(id)s.%(ext)s"
+
+# 只下载音频而不下载视频
+# 同时指定音频格式(aac、flac、mp3、m4a、opus、vorbis、wav，默认为best)
+# 同时指定音频的质量（0到9，默认5，数值越小越好）
+youtube-dl -x --audio-format flac --audio-quality 0 https://www.youtube.com/watch?v=9MpO8lw_Rj4
+
+# 下载视频
+youtube-dl -i -o "C:\Users\l1024v\Desktop\%(upload_date)s_%(title)s_%(id)s_%(width)s*%(height)s.%(ext)s" "https://zh.chaturbate.com/sellapink"
+youtube-dl -i -o "C:\Users\l1024v\Desktop\%(upload_date)s_%(title)s_%(id)s_%(width)s*%(height)s.%(ext)s" "https://www.youtube.com/watch?v=_rEG3jesVfM"
+youtube-dl -i -o "C:\Users\l1024v\Desktop\%(upload_date)s_%(title)s_%(id)s_%(width)s*%(height)s.%(ext)s" "https://space.bilibili.com/1371751867/favlist?fid=970837181"
 ```

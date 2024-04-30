@@ -1,5 +1,5 @@
 ---
-title: Trojan科学上网：进阶
+title: Trojan科学上网：客户端
 date: 2020-04-06 18:28:31
 categories:
 - 软件
@@ -11,15 +11,13 @@ tags:
 ## 目录
 
 - [简介](#简介)
-- [开始](#开始)
+- [Trojan全平台客户端](#Trojan全平台客户端)
 - [参考链接](#参考链接)
 - [结束语](#结束语)
 
 ## 简介
 
 记录trojan的一些进阶使用技巧。
-
-## 开始
 
 ## Trojan全平台客户端
 
@@ -48,6 +46,9 @@ tags:
 - Qv2ray
   1. Github下载[Qv2ray](https://github.com/Qv2ray/Qv2ray/releases)、[v2ray-core](https://github.com/v2ray/v2ray-core/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1N5ZRDOYkZaH7oWg9cxziBQ?pwd=8888) `提取码8888`。
   2. 同Mac版。
+---
+- 浏览器插件
+  同MAC版。
 
 ### `Mac`
 
@@ -75,6 +76,12 @@ tags:
   2. 搜索圈X Quantumult X，需要购买后才能下载使用。
   3. 右击右上角的小风车图标设置翻墙模式。3个图标分别是规则分流模式、全部直连、全部代理。
   4. Quantumult X 新手入门教程：<https://github.com/kjfx/QuantumultX>
+---
+- 浏览器插件
+  1. 去<https://github.com/trojan-gfw/trojan/releases>下载对应平台trojan官方客户端
+     ![抱歉,图片休息了](st-trojan-advanced/st-trojan-basic-003.png "trojan客户端")
+  2. 安装SwitchyOmega插件，<img src="st-trojan-basic/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1nN60uMMsit4XNYS90eASaw) `提取码8cp7`；并设置情景模式。
+     ![抱歉,图片休息了](st-trojan-advanced/st-trojan-basic-004.png "SwitchyOmega设置")
 
 ### `Android`
 
@@ -86,6 +93,7 @@ tags:
 - Igniter
   1. Github下载[igniter](https://github.com/trojan-gfw/igniter/releases)；网盘下载<img src="st-trojan-advanced/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/1LKOjYQWgtGexbo6IO00WgA?pwd=8888) `提取码8888`。
   2. 分别输入域名、端口、密码，可开启过滤大陆域名/IP，点击连接开启翻墙。
+  ![抱歉,图片休息了](st-trojan-advanced/st-trojan-basic-005.png "Igniter客户端")
 
 ### `IOS`
 
@@ -98,6 +106,7 @@ tags:
 <https://v2rayssr.com/trojancdn.html>
 <https://github.com/Loyalsoldier/v2ray-rules-dat>
 <https://johnshall.github.io/Shadowrocket-ADBlock-Rules-Forever>
+[SwitchyOmega规则GFWList](https://github.com/gfwlist/gfwlist)
 
 ## 结束语
 
