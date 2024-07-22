@@ -115,7 +115,7 @@ VPS的用途很多，本次介绍几种常用的服务器下载BT的利器，体
          - FileManger可作为网盘来使用，和caddy的功能差不多
     - Rclone: http://yourip:8000/rclone
     - 首次登录 Filebrowser 时，请使用 admin / admin 作为用户名和密码。如果您不更新 ARIA2_USER 和 ARIA2_PWD ，请使用 user / password 登录 Rclone。
-    ```
+
 3. 补充
     - 根据个人的需求来选择，如果觉得不需要加密Aria2的管理界面的，其实用第一种方式就行了。非常简单，一行命令即可。
     - 同时也可以结合TransdroneAPP来使用，使用它来管理多个下载工具也是比较方便的。<img src="st-vps-bt/dowload.png" width="16" height="16" align="center" />[网盘下载](https://pan.baidu.com/s/19Nj1htcK49zyexF9qP7Stw) `提取码v7aa`
