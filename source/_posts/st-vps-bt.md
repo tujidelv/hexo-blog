@@ -28,35 +28,27 @@ VPS的用途很多，本次介绍几种常用的服务器下载BT的利器，体
 
 ### `qBittorrent`
 
-1. docker安装
+1. docker cli安装
     ```
-    docker pull linuxserver/qbittorrent
+    docker run -d \
+    --name=qbittorrent \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e TZ=Etc/UTC \
+    -e WEBUI_PORT=8080 \
+    -e TORRENTING_PORT=6881 \
+    -p 8080:8080 \
+    -p 6881:6881 \
+    -p 6881:6881/udp \
+    -v /path/to/qbittorrent/appdata:/config \
+    -v /path/to/downloads:/downloads `#optional` \
+    --restart unless-stopped \
+    lscr.io/linuxserver/qbittorrent:latest
     ```
-2. 完成后输入
-    ```
-    docker create \
-      --name=qbittorrent \
-      -e PUID=1000 \
-      -e PGID=1000 \
-      -e TZ=Aisa/Shanghai \
-      -e UMASK_SET=022 \
-      -e WEBUI_PORT=8080 \
-      -p 8999:8999 \
-      -p 8999:8999/udp \
-      -p 8080:8080 \
-      -v /path/to/appdata/config:/config \
-      -v /path/to/downloads:/downloads \
-      --restart unless-stopped \
-      linuxserver/qbittorrent
-    ```
-3. 创建好后启动
-    ```
-    docker start qbittorrent
-    ```
-4. 进入主界面
+2. 进入主界面
     ```
     1.输入IP:端口号即可进入qbittorrent 的管理界面
-    2.默认账号密码admin/admin
+    2.admin 用户的临时密码将在启动时打印到容器日志中。您必须在设置的 Web UI 部分更改用户名/密码。如果不更改密码，每次容器启动时都会生成一个新密码。
     3.进入"Option->Web UI->Language",将语言设置成中文
     4.进入"Option->高级",勾选"总是向同级的所有Tracker汇报",适合下载一些冷门的资源
     5.进入"Option->BitTorrent",可在做种限制中勾选"当分享率达到",来设置上传大小,例如设置2代表当上传2倍大小时就停止上传给其他用户
@@ -66,23 +58,25 @@ VPS的用途很多，本次介绍几种常用的服务器下载BT的利器，体
 
 ### `Transmission`
 
-1. docker安装
+1. docker cli安装
     ```
     docker run -d \
     --restart=always \
     --name transmission \
-    -v /path3/to/torrents:/to_download \
-    -v /path3/to/download:/output \
-    -p 9091:9091 \
+    -u $(id -u) \
+    -v /path/to/incoming/torrents:/to_download \
+    -v /path/to/downloaded/files:/output \
+    -p 9091:80 \
     -p 51413:51413 \
-    -e USERNAME=admin \
-    -e PASSWORD=admin \
+    -p 51413:51413/udp \
+    -e PORT=80 \
     jaymoulin/transmission
     ```
 2. 进入主界面
     ```
     1.输入IP:9091即可进入transmission 的管理界面
     2.默认账号密码是空,按回车就可以进入
+    可使用 docker exec transmission configure <username> <password> 命令配置您的凭据。容器将重新启动并且您的凭据将被应用。默认凭据为空（没有用户名，没有密码）。
     ```
 ![抱歉,图片休息了](st-vps-bt/st-vps-bt-003.png "Transmission")
 
@@ -90,28 +84,37 @@ VPS的用途很多，本次介绍几种常用的服务器下载BT的利器，体
 
 1. docker安装
     ```
-    # 最快速启动
-    docker run -d --name aria2-ui -v /path2/down:/data -p 80:80 wahyd4/aria2-ui
+    # Quick run 最快速启动
+    docker run -d --name aria2-ui -p 8000:80 wahyd4/aria2-ui
     ```
     ```
-    # 加密下载界面
+    # Full features run 全功能运行
     docker run -d --name ariang \
-      -p 80:80 \
-      -e PUID=1000 \
-      -e PGID=1000 \
-      -e ENABLE_AUTH=true \
-      -e RPC_SECRET=Hello \
-      -e ARIA2_SSL=false \
-      -e ARIA2_USER=user \
-      -e ARIA2_PWD=pwd \
-      -v /home/down:/data \
-      wahyd4/aria2-ui
+    -p 80:80 \
+    -p 443:443 \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e ENABLE_AUTH=true \
+    -e RPC_SECRET=Hello \
+    -e DOMAIN=https://example.com \
+    -e ARIA2_SSL=false \
+    -e ARIA2_USER=user \
+    -e ARIA2_PWD=password \
+    -e ARIA2_EXTERNAL_PORT=443 \
+    -e CADDY_LOG_LEVEL=ERROR \
+    -v /yourdata:/data \
+    -v /app/.cache:/app/.cache \
+    -v /app/a.db:/app/filebrowser.db \
+    -v /to_yoursslkeys/:/app/conf/key \
+    -v <conf files folder>:/app/conf \
+    wahyd4/aria2-ui
     ```
 2. 进入主界面
-    ```
-    Aria2: http://ip:port/ui/
-    FileManger: http://ip:port
-    FileManger可作为网盘来使用,说caddy的功能差不多
+    - Aria2: http://yourip:8000
+    - FileManger: http://yourip:8000/files
+         - FileManger可作为网盘来使用，和caddy的功能差不多
+    - Rclone: http://yourip:8000/rclone
+    - 首次登录 Filebrowser 时，请使用 admin / admin 作为用户名和密码。如果您不更新 ARIA2_USER 和 ARIA2_PWD ，请使用 user / password 登录 Rclone。
     ```
 3. 补充
     - 根据个人的需求来选择，如果觉得不需要加密Aria2的管理界面的，其实用第一种方式就行了。非常简单，一行命令即可。
@@ -183,7 +186,9 @@ python -m SimpleHTTPServer
 
 <https://powersee.github.io>
 <https://github.com/c0re100/qBittorrent-Enhanced-Edition>
+<https://github.com/linuxserver/docker-qbittorrent>
 <https://github.com/ronggang/transmission-web-control>
+<https://gitlab.com/jaymoulin/docker-transmission>
 <https://github.com/wahyd4/aria2-ariang-docker>
 
 ## 结束语
